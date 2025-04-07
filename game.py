@@ -1,572 +1,396 @@
 import sys
-import time  # For sleep
-import traceback  # For better error reporting
+import time      # For sleep
+import traceback # For better error reporting
+import os        # For screen clearing
 from collections import deque
 
 # Necessary imports from pokerlib
 from pokerlib import Player, PlayerSeats, Table
-from pokerlib.enums import (Hand, Rank, RoundPrivateOutId, RoundPublicInId,
+from pokerlib.enums import ( Hand, Rank, RoundPrivateOutId, RoundPublicInId,
                             RoundPublicOutId, Suit, TablePrivateOutId,
-                            TablePublicInId, TablePublicOutId, Turn)
+                            TablePublicInId, TablePublicOutId, Turn )
 
-# --- Helper Functions for Display ---
+# --- Configuration ---
+CLEAR_SCREEN = False # Set to False if screen clearing causes issues
 
+# --- ANSI Color Codes ---
+class Colors:
+    RESET = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+    BLACK = "\033[30m"; RED = "\033[31m"; GREEN = "\033[32m"; YELLOW = "\033[33m"
+    BLUE = "\033[34m"; MAGENTA = "\033[35m"; CYAN = "\033[36m"; WHITE = "\033[37m"
+    BRIGHT_BLACK = "\033[90m"; BRIGHT_RED = "\033[91m"; BRIGHT_GREEN = "\033[92m"; BRIGHT_YELLOW = "\033[93m"
+    BRIGHT_BLUE = "\033[94m"; BRIGHT_MAGENTA = "\033[95m"; BRIGHT_CYAN = "\033[96m"; BRIGHT_WHITE = "\033[97m"
+    BG_BLACK = "\033[40m"; BG_RED = "\033[41m"; BG_GREEN = "\033[42m"; BG_YELLOW = "\033[43m"
+    BG_BLUE = "\033[44m"; BG_MAGENTA = "\033[45m"; BG_CYAN = "\033[46m"; BG_WHITE = "\033[47m"
+
+def colorize(text, color):
+    """Applies ANSI color code and resets."""
+    return f"{color}{text}{Colors.RESET}"
+
+# --- Helper Functions for Display (Enhanced) ---
 
 def format_card(card):
-    """Formats a card tuple (Rank, Suit) into a short string like 'AS' or 'TH'."""
-    if not card:
-        return "??"
-    rank_map = {
-        Rank.TWO: "2",
-        Rank.THREE: "3",
-        Rank.FOUR: "4",
-        Rank.FIVE: "5",
-        Rank.SIX: "6",
-        Rank.SEVEN: "7",
-        Rank.EIGHT: "8",
-        Rank.NINE: "9",
-        Rank.TEN: "T",
-        Rank.JACK: "J",
-        Rank.QUEEN: "Q",
-        Rank.KING: "K",
-        Rank.ACE: "A",
-    }
-    suit_map = {Suit.SPADE: "s", Suit.CLUB: "c", Suit.DIAMOND: "d", Suit.HEART: "h"}
+    """Formats a card tuple (Rank, Suit) into a short, colored string."""
+    if not card: return colorize("??", Colors.BRIGHT_BLACK)
+    rank_map = { Rank.TWO: "2", Rank.THREE: "3", Rank.FOUR: "4", Rank.FIVE: "5", Rank.SIX: "6", Rank.SEVEN: "7", Rank.EIGHT: "8", Rank.NINE: "9", Rank.TEN: "T", Rank.JACK: "J", Rank.QUEEN: "Q", Rank.KING: "K", Rank.ACE: "A" }
+    suit_map = {Suit.SPADE: "♠", Suit.CLUB: "♣", Suit.DIAMOND: "♦", Suit.HEART: "♥"}
+    suit_color_map = { Suit.SPADE: Colors.WHITE, Suit.CLUB: Colors.WHITE, Suit.DIAMOND: Colors.BRIGHT_RED, Suit.HEART: Colors.BRIGHT_RED }
     try:
-        rank, suit = card
-        return rank_map[rank] + suit_map[suit]
-    except (TypeError, KeyError, ValueError):
-        return "??"
-
+        # Ensure input is treated as a sequence (tuple or list) and has 2 elements
+        if hasattr(card, '__len__') and len(card) == 2:
+             rank, suit = card
+             rank_str = rank_map[rank]; suit_str = suit_map[suit]
+             color = suit_color_map.get(suit, Colors.WHITE)
+             card_text = f"{rank_str}{suit_str}"
+             if rank >= Rank.JACK: card_text = Colors.BOLD + card_text # Bold face cards
+             return colorize(card_text, color)
+        else: return colorize("??", Colors.BRIGHT_BLACK) # Invalid card format
+    except (TypeError, KeyError, ValueError, IndexError): return colorize("??", Colors.BRIGHT_BLACK)
 
 def format_cards(cards):
-    """Formats a list/tuple of cards."""
-    return " ".join(format_card(c) for c in cards) if cards else ""
-
+    """Formats a list/tuple of cards with colors."""
+    # Ensure cards is iterable before processing
+    if hasattr(cards, '__iter__'):
+        return " ".join(format_card(c) for c in cards)
+    return ""
 
 def format_hand_enum(hand_enum):
     """Formats a Hand enum member into a readable string."""
     return hand_enum.name.replace("_", " ").title() if hand_enum else "Unknown Hand"
 
+def clear_terminal():
+    """Clears the terminal screen."""
+    if CLEAR_SCREEN: os.system('cls' if os.name == 'nt' else 'clear')
 
-# --- Custom Table Class for IO ---
-
+# --- Custom Table Class for IO (Enhanced Display) ---
 
 class CommandLineTable(Table):
-    """Overrides Table to handle command-line input and output."""
+    """Overrides Table to handle command-line input and output with enhanced visuals."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._player_cards = {}
+        self._player_cards = {} # Stores tuple card representation: {player_id: ((R,S),(R,S))}
         self._current_action_player_id = None
         self.round_over_flag = False
 
     def _get_player_name(self, player_id):
-        """Safely gets a player's name by ID."""
         player = self.seats.getPlayerById(player_id)
         return player.name if player else f"Player {player_id}"
 
     # --- OVERRIDE _newRound ---
     def _newRound(self, round_id):
-        """
-        Overrides the default _newRound to reset player states *before*
-        the Round object is initialized, preventing state timing issues.
-        """
         current_players = self.seats.getPlayerGroup()
-        if not current_players:
-            print("Error in _newRound: No players found to start round.")
-            self.round = None
-            return
-
-        # print(f"[DEBUG] Resetting state for {len(current_players)} players before Round {round_id} init.") # Optional debug
+        if not current_players: print(colorize("Error: No players.", Colors.RED)); self.round = None; return
         for player in current_players:
-            if hasattr(player, "resetState"):
-                player.resetState()
-            else:  # Should not happen with standard Player object
-                print(f"Warning: Player object {player} missing resetState method.")
-
-        # Now call the original RoundClass constructor with the *reset* players
+            if hasattr(player, "resetState"): player.resetState()
+        self._player_cards.clear()
         try:
-            # Use self.RoundClass which points to the correct Round implementation (pokerlib.Round)
-            self.round = self.RoundClass(
-                round_id, current_players, self.button, self.small_blind, self.big_blind
-            )
-            # Reset our custom flag (also done in publicOut, but good practice here too)
+            self.round = self.RoundClass( round_id, current_players, self.button, self.small_blind, self.big_blind )
             self.round_over_flag = False
         except Exception as e:
-            print(f"--- ERROR DURING RoundClass INITIALIZATION (Round {round_id}) ---")
-            traceback.print_exc()
-            print("-----------------------------------------------------")
-            self.round = None  # Ensure round is None if init fails
+            print(colorize(f"--- ROUND INIT ERROR (Round {round_id}) ---", Colors.RED)); traceback.print_exc()
+            self.round = None
 
     # --- END OVERRIDE ---
 
     def _display_game_state(self):
-        """ Displays the current state of the table and round. """
-        print("-" * 40)
-        # Check if round exists and seems valid enough to display
-        if ( not self.round
-            or not hasattr(self.round, 'id') # Check for basic round attributes
-            or not hasattr(self.round, 'players')
-            or not isinstance(self.round.players, list) # Ensure players is a list
-            or not hasattr(self.round, 'turn')
-            or not hasattr(self.round, 'board')
-            or not hasattr(self.round, 'pot_size')
-            or not isinstance(self.round.pot_size, list)): # Ensure pot_size is list
-            print("No active round or essential round state missing.")
-            print("Players at table:")
-            for player in self.seats.getPlayerGroup():
-                print( f"  - {player.name}: ${player.money if hasattr(player, 'money') else 'N/A'}" )
-            print("-" * 40)
-            return
+        """ Displays the current state of the table and round with enhanced visuals. """
+        clear_terminal()
+        title = colorize("====== POKER GAME STATE ======", Colors.BRIGHT_CYAN + Colors.BOLD)
+        separator = colorize("--------------------------------------------------", Colors.BRIGHT_BLACK)
+        print(f"\n{title}")
 
-        try:
-            # Access attributes known to exist from checks above
-            round_id = self.round.id
-            turn_name = self.round.turn.name
-            board_cards = format_cards(self.round.board)
-            pot_total = sum(self.round.pot_size)
-            current_turn_enum = self.round.turn
+        if ( not self.round or not hasattr(self.round, 'id') or not hasattr(self.round, 'players')
+             or not isinstance(self.round.players, list) or not hasattr(self.round, 'turn')
+             or not hasattr(self.round, 'board') or not hasattr(self.round, 'pot_size')
+             or not isinstance(self.round.pot_size, list)):
+            print(colorize("No active round or essential round state missing.", Colors.YELLOW))
+            print(colorize("\nPlayers at table:", Colors.YELLOW))
+            for player in self.seats.getPlayerGroup():
+                money_str = f"${player.money}" if hasattr(player, 'money') else colorize("N/A", Colors.BRIGHT_BLACK)
+                print(f"  - {colorize(player.name, Colors.CYAN)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
+            print(separator); return
+
+        try: # Safely access round attributes
+            round_id = self.round.id; turn_name = self.round.turn.name
+            board_cards_list = [tuple(c) for c in self.round.board if isinstance(c, list) and len(c)==2] # Ensure tuples
+            board_cards_str = format_cards(board_cards_list)
+            pot_total = sum(self.round.pot_size); current_turn_enum = self.round.turn
             players_in_round = self.round.players
-            num_players_in_round = len(players_in_round) # Get length for safe indexing
-
             button_idx = self.round.button if hasattr(self.round, "button") else -1
-            sb_idx = ( self.round.small_blind_player_index if hasattr(self.round, "small_blind_player_index") else -1 )
-            bb_idx = ( self.round.big_blind_player_index if hasattr(self.round, "big_blind_player_index") else -1 )
-
+            sb_idx = self.round.small_blind_player_index if hasattr(self.round, "small_blind_player_index") else -1
+            bb_idx = self.round.big_blind_player_index if hasattr(self.round, "big_blind_player_index") else -1
         except (AttributeError, TypeError, IndexError) as e:
-            # Catch potential errors during attribute access
-            print(f"Error accessing round details for display (state changing?): {e}")
-            print("Players at table (fallback):")
-            for player in self.seats.getPlayerGroup():
-                print( f"  - {player.name}: ${player.money if hasattr(player, 'money') else 'N/A'}" )
-            print("-" * 40)
-            return
+            print(colorize(f"Error accessing round details for display: {e}", Colors.BRIGHT_RED)); return
 
-        print(f"Round ID: {round_id}, Turn: {turn_name}")
-        print(f"Board: [ {board_cards} ]")
-        print(f"Total Pot: ${pot_total}")
-        print("Players:")
+        print(f"Round: {colorize(str(round_id), Colors.WHITE)}   Turn: {colorize(turn_name, Colors.WHITE + Colors.BOLD)}")
+        print(f"Board: [ {board_cards_str} ]")
+        print(f"Pot:   {colorize(f'${pot_total}', Colors.BRIGHT_YELLOW + Colors.BOLD)}")
+        print(colorize("\nPlayers:", Colors.YELLOW))
 
+        max_name_len = 0
+        if players_in_round: max_name_len = max(len(p.name) for p in players_in_round if p and hasattr(p, 'name'))
 
         for idx, player in enumerate(players_in_round):
-            # Check player object and essential attributes
-            if not player or not all(hasattr(player, attr) for attr in ['id', 'name', 'is_folded', 'is_all_in', 'turn_stake', 'stake', 'money']):
-                print(f"  - (Skipping display for invalid player object at index {idx})")
-                continue
+            if not player or not hasattr(player, "id"): continue
 
-            status = []
-            if player.is_folded: status.append("FOLDED")
-            if player.is_all_in: status.append("ALL-IN")
+            is_acting = (player.id == self._current_action_player_id)
+            line_prefix = colorize(" > ", Colors.BRIGHT_YELLOW + Colors.BOLD) if is_acting else "   "
+            player_name_str = (player.name if hasattr(player, 'name') else f'P{player.id}').ljust(max_name_len)
+            player_name_colored = colorize(player_name_str, Colors.CYAN + (Colors.BOLD if is_acting else ""))
+            money_val = player.money if hasattr(player, 'money') else 0
+            money_str = colorize(f"${money_val}", Colors.BRIGHT_GREEN)
 
-            # Index check before accessing using indices
-            player_round_index = idx # Use direct index now
+            cards_str = colorize("( ? ? )", Colors.BRIGHT_BLACK)
+            if player.id in self._player_cards: # Use the stored tuple cards
+                 cards_str = f"( {format_cards(self._player_cards[player.id])} )"
+            # Check player.cards for showdown display (ensure it contains tuples)
+            elif (self.round_over_flag or self.round.finished) and not player.is_folded and hasattr(player, "cards"):
+                 cards_data = player.cards
+                 if isinstance(cards_data, (list, tuple)): # Check if iterable
+                     cards_tuple_list = [tuple(c) for c in cards_data if isinstance(c, (list, tuple)) and len(c)==2]
+                     if len(cards_tuple_list) == 2: # Ensure conversion worked
+                          cards_str = f"( {format_cards(cards_tuple_list)} )"
 
-            if player_round_index == button_idx: status.append("DEALER")
-            if player_round_index == sb_idx: status.append("SB")
-            if player_round_index == bb_idx: status.append("BB")
+            status = []; player_round_index = idx
+            if hasattr(player, 'is_folded') and player.is_folded: status.append(colorize("FOLDED", Colors.BRIGHT_BLACK))
+            if hasattr(player, 'is_all_in') and player.is_all_in: status.append(colorize("ALL-IN", Colors.BRIGHT_RED + Colors.BOLD))
+            if player_round_index == button_idx: status.append(colorize("D", Colors.WHITE + Colors.BOLD))
+            if player_round_index == sb_idx: status.append(colorize("SB", Colors.YELLOW))
+            if player_round_index == bb_idx: status.append(colorize("BB", Colors.YELLOW))
+            status_str = " ".join(status)
 
             turn_stake_val = 0
-            # Check turn_stake list validity
-            if isinstance(player.turn_stake, list) and len(player.turn_stake) > current_turn_enum.value :
+            if ( hasattr(player, "turn_stake") and isinstance(player.turn_stake, list) and len(player.turn_stake) > current_turn_enum.value ):
                 turn_stake_val = player.turn_stake[current_turn_enum.value]
+            stake_str = colorize(f"[Bet: ${turn_stake_val}]", Colors.MAGENTA) if turn_stake_val > 0 else ""
 
-            stake_info = f"Stake(Turn): ${turn_stake_val}"
-            stake_info += f" Stake(Total): ${player.stake}"
+            print(f"{line_prefix}{player_name_colored} {money_str.ljust(8)} {cards_str.ljust(20)} {stake_str.ljust(15)} {status_str}")
 
-            cards_str = "( ? ? )"
-            if player.id in self._player_cards:
-                cards_str = f"( {format_cards(self._player_cards[player.id])} )"
-            elif (self.round_over_flag or self.round.finished) and not player.is_folded and hasattr(player, "cards"): # Check round.finished too
-                cards_str = f"( {format_cards(player.cards)} )"
+        print(separator)
 
-            print( f"  - {player.name}: ${player.money} {cards_str} " f"[{stake_info}] {' '.join(status)}" )
-        print("-" * 40)
-
-    # --- Output Handling ---
+    # --- Output Handling (Enhanced) ---
     def publicOut(self, out_id, **kwargs):
-        """Handles public messages broadcast to all players."""
         player_id = kwargs.get("player_id")
-        player_name = self._get_player_name(player_id) if player_id else "System"
+        player_name_raw = self._get_player_name(player_id) if player_id else "System"
+        player_name = colorize(player_name_raw, Colors.CYAN)
+        msg = ""; prefix = ""
 
         self._current_action_player_id = None
         processed = False
 
-        # --- Process RoundPublicOutId First ---
         if isinstance(out_id, RoundPublicOutId):
-            processed = True
-            if out_id == RoundPublicOutId.NEWROUND:
-                print("==> ROUND: Dealing cards...")
+            processed = True; player = self.seats.getPlayerById(player_id) if player_id else None
+            prefix = colorize("[ROUND]", Colors.BLUE)
+            if out_id == RoundPublicOutId.NEWROUND: msg = "Dealing cards..."
             elif out_id == RoundPublicOutId.NEWTURN:
-                print(f"\n==> ROUND: --- {kwargs['turn'].name} ---")
-                self._display_game_state()
-            elif out_id == RoundPublicOutId.SMALLBLIND:
-                print(
-                    f"==> ROUND: {player_name} posts Small Blind ${kwargs['paid_amount']}."
-                )
-            elif out_id == RoundPublicOutId.BIGBLIND:
-                print(
-                    f"==> ROUND: {player_name} posts Big Blind ${kwargs['paid_amount']}."
-                )
-            elif out_id == RoundPublicOutId.PLAYERCHECK:
-                print(f"==> ACTION: {player_name} checks.")
-            elif out_id == RoundPublicOutId.PLAYERCALL:
-                print(f"==> ACTION: {player_name} calls ${kwargs['paid_amount']}.")
-            elif out_id == RoundPublicOutId.PLAYERFOLD:
-                print(f"==> ACTION: {player_name} folds.")
-            elif out_id == RoundPublicOutId.PLAYERRAISE:
-                print(
-                    f"==> ACTION: {player_name} raises by ${kwargs['raised_by']} (total bet this turn: ${kwargs['paid_amount']})."
-                )
-            elif out_id == RoundPublicOutId.PLAYERISALLIN:
-                print(f"==> INFO: {player_name} is ALL-IN!")
-            elif out_id == RoundPublicOutId.PLAYERWENTALLIN:
-                print(
-                    f"==> ACTION: {player_name} goes ALL-IN with ${kwargs['paid_amount']}!"
-                )
+                 prefix = "" # Displayed via _display_game_state
+                 if hasattr(self.round, 'board'):
+                     self.community_cards = [tuple(card) for card in self.round.board if isinstance(card, list) and len(card)==2]
+                 self._display_game_state()
+            elif out_id == RoundPublicOutId.SMALLBLIND: msg = f"{player_name} posts {colorize('Small Blind', Colors.YELLOW)} ${kwargs['paid_amount']}"
+            elif out_id == RoundPublicOutId.BIGBLIND: msg = f"{player_name} posts {colorize('Big Blind', Colors.YELLOW)} ${kwargs['paid_amount']}"
+            elif out_id == RoundPublicOutId.PLAYERCHECK: prefix = colorize("[ACTION]", Colors.GREEN); msg = f"{player_name} checks"
+            elif out_id == RoundPublicOutId.PLAYERCALL: prefix = colorize("[ACTION]", Colors.GREEN); msg = f"{player_name} calls ${kwargs['paid_amount']}"
+            elif out_id == RoundPublicOutId.PLAYERFOLD: prefix = colorize("[ACTION]", Colors.BRIGHT_BLACK); msg = f"{player_name} folds"
+            elif out_id == RoundPublicOutId.PLAYERRAISE: prefix = colorize("[ACTION]", Colors.BRIGHT_MAGENTA); msg = f"{player_name} raises by ${kwargs['raised_by']} (bets ${kwargs['paid_amount']})"
+            elif out_id == RoundPublicOutId.PLAYERISALLIN: prefix = colorize("[INFO]", Colors.BRIGHT_RED); msg = f"{player_name} is {colorize('ALL-IN!', Colors.BOLD)}"
+            elif out_id == RoundPublicOutId.PLAYERWENTALLIN: prefix = colorize("[ACTION]", Colors.BRIGHT_RED + Colors.BOLD); msg = f"{player_name} goes ALL-IN with ${kwargs['paid_amount']}!"
             elif out_id == RoundPublicOutId.PLAYERACTIONREQUIRED:
-                print(f"\n>>> ACTION REQUIRED: {player_name}")
-                if self.round and hasattr(self.round, "current_player"):
-                    cp = None
-                    try:
-                        cp = self.round.current_player
-                    except Exception:
-                        pass
-                    if cp:
-                        print(f"    Amount to call: ${kwargs.get('to_call', 'N/A')}")
-                        print(
-                            f"    Stack: ${cp.money if hasattr(cp, 'money') else 'N/A'}"
-                        )
-                    else:
-                        print("    (Player info unavailable for action req)")
-                else:
-                    print("    (Round info unavailable for action req)")
+                prefix = "" # Handled by get_player_action prompt
                 self._current_action_player_id = player_id
-            elif out_id == RoundPublicOutId.PLAYERCHOICEREQUIRED:
-                pass  # Ignoring
+            elif out_id == RoundPublicOutId.PLAYERCHOICEREQUIRED: pass # Ignoring
             elif out_id == RoundPublicOutId.PUBLICCARDSHOW:
-                hand_info = ""
-                player = (
-                    self.round.players.getPlayerById(player_id)
-                    if self.round and hasattr(self.round, "players")
-                    else None
-                )
-                if player and hasattr(player, "hand") and player.hand:
-                    hand_info = f" ({format_hand_enum(player.hand.handenum)})"
-                print(
-                    f"==> SHOWDOWN: {player_name} shows {format_cards(kwargs.get('cards',[]))}{hand_info}."
-                )
-            elif out_id == RoundPublicOutId.DECLAREPREMATUREWINNER:
-                print(
-                    f"==> WINNER: {player_name} wins ${kwargs['money_won']} as the only remaining player."
-                )
+                prefix = colorize("[SHOWDOWN]", Colors.WHITE)
+                shown_cards_raw = kwargs.get('cards', []);
+                # Ensure cards are tuples for formatting and potential state storage
+                shown_cards_tuples = [tuple(c) for c in shown_cards_raw if isinstance(c, (list, tuple)) and len(c)==2]
+                # Store shown cards in _player_cards map for display consistency
+                if player and shown_cards_tuples: self._player_cards[player.id] = tuple(shown_cards_tuples)
+                hand_name = format_hand_enum(kwargs.get('handenum'))
+                msg = f"{player_name} shows {format_cards(shown_cards_tuples)} ({hand_name})"
+            elif out_id == RoundPublicOutId.DECLAREPREMATUREWINNER: prefix = colorize("[WINNER]", Colors.BRIGHT_YELLOW + Colors.BOLD); msg = f"{player_name} wins ${kwargs['money_won']} (Premature)"
             elif out_id == RoundPublicOutId.DECLAREFINISHEDWINNER:
-                hand_name = format_hand_enum(kwargs.get("handname"))
-                hand_cards = format_cards(kwargs.get("hand", []))
-                print(
-                    f"==> WINNER: {player_name} wins ${kwargs['money_won']} with {hand_name} ({hand_cards})."
-                )
-            elif out_id == RoundPublicOutId.ROUNDFINISHED:
-                print("\n======= ROUND FINISHED =======")
-                self.round_over_flag = True  # SET FLAG
-                self._display_game_state()
-            elif out_id == RoundPublicOutId.ROUNDCLOSED:
-                print("======= ROUND CLOSED (Internal library state) =======")
-                self._player_cards.clear()
+                 prefix = colorize("[WINNER]", Colors.BRIGHT_YELLOW + Colors.BOLD)
+                 hand_name = format_hand_enum(kwargs.get('handname')); msg = f"{player_name} wins ${kwargs['money_won']} with {hand_name}"
+            elif out_id == RoundPublicOutId.ROUNDFINISHED: prefix = ""; msg = colorize("\n======= ROUND FINISHED =======", Colors.BRIGHT_CYAN); self.round_over_flag = True; self._display_game_state()
+            elif out_id == RoundPublicOutId.ROUNDCLOSED: prefix = colorize("[Internal]", Colors.BRIGHT_BLACK); msg = "Round Closed State."; self._player_cards.clear()
 
-        # --- Process TablePublicOutId Second ---
         elif isinstance(out_id, TablePublicOutId):
-            processed = True
-            if out_id == TablePublicOutId.PLAYERJOINED:
-                print(f"==> TABLE: {player_name} joined seat {kwargs['player_seat']}.")
-            elif out_id == TablePublicOutId.PLAYERREMOVED:
-                print(f"==> TABLE: {player_name} left the table.")
-            elif out_id == TablePublicOutId.NEWROUNDSTARTED:
-                print(f"==> TABLE: Confirmed Start Round (ID: {kwargs['round_id']})")
-                # self.round_over_flag = False # RESET FLAG HERE - Now done in _newRound override
-            elif out_id == TablePublicOutId.ROUNDNOTINITIALIZED:
-                print("==> ERROR: No round is currently running.")
-            elif out_id == TablePublicOutId.ROUNDINPROGRESS:
-                print("==> ERROR: Round already in progress.")
-            elif out_id == TablePublicOutId.INCORRECTNUMBEROFPLAYERS:
-                print("==> ERROR: Need at least 2 players to start a round.")
+            processed = True; prefix = colorize("[TABLE]", Colors.MAGENTA)
+            if out_id == TablePublicOutId.PLAYERJOINED: msg = f"{player_name} joined seat {kwargs['player_seat']}"
+            elif out_id == TablePublicOutId.PLAYERREMOVED: msg = f"{player_name} left table"
+            elif out_id == TablePublicOutId.NEWROUNDSTARTED: prefix = ""; msg = "" # Don't print, _newRound handles setup
+            elif out_id == TablePublicOutId.ROUNDNOTINITIALIZED: prefix = colorize("[ERROR]", Colors.RED); msg = "No round running"
+            elif out_id == TablePublicOutId.ROUNDINPROGRESS: prefix = colorize("[ERROR]", Colors.RED); msg = "Round already in progress"
+            elif out_id == TablePublicOutId.INCORRECTNUMBEROFPLAYERS: prefix = colorize("[ERROR]", Colors.RED); msg = "Need 2+ players"
 
-        # --- Catch any unhandled ---
-        if not processed:
-            if out_id != RoundPublicOutId.PLAYERCHOICEREQUIRED:
-                print(
-                    f"Unhandled Public Out: ID={out_id} (Type: {type(out_id).__name__}) Data: {kwargs}"
-                )
+        # Print message if not handled by _display_game_state
+        if msg and out_id != RoundPublicOutId.NEWTURN and out_id != RoundPublicOutId.ROUNDFINISHED:
+             print(f"{prefix} {msg}")
+        elif not processed and out_id != RoundPublicOutId.PLAYERCHOICEREQUIRED: # Print unhandled only if truly unknown
+            print(colorize(f"Unhandled Public Out: ID={out_id} Data: {kwargs}", Colors.BRIGHT_BLACK))
 
     def privateOut(self, player_id, out_id, **kwargs):
-        """Handles private messages sent only to a specific player."""
-        player_name = self._get_player_name(player_id)
+        player_name_raw = self._get_player_name(player_id); player_name = colorize(player_name_raw, Colors.CYAN)
+        prefix = colorize(f"[PRIVATE to {player_name_raw}]", Colors.YELLOW)
+        msg = ""
 
         if out_id == RoundPrivateOutId.DEALTCARDS:
-            cards = kwargs.get("cards")
-            if cards:
-                self._player_cards[player_id] = cards
-                print(
-                    f"==> PRIVATE [{player_name}]: You are dealt {format_cards(cards)}"
-                )
-            else:
-                print(
-                    f"==> PRIVATE [{player_name}]: Dealing cards error (no cards data)."
-                )
-        elif out_id == TablePrivateOutId.BUYINTOOLOW:
-            print(f"==> ERROR [{player_name}]: Buy-in of ${self.buyin} required.")
-        elif out_id == TablePrivateOutId.TABLEFULL:
-            print(f"==> ERROR [{player_name}]: Table is full.")
-        elif out_id == TablePrivateOutId.PLAYERALREADYATTABLE:
-            print(f"==> ERROR [{player_name}]: You are already at the table.")
-        elif out_id == TablePrivateOutId.PLAYERNOTATTABLE:
-            print(f"==> ERROR [{player_name}]: You are not at this table.")
-        elif out_id == TablePrivateOutId.INCORRECTSEATINDEX:
-            print(f"==> ERROR [{player_name}]: Invalid seat index or seat is taken.")
+            cards_raw = kwargs.get('cards');
+            if cards_raw and len(cards_raw) == 2:
+                # Ensure inner elements are tuples before storing
+                cards_tuples = tuple(tuple(c) for c in cards_raw if isinstance(c, (list, tuple)) and len(c)==2)
+                if len(cards_tuples) == 2:
+                     self._player_cards[player_id] = cards_tuples # Store tuple of tuples
+                     msg = f"You are dealt {format_cards(cards_tuples)}"
+                else: msg = colorize("Card conversion error.", Colors.RED)
+            else: msg = colorize("Dealing error (no cards data).", Colors.RED)
+        elif out_id == TablePrivateOutId.BUYINTOOLOW: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Buy-in of ${self.buyin} required."
+        elif out_id == TablePrivateOutId.TABLEFULL: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Table full"
+        elif out_id == TablePrivateOutId.PLAYERALREADYATTABLE: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Already seated"
+        elif out_id == TablePrivateOutId.PLAYERNOTATTABLE: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Not at table"
+        elif out_id == TablePrivateOutId.INCORRECTSEATINDEX: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Bad seat index"
+        else: prefix = colorize(f"[UNHANDLED PRIVATE to {player_name_raw}]", Colors.BRIGHT_BLACK); msg = f"ID={out_id} Data: {kwargs}"
 
+        if msg: print(f"{prefix} {msg}")
 
-# --- Main Game Logic ---
-
+# --- Main Game Logic (Enhanced Prompt) ---
 
 def get_player_action(player_name, to_call, player_money, can_check, can_raise):
-    """Prompts the user for an action and validates it."""
-    print(f"--- {player_name}'s Turn ---")
+    """Prompts the user for an action and validates it with better visuals."""
+    prompt_header = colorize(f"--- {player_name}'s Turn ---", Colors.BRIGHT_YELLOW + Colors.BOLD)
+    print(prompt_header)
     actions = ["FOLD"]
-    action_prompt = "FOLD"
+    action_color_map = { "FOLD": Colors.BRIGHT_BLACK, "CHECK": Colors.BRIGHT_GREEN, "CALL": Colors.BRIGHT_CYAN, "RAISE": Colors.BRIGHT_MAGENTA }
+    action_parts = [colorize("FOLD", action_color_map["FOLD"])]
 
-    if can_check:
-        actions.append("CHECK")
-        action_prompt += "/CHECK"
+    if can_check: actions.append("CHECK"); action_parts.append(colorize("CHECK", action_color_map["CHECK"]))
     elif to_call > 0 and player_money > 0:
-        actions.append("CALL")
-        effective_call = min(to_call, player_money)
-        action_prompt += f"/CALL({effective_call})"
+        actions.append("CALL"); effective_call = min(to_call, player_money)
+        action_parts.append(colorize(f"CALL({effective_call})", action_color_map["CALL"]))
+    if can_raise: actions.append("RAISE"); action_parts.append(colorize("RAISE", action_color_map["RAISE"]))
 
-    if can_raise:
-        actions.append("RAISE")
-        action_prompt += "/RAISE"
-
-    print(f"Available actions: {action_prompt}")
+    print(f"Available actions: {' / '.join(action_parts)}")
 
     while True:
-        action_str = input("Enter action: ").upper().strip()
+        try: action_str = input(colorize("Enter action: ", Colors.WHITE)).upper().strip()
+        except EOFError: print(colorize("\nInput ended.", Colors.RED)); return RoundPublicInId.FOLD, {}
 
-        if action_str == "CALL" and can_check:
-            print("No bet to call. Use CHECK.")
-            continue
-        if action_str == "CHECK" and not can_check:
-            print(f"Cannot check. Bet is ${to_call}. Use CALL or FOLD.")
-            continue
-        if action_str not in actions:
-            print("Invalid action. Choose from:", ", ".join(actions))
-            continue
+        if action_str == "CALL" and can_check: print(colorize("No bet to call. Use CHECK.", Colors.YELLOW)); continue
+        if action_str == "CHECK" and not can_check: print(colorize(f"Cannot check. Bet is ${to_call}. Use CALL or FOLD.", Colors.YELLOW)); continue
+        if action_str not in actions: print(colorize("Invalid action.", Colors.RED) + f" Choose from: {', '.join(actions)}"); continue
 
         if action_str == "RAISE":
-            if not can_raise:
-                print("Error: Raise action selected but not available.")
-                continue
-
-            min_raise = table.big_blind
-            max_raise = player_money - to_call
-
-            if max_raise < min_raise and player_money > to_call:
-                min_raise = max_raise
-
-            if max_raise <= 0:
-                print("Cannot raise, not enough funds after calling.")
-                continue
+            if not can_raise: print(colorize("Error: Raise not available.", Colors.RED)); continue
+            min_raise = table.big_blind; max_raise = player_money - to_call
+            if max_raise < min_raise and player_money > to_call: min_raise = max_raise
+            if max_raise <= 0: print(colorize("Cannot raise, not enough funds.", Colors.RED)); continue
 
             while True:
                 try:
-                    prompt_range = (
-                        f"(min {min_raise}, max {max_raise})"
-                        if min_raise < max_raise
-                        else f"(exactly {max_raise} to go all-in)"
-                    )
-                    raise_by_str = input(f"Raise BY how much? {prompt_range}: ")
-                    raise_by = int(raise_by_str)
+                    prompt_range = ( f"(min {min_raise}, max {max_raise})" if min_raise < max_raise else f"(exactly {max_raise} to go all-in)" )
+                    raise_by_str = input(colorize(f"  Raise BY how much? {prompt_range}: ", Colors.WHITE))
+                    if not raise_by_str.isdigit(): raise ValueError("Input not a digit")
+                    raise_by = int(raise_by_str); is_all_in_raise = to_call + raise_by >= player_money
 
-                    is_all_in_raise = to_call + raise_by >= player_money
-
-                    if raise_by <= 0:
-                        print("Raise amount must be positive.")
-                    elif raise_by > max_raise:
-                        print(
-                            f"You only have ${max_raise} available after calling. Max raise BY is {max_raise}."
-                        )
-                    elif raise_by < min_raise and not is_all_in_raise:
-                        print(
-                            f"Minimum raise BY is ${min_raise} (unless going all-in)."
-                        )
-                    else:
-                        actual_raise_by = min(raise_by, max_raise)
-                        return RoundPublicInId.RAISE, {"raise_by": actual_raise_by}
-                except ValueError:
-                    print("Invalid amount. Please enter a number.")
-        elif action_str == "FOLD":
-            return RoundPublicInId.FOLD, {}
+                    if raise_by <= 0: print(colorize("Raise amount must be positive.", Colors.YELLOW))
+                    elif raise_by > max_raise: print(colorize(f"Max raise BY is {max_raise}.", Colors.YELLOW))
+                    elif raise_by < min_raise and not is_all_in_raise: print(colorize(f"Minimum raise BY is {min_raise} (unless all-in).", Colors.YELLOW))
+                    else: return RoundPublicInId.RAISE, {"raise_by": min(raise_by, max_raise)}
+                except ValueError: print(colorize("Invalid amount. Please enter a number.", Colors.YELLOW))
+                except EOFError: print(colorize("\nInput ended.", Colors.RED)); return RoundPublicInId.FOLD, {}
+        elif action_str == "FOLD": return RoundPublicInId.FOLD, {}
         elif action_str == "CHECK":
-            if can_check:
-                return RoundPublicInId.CHECK, {}
+            if can_check: return RoundPublicInId.CHECK, {}
         elif action_str == "CALL":
-            if not can_check:
-                return RoundPublicInId.CALL, {}
+            if not can_check: return RoundPublicInId.CALL, {}
 
-        print("Error processing action. Please try again.")
+        print(colorize("Error processing action. Please try again.", Colors.RED))
 
 
 # --- Main Execution ---
 
 if __name__ == "__main__":
-    NUM_PLAYERS = 3
-    BUYIN = 200
-    SMALL_BLIND = 5
-    BIG_BLIND = 10
+    NUM_PLAYERS = 3; BUYIN = 200; SMALL_BLIND = 5; BIG_BLIND = 10
 
-    # 1. Create the Table - Use _id
-    table = CommandLineTable(
-        _id=0,  # Use _id parameter for Table constructor
-        seats=PlayerSeats([None] * NUM_PLAYERS),
-        buyin=BUYIN,
-        small_blind=SMALL_BLIND,
-        big_blind=BIG_BLIND,
-    )
+    table = CommandLineTable( _id=0, seats=PlayerSeats([None] * NUM_PLAYERS), buyin=BUYIN, small_blind=SMALL_BLIND, big_blind=BIG_BLIND )
 
-    # 2. Create Players
     players = []
     for i in range(NUM_PLAYERS):
-        player_name = f"Player_{i+1}"
-        player = Player(
-            table_id=table.id,  # Player uses table_id which references Table's _id
-            _id=i + 1,
-            name=player_name,
-            money=BUYIN,
-        )
-        players.append(player)
+        player_name = f"Player_{i+1}"; player = Player( table_id=table.id, _id=i + 1, name=player_name, money=BUYIN ); players.append(player)
         table.publicIn(player.id, TablePublicInId.BUYIN, player=player)
 
-    print("\n--- Welcome to Simple Pokerlib Game! ---")
-    print(f"{NUM_PLAYERS} players joined with ${BUYIN} each.")
-    print(f"Blinds: ${SMALL_BLIND}/${BIG_BLIND}")
+    clear_terminal()
+    print(colorize("\n--- Welcome to Simple Pokerlib Game! ---", Colors.BRIGHT_CYAN + Colors.BOLD))
+    print(f"{NUM_PLAYERS} players joined with {colorize(f'${BUYIN}', Colors.BRIGHT_GREEN)} each.")
+    print(f"Blinds: {colorize(f'${SMALL_BLIND}/${BIG_BLIND}', Colors.YELLOW)}")
 
-    # 3. Game Loop
     round_count = 0
     try:
         while True:
             active_players_obj = table.seats.getPlayerGroup()
-            if len(active_players_obj) < 2:
-                print("\nNot enough players to continue. Game over.")
-                break
-
+            if len(active_players_obj) < 2: print(colorize("\nNot enough players to continue. Game over.", Colors.YELLOW)); break
             round_count += 1
-            print(f"\n--- Starting Round {round_count} ---")
-
             initiator = active_players_obj[0] if active_players_obj else None
-            if not initiator:
-                print("Error: No players left to initiate round.")
-                break
-            # Start the round using the table's publicIn
-            table.publicIn(
-                initiator.id, TablePublicInId.STARTROUND, round_id=round_count
-            )
+            if not initiator: print(colorize("Error: No players left to initiate round.", Colors.RED)); break
+            table.publicIn( initiator.id, TablePublicInId.STARTROUND, round_id=round_count )
 
-            # Inner loop for actions within a round - Uses custom flag
+            # Inner loop for actions within a round
             while table.round and not table.round_over_flag:
                 action_player_id_to_process = table._current_action_player_id
-
                 if action_player_id_to_process:
-                    table._current_action_player_id = None  # Clear flag early
+                    table._current_action_player_id = None # Clear flag
 
                     player = table.seats.getPlayerById(action_player_id_to_process)
-                    if not player:
-                        print(
-                            f"Warning: Action requested for missing player ID {action_player_id_to_process}"
-                        )
-                        continue
+                    if not player: print(colorize(f"Warning: Action for missing player ID {action_player_id_to_process}", Colors.YELLOW)); continue
 
                     current_player_obj = None
                     if table.round and hasattr(table.round, "current_player"):
-                        try:
-                            current_player_obj = table.round.current_player
-                        except Exception:
-                            pass
+                        try: current_player_obj = table.round.current_player
+                        except Exception: pass
 
                     if current_player_obj and player.id == current_player_obj.id:
-                        # Check attributes before calling get_player_action
-                        if (
-                            not all(
-                                hasattr(player, attr) for attr in ["money", "stake"]
-                            )
-                            or not (
-                                hasattr(player, "turn_stake")
-                                and isinstance(player.turn_stake, list)
-                            )
-                            or not (table.round and hasattr(table.round, "to_call"))
-                        ):
-                            print(
-                                f"Warning: Player {player.name} or round missing critical attributes."
-                            )
-                            time.sleep(0.1)  # Wait briefly in case state is updating
-                            table._current_action_player_id = action_player_id_to_process  # Reset flag to retry? Or just continue? Let's continue for now.
-                            continue
+                        if not all(hasattr(player, a) for a in ['money','stake','turn_stake']) or not isinstance(player.turn_stake, list) or not (table.round and hasattr(table.round, 'to_call')):
+                             print(colorize(f"Warning: State not ready for {player.name}'s action.", Colors.YELLOW)); time.sleep(0.1); table._current_action_player_id = action_player_id_to_process; continue
 
-                        to_call = table.round.to_call
-                        can_check = to_call == 0
-                        can_raise = player.money > to_call
+                        to_call = table.round.to_call; can_check = to_call == 0; can_raise = player.money > to_call
+                        action_enum, action_kwargs = get_player_action( player.name, to_call, player.money, can_check, can_raise )
+                        table.publicIn(player.id, action_enum, **action_kwargs) # Send action
 
-                        action_enum, action_kwargs = get_player_action(
-                            player.name, to_call, player.money, can_check, can_raise
-                        )
-                        # Send action back to table
-                        table.publicIn(player.id, action_enum, **action_kwargs)
+                    elif current_player_obj: # Log mismatch only if current player known
+                        req_for = f"{player.name}({action_player_id_to_process})"; curr = f"{current_player_obj.name}({current_player_obj.id})"
+                        print(colorize(f"Warning: Action request mismatch. Req for {req_for}, current is {curr}", Colors.YELLOW))
+                time.sleep(0.05) # Reduce CPU usage slightly
 
-                    elif (
-                        current_player_obj
-                    ):  # Log only if mismatch detected and current exists
-                        req_for = f"{player.name} ({action_player_id_to_process})"
-                        curr = f"{current_player_obj.name} ({current_player_obj.id})"
-                        print(
-                            f"Warning: Action request mismatch. Requested for {req_for}, current is {curr}"
-                        )
+            # <<< After inner loop >>>
+            if table.round: table.round = None # Clear library's round object
 
-                time.sleep(0.02)
-
-            # <<< Code after inner while loop (round ended based on flag) >>>
-            # Clear the library's round reference AFTER our loop using the flag finishes
-            if table.round:
-                # print("[DEBUG] Manually clearing table.round reference.") # Optional
-                table.round = None
-
-            print("\nRound ended state. Current stacks:")
+            print(colorize("\nRound ended. Final stacks:", Colors.BRIGHT_WHITE))
             final_players = table.seats.getPlayerGroup()
-            if not final_players:
-                print("  No players remaining at the table.")
+            if not final_players: print("  No players remaining.")
             else:
-                for p in final_players:
-                    money_val = p.money if hasattr(p, "money") else "N/A"
-                    print(f"  - {p.name}: ${money_val}")
+                 for p in final_players:
+                     money_val = p.money if hasattr(p, 'money') else 'N/A'
+                     print(f"  - {colorize(p.name, Colors.CYAN)}: {colorize(f'${money_val}', Colors.BRIGHT_GREEN)}")
 
-            # Ask to continue
-            try:
-                cont = input("\nPlay another round? (y/n): ").lower()
-                if cont != "y":
-                    break
-            except EOFError:
-                print("\nInput closed unexpectedly. Exiting.")
-                break
+            try: # Ask to continue
+                 cont = input(colorize("\nPlay another round? (y/n): ", Colors.WHITE)).lower()
+                 if cont != 'y': break
+            except EOFError: print(colorize("\nInput ended.", Colors.RED)); break
 
+    except KeyboardInterrupt: print(colorize("\nCtrl+C detected. Exiting game.", Colors.YELLOW))
     except Exception as e:
-        print("\n--- UNEXPECTED ERROR OCCURRED ---")
-        traceback.print_exc()
-        print("---------------------------------")
-
+         print(colorize("\n--- UNEXPECTED ERROR OCCURRED ---", Colors.BRIGHT_RED + Colors.BOLD)); traceback.print_exc()
+         print(colorize("---------------------------------", Colors.BRIGHT_RED + Colors.BOLD))
     finally:
-        print("\n--- Game Ended ---")
-        print("Final Stacks:")
+        print(colorize("\n--- Game Ended ---", Colors.BRIGHT_CYAN + Colors.BOLD)); print(colorize("Final Stacks:", Colors.WHITE))
         final_players = table.seats.getPlayerGroup()
-        if not final_players:
-            print("  No players remaining.")
+        if not final_players: print("  No players remaining.")
         else:
             for p in final_players:
-                money_str = f"${p.money}" if hasattr(p, "money") else "N/A"
-                print(f"  - {p.name}: {money_str}")
+                money_str = f"${p.money}" if hasattr(p, 'money') else "N/A"
+                print(f"  - {colorize(p.name, Colors.CYAN)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
+        print(Colors.RESET) # Final color reset
