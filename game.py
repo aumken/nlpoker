@@ -340,94 +340,119 @@ class CommandLineTable(Table):
     # --- MODIFIED: publicOut ---
     # --- REVISED: publicOut ---
         # --- REVISED AGAIN: publicOut ---
+        # --- REVISED AGAIN (v4): publicOut ---
+    # --- REVISED AGAIN (v5): publicOut ---
     def publicOut(self, out_id, **kwargs):
         player_id = kwargs.get("player_id"); player_name_raw = self._get_player_name(player_id) if player_id else "System"
         player_name = colorize(player_name_raw, Colors.CYAN); msg = ""; prefix = ""; processed = False
 
         is_round_event = isinstance(out_id, RoundPublicOutId); is_table_event = isinstance(out_id, TablePublicOutId)
 
+        # Define player action events
+        player_action_events = {
+            RoundPublicOutId.PLAYERCHECK,
+            RoundPublicOutId.PLAYERCALL,
+            RoundPublicOutId.PLAYERFOLD,
+            RoundPublicOutId.PLAYERRAISE,
+            RoundPublicOutId.PLAYERWENTALLIN
+        }
+
         if is_round_event:
             processed = True
             prefix = colorize("[ROUND]", Colors.BLUE) # Default prefix
             player = self.seats.getPlayerById(player_id) if player_id else None
 
-            # --- Standard Event Handling (mostly unchanged) ---
+            # --- Standard Event Handling ---
             if out_id == RoundPublicOutId.NEWROUND: prefix = colorize("[ROUND]", Colors.BLUE); msg = "Dealing cards..."
             elif out_id == RoundPublicOutId.NEWTURN:
-                prefix = ""; msg = "" # Clear default message
-                if not self.round_over_flag: # Only display if round not ended
-                    self._display_game_state()
+                prefix = ""; msg = ""
+                if not self.round_over_flag: self._display_game_state()
             elif out_id == RoundPublicOutId.SMALLBLIND: msg = f"{player_name} posts {colorize('SB', Colors.YELLOW)} ${kwargs['paid_amount']}"
             elif out_id == RoundPublicOutId.BIGBLIND: msg = f"{player_name} posts {colorize('BB', Colors.YELLOW)} ${kwargs['paid_amount']}"
             elif out_id == RoundPublicOutId.PLAYERCHECK: prefix = colorize("[ACTION]", Colors.GREEN); msg = f"{player_name} checks"
             elif out_id == RoundPublicOutId.PLAYERCALL: prefix = colorize("[ACTION]", Colors.GREEN); msg = f"{player_name} calls ${kwargs['paid_amount']}"
             elif out_id == RoundPublicOutId.PLAYERFOLD: prefix = colorize("[ACTION]", Colors.BRIGHT_BLACK); msg = f"{player_name} folds"
             elif out_id == RoundPublicOutId.PLAYERRAISE: prefix = colorize("[ACTION]", Colors.BRIGHT_MAGENTA); msg = f"{player_name} raises by ${kwargs['raised_by']} (bets ${kwargs['paid_amount']})"
-            elif out_id == RoundPublicOutId.PLAYERISALLIN: prefix = colorize("[INFO]", Colors.BRIGHT_RED); msg = f"{player_name} is {colorize('ALL-IN!', Colors.BOLD)}"
+            elif out_id == RoundPublicOutId.PLAYERISALLIN: prefix = colorize("[INFO]", Colors.BRIGHT_RED); msg = f"{player_name} is {colorize('ALL-IN!', Colors.BOLD)}" # Note: Not in player_action_events set for sleep
             elif out_id == RoundPublicOutId.PLAYERWENTALLIN: prefix = colorize("[ACTION]", Colors.BRIGHT_RED + Colors.BOLD); msg = f"{player_name} goes ALL-IN with ${kwargs['paid_amount']}!"
             elif out_id == RoundPublicOutId.PLAYERACTIONREQUIRED:
-                 prefix = ""; msg = "" # No message needed, just set state
+                 prefix = ""; msg = ""
                  self._current_action_player_id = player_id; self.to_call = kwargs.get('to_call', 0)
                  self.can_check = self.to_call == 0;
                  self.can_raise = player and player.money > self.to_call
                  self.min_raise = self.big_blind
-            elif out_id == RoundPublicOutId.PLAYERCHOICEREQUIRED: pass # Ignoring
+            elif out_id == RoundPublicOutId.PLAYERCHOICEREQUIRED: pass
 
-            # --- Showdown/Winner Buffering ---
+            # --- Showdown Card Event: Print Board (if first time) & Buffer Showdown Msg ---
             elif out_id == RoundPublicOutId.PUBLICCARDSHOW:
-                prefix = colorize("[SHOWDOWN]", Colors.WHITE); msg = "" # Clear default message
+                prefix = colorize("[SHOWDOWN]", Colors.WHITE); msg = "" # Clear default msg
+                # Print Board on first Showdown event
+                if not self.printed_showdown_board and self.round and hasattr(self.round, 'board'):
+                    board_cards_list = [tuple(c) for c in self.round.board if isinstance(c, (list,tuple)) and len(c)==2]
+                    print() # Add blank line for separation before board/showdown block
+                    print(f"{colorize('[BOARD]', Colors.WHITE)} {format_cards_terminal(board_cards_list)}")
+                    self.printed_showdown_board = True # Mark as printed
+                # Buffer Showdown message
                 shown_cards_raw = kwargs.get('cards', []);
                 shown_cards_tuples = [tuple(c) for c in shown_cards_raw if isinstance(c, (list, tuple)) and len(c)==2]
                 if player and shown_cards_tuples:
-                    self._player_cards[player.id] = tuple(shown_cards_tuples) # Store shown cards
-                    # --- BUFFER Showdown message ---
+                    self._player_cards[player.id] = tuple(shown_cards_tuples) # Store cards
                     showdown_msg = f"{prefix} {player_name} shows {format_cards_terminal(shown_cards_tuples)}"
-                    self.pending_showdown_messages.append(showdown_msg)
-                    self.showdown_occurred = True # Mark that a showdown happened
+                    if showdown_msg not in self.pending_showdown_messages:
+                        self.pending_showdown_messages.append(showdown_msg)
+                    self.showdown_occurred = True
                 else:
                     ai_logger.warning(f"Received PUBLICCARDSHOW for {player_name} with invalid cards: {shown_cards_raw}")
 
+            # --- Winner Buffering (Unchanged) ---
             elif out_id == RoundPublicOutId.DECLAREPREMATUREWINNER:
                 prefix = colorize("[WINNER]", Colors.BRIGHT_YELLOW + Colors.BOLD)
                 winner_msg = f"{prefix} {player_name} wins ${kwargs['money_won']} (Premature)"
-                self.pending_winner_messages.append(winner_msg) # Buffer message
-                msg = "" # Don't print immediately
+                if winner_msg not in self.pending_winner_messages: self.pending_winner_messages.append(winner_msg)
+                msg = ""
             elif out_id == RoundPublicOutId.DECLAREFINISHEDWINNER:
                 prefix = colorize("[WINNER]", Colors.BRIGHT_YELLOW + Colors.BOLD)
                 hand_name = format_hand_enum(kwargs.get('handname'))
                 winner_msg = f"{prefix} {player_name} wins ${kwargs['money_won']} with {hand_name}"
-                self.pending_winner_messages.append(winner_msg) # Buffer message
-                msg = "" # Don't print immediately
+                if winner_msg not in self.pending_winner_messages: self.pending_winner_messages.append(winner_msg)
+                msg = ""
 
-            # --- Round Finished: Print Buffered Info ---
+            # --- Round Finished: Force missing Showdowns & Print Buffers ---
             elif out_id == RoundPublicOutId.ROUNDFINISHED:
-                prefix = ""; msg = "" # No direct message for this event
-                self.round_over_flag = True # Set the flag first
+                prefix = ""; msg = ""
+                self.round_over_flag = True
+                # Force Showdown Messages
+                player_ids_with_buffered_showdown = set()
+                # (Logic to find buffered player IDs - unchanged)
+                for buffered_msg in self.pending_showdown_messages:
+                    try: # Simplified check
+                        name_part = buffered_msg.split(" shows ")[0].split("] ")[-1].strip()
+                        for p_id, p_obj in self.seats._players.items():
+                            if p_obj and colorize(p_obj.name, Colors.CYAN) == name_part:
+                                player_ids_with_buffered_showdown.add(p_id); break
+                    except Exception: pass
 
-                # --- Print Board, Showdown, Winners in Order ---
-                if self.showdown_occurred:
-                    # Print Board (only once)
-                    if not self.printed_showdown_board and self.round and hasattr(self.round, 'board'):
-                        board_cards_list = [tuple(c) for c in self.round.board if isinstance(c, (list,tuple)) and len(c)==2]
-                        print() # Add blank line for separation
-                        print(f"{colorize('[BOARD]', Colors.WHITE)} {format_cards_terminal(board_cards_list)}")
-                        self.printed_showdown_board = True
+                if self.round and hasattr(self.round, 'players'):
+                    for p in self.round.players: # (Logic to force missing showdowns - unchanged)
+                         if p and hasattr(p, 'id') and hasattr(p, 'is_folded') and not p.is_folded:
+                            if p.id not in player_ids_with_buffered_showdown and p.id in self._player_cards:
+                                p_name_color = colorize(self._get_player_name(p.id), Colors.CYAN)
+                                prefix_sd = colorize("[SHOWDOWN]", Colors.WHITE)
+                                cards_str = format_cards_terminal(self._player_cards[p.id])
+                                forced_showdown_msg = f"{prefix_sd} {p_name_color} shows {cards_str}"
+                                if forced_showdown_msg not in self.pending_showdown_messages:
+                                     self.pending_showdown_messages.append(forced_showdown_msg)
+                                self.showdown_occurred = True
+                # Print Buffered Showdown & Winner Info
+                for showdown_msg in self.pending_showdown_messages: print(showdown_msg)
+                self.pending_showdown_messages.clear()
+                for winner_msg in self.pending_winner_messages: print(winner_msg)
+                self.pending_winner_messages.clear()
 
-                    # Print buffered Showdown messages
-                    for showdown_msg in self.pending_showdown_messages:
-                        print(showdown_msg)
-                    self.pending_showdown_messages.clear() # Clear after printing
+            # elif out_id == RoundPublicOutId.ROUNDCLOSED: ...
 
-                # Print buffered Winner messages
-                for winner_msg in self.pending_winner_messages:
-                    print(winner_msg)
-                self.pending_winner_messages.clear() # Clear after printing
-
-                # --- DO NOT display game state here ---
-
-            # elif out_id == RoundPublicOutId.ROUNDCLOSED: prefix = colorize("[Internal]", Colors.BRIGHT_BLACK); msg = "Round Closed State.";
         elif is_table_event:
-            # (Table event handling remains the same)
+             # (Table event handling remains the same)
             processed = True
             prefix = colorize("[TABLE]", Colors.MAGENTA)
             if out_id == TablePublicOutId.PLAYERJOINED: msg = f"{player_name} joined seat {kwargs['player_seat']}"
@@ -440,20 +465,31 @@ class CommandLineTable(Table):
             elif out_id == TablePublicOutId.ROUNDINPROGRESS: prefix = colorize("[ERROR]", Colors.RED); msg = "Round already in progress"
             elif out_id == TablePublicOutId.INCORRECTNUMBEROFPLAYERS: prefix = colorize("[ERROR]", Colors.RED); msg = "Need 2+ players"
 
-        # Determine if the message should be printed based on content and specific event IDs
+
+        # --- Final Print Decision ---
         should_print = bool(msg)
-        # Suppress printing for events handled differently or that have no message
+        # Suppress printing for events handled differently
         if is_round_event and out_id in [ RoundPublicOutId.NEWTURN,
                                           RoundPublicOutId.ROUNDFINISHED,
-                                          RoundPublicOutId.PUBLICCARDSHOW, # Now buffered
+                                          RoundPublicOutId.PUBLICCARDSHOW, # Buffered/Handled
                                           RoundPublicOutId.DECLAREFINISHEDWINNER, # Buffered
                                           RoundPublicOutId.DECLAREPREMATUREWINNER, # Buffered
                                           RoundPublicOutId.PLAYERACTIONREQUIRED ]:
              should_print = False
         if is_table_event and out_id == TablePublicOutId.NEWROUNDSTARTED: should_print = False
 
-        if should_print: print(f"{prefix} {msg}")
-        elif not processed and out_id != RoundPublicOutId.PLAYERCHOICEREQUIRED: print(colorize(f"Unhandled Out: ID={out_id} Data: {kwargs}", Colors.BRIGHT_BLACK))
+        if should_print:
+            print(f"{prefix} {msg}")
+            # <<< --- ADD SLEEP HERE --- >>>
+            # Check if the event was a player action AND the player is an AI
+            if is_round_event and out_id in player_action_events:
+                is_ai_player = AI_ONLY_MODE or (player_id is not None and player_id != HUMAN_PLAYER_ID)
+                if is_ai_player:
+                    time.sleep(1.5) # Pause after AI action message is printed
+            # <<< --- END SLEEP --- >>>
+
+        elif not processed and out_id != RoundPublicOutId.PLAYERCHOICEREQUIRED:
+             print(colorize(f"Unhandled Out: ID={out_id} Data: {kwargs}", Colors.BRIGHT_BLACK))
     # --- privateOut --- (Remains the same, ensuring cards are stored)
     def privateOut(self, player_id, out_id, **kwargs):
         player_name_raw = self._get_player_name(player_id); player_name = colorize(player_name_raw, Colors.CYAN)
@@ -744,7 +780,6 @@ if __name__ == "__main__":
                         is_ai_turn = AI_ONLY_MODE or player.id != HUMAN_PLAYER_ID
                         if is_ai_turn:
                             action_enum, action_kwargs = get_ai_action(table, player.id);
-                            time.sleep(0.5) # Optional delay
                         else:
                             action_enum, action_kwargs = get_player_action( player.name, table.to_call, player.money, table.can_check, table.can_raise )
 
