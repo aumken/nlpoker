@@ -1,4 +1,4 @@
-# -------- START: Code with AI_ONLY_MODE Flag and Dynamic Players --------
+# -------- START: Code with Custom Player Names --------
 
 import sys
 import time      # For sleep
@@ -17,70 +17,83 @@ from pokerlib.enums import ( Hand, Rank, RoundPrivateOutId, RoundPublicInId,
                             TablePublicInId, TablePublicOutId, Turn )
 
 # --- Configuration ---
-# --- CORE SETTINGS ---
-AI_ONLY_MODE = True # <<< SET TO True FOR ALL AI, False FOR HUMAN (Player_1) vs AI >>>
-HUMAN_PLAYER_ID = 1 # ID of the human player if AI_ONLY_MODE is False
-ALWAYS_CONTINUE = False # Set to True to always continue the game, False to stop on error
-
-# --- Other Settings ---
-CLEAR_SCREEN = False # Set to True to clear screen, False to scroll
-AI_MODEL_LIST = [ # Full list from user request (use a subset for faster testing)
-    'mistralai/Mistral-7B-Instruct-v0.3',
-    'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
-    # 'upstage/SOLAR-10.7B-Instruct-v1.0',
-    # 'Gryphe/MythoMax-L2-13b',
-    # 'mistralai/Mistral-Small-24B-Instruct-2501',
-    # 'google/gemma-2-27b-it',
-    # 'Qwen/QwQ-32B-Preview',
-    # 'meta-llama/Llama-3.3-70B-Instruct-Turbo', # Might be slow/costly
-    # 'Qwen/Qwen2.5-72B-Instruct-Turbo',       # Might be slow/costly
-    # 'mistralai/Mixtral-8x7B-Instruct-v0.1',
-    # 'mistralai/Mixtral-8x22B-Instruct-v0.1',  # Might be slow/costly
-    # 'microsoft/WizardLM-2-8x22B',           # Might be slow/costly
-    # 'databricks/dbrx-instruct',             # Might be slow/costly
-    # 'deepseek-ai/DeepSeek-V3',              # Might be different API/format?
-    # 'deepseek-ai/DeepSeek-R1',              # Might be different API/format?
-]
-NUM_AI_MODELS = len(AI_MODEL_LIST) # Number of AI models defined
-NUM_PLAYERS = NUM_AI_MODELS if AI_ONLY_MODE else NUM_AI_MODELS + 1 # Calculate total players
-
-if NUM_PLAYERS < 2: print("Error: Need at least 2 total players."); sys.exit(1)
-if NUM_AI_MODELS == 0 and AI_ONLY_MODE: print("Error: AI_ONLY_MODE is True but AI_MODEL_LIST is empty."); sys.exit(1)
-
-
-AI_TEMPERATURE = 0.7
-AI_REQUEST_TIMEOUT = 60
-AI_RETRY_DELAY = 7
-LOG_FILE_NAME = 'ai_poker_log.txt'
-
-# --- Logging Setup ---
-if os.path.exists(LOG_FILE_NAME): os.remove(LOG_FILE_NAME)
-ai_logger = logging.getLogger('AIPokerLog'); ai_logger.setLevel(logging.INFO)
-ai_logger.propagate = False
-file_handler = logging.FileHandler(LOG_FILE_NAME); file_formatter = logging.Formatter('%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-file_handler.setFormatter(file_formatter); ai_logger.addHandler(file_handler)
-ai_logger.info("--- AI Poker Log Initialized ---")
-
-# --- Load API Key ---
-load_dotenv(); TOGETHER_AI_API_KEY = os.getenv("TOGETHER_AI_API_KEY")
-# Key needed only if there are AI models defined
-if NUM_AI_MODELS > 0 and not TOGETHER_AI_API_KEY:
-    error_msg = "ERROR: AI models defined, but TOGETHER_AI_API_KEY not found in .env file."; print(error_msg); ai_logger.error(error_msg); sys.exit(1)
-elif NUM_AI_MODELS > 0: ai_logger.info("TOGETHER_AI_API_KEY loaded.")
 
 # --- ANSI Color Codes ---
 class Colors:
     RESET = "\033[0m"; BOLD = "\033[1m"; UNDERLINE = "\033[4m"; BLACK = "\033[30m"; RED = "\033[31m"; GREEN = "\033[32m"; YELLOW = "\033[33m"; BLUE = "\033[34m"; MAGENTA = "\033[35m"; CYAN = "\033[36m"; WHITE = "\033[37m"; BRIGHT_BLACK = "\033[90m"; BRIGHT_RED = "\033[91m"; BRIGHT_GREEN = "\033[92m"; BRIGHT_YELLOW = "\033[93m"; BRIGHT_BLUE = "\033[94m"; BRIGHT_MAGENTA = "\033[95m"; BRIGHT_CYAN = "\033[96m"; BRIGHT_WHITE = "\033[97m"; BG_BLACK = "\033[40m"; BG_RED = "\033[41m"; BG_GREEN = "\033[42m"; BG_YELLOW = "\033[43m"; BG_BLUE = "\033[44m"; BG_MAGENTA = "\033[45m"; BG_CYAN = "\033[46m"; BG_WHITE = "\033[47m"
 def colorize(text, color): return f"{color}{text}{Colors.RESET}"
 
+RANK_MAP = { Rank.TWO: "2", Rank.THREE: "3", Rank.FOUR: "4", Rank.FIVE: "5", Rank.SIX: "6", Rank.SEVEN: "7", Rank.EIGHT: "8", Rank.NINE: "9", Rank.TEN: "T", Rank.JACK: "J", Rank.QUEEN: "Q", Rank.KING: "K", Rank.ACE: "A" }
+SUIT_MAP = {Suit.SPADE: "♠", Suit.CLUB: "♣", Suit.DIAMOND: "♦", Suit.HEART: "♥"}
+SUIT_COLOR_MAP = { Suit.SPADE: Colors.WHITE, Suit.CLUB: Colors.WHITE, Suit.DIAMOND: Colors.BRIGHT_RED, Suit.HEART: Colors.BRIGHT_RED }
+
+VERBOSE = False
+ALWAYS_CONTINUE = False
+AI_ONLY_MODE = False # <<< SET TO True FOR ALL AI, False FOR HUMAN vs AI >>>
+HUMAN_PLAYER_ID = 1 # ID of the human player if AI_ONLY_MODE is False
+HUMAN_PLAYER_NAME = "Aum" # <<< Name for the human player >>>
+CLEAR_SCREEN = True
+AI_MODEL_LIST = [ # Models for AI opponents
+    'mistralai/Mistral-7B-Instruct-v0.3',
+    'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+    'upstage/SOLAR-10.7B-Instruct-v1.0',
+    'Gryphe/MythoMax-L2-13b',
+    # 'mistralai/Mistral-Small-24B-Instruct-2501',
+    # 'google/gemma-2-27b-it',
+    # 'Qwen/QwQ-32B-Preview',
+    # 'meta-llama/Llama-3.3-70B-Instruct-Turbo',
+    # 'Qwen/Qwen2.5-72B-Instruct-Turbo',
+    # 'mistralai/Mixtral-8x7B-Instruct-v0.1',
+    # 'mistralai/Mixtral-8x22B-Instruct-v0.1',
+    # 'microsoft/WizardLM-2-8x22B',
+    # 'databricks/dbrx-instruct',
+    # 'deepseek-ai/DeepSeek-V3',
+    # 'deepseek-ai/DeepSeek-R1',
+]
+# Dictionary mapping full model names to desired short names for display
+AI_MODEL_SHORT_NAMES = {
+    'mistralai/Mistral-7B-Instruct-v0.3': 'Mistral v0.3 7B',
+    'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo': 'Llama 3.1 8B',
+    'upstage/SOLAR-10.7B-Instruct-v1.0': 'Upstage Solar 11B',
+    'Gryphe/MythoMax-L2-13b': 'Gryphe MythoMax-L2 13B',
+    'mistralai/Mistral-Small-24B-Instruct-2501': 'Mistral Small 3 24B',
+    'google/gemma-2-27b-it': 'Gemma 2 27B',
+    'Qwen/QwQ-32B-Preview': 'Qwen QwQ 32B',
+    'meta-llama/Llama-3.3-70B-Instruct-Turbo': 'Llama 3.3 70B',
+    'Qwen/Qwen2.5-72B-Instruct-Turbo': 'Qwen 2.5 72B',
+    'mistralai/Mixtral-8x7B-Instruct-v0.1': 'Mixtral 8x7B',
+    'mistralai/Mixtral-8x22B-Instruct-v0.1': 'Mixtral 8x22B',
+    'microsoft/WizardLM-2-8x22B': 'WizardLM-2 8x22B',
+    'databricks/dbrx-instruct': 'DBRX Instruct',
+    'deepseek-ai/DeepSeek-V3': 'DeepSeek V3',
+    'deepseek-ai/DeepSeek-R1': 'DeepSeek R1',
+    # Add mappings for any other models used
+}
+
+NUM_AI_MODELS = len(AI_MODEL_LIST)
+NUM_PLAYERS = NUM_AI_MODELS if AI_ONLY_MODE else NUM_AI_MODELS + 1
+if NUM_PLAYERS < 2: print("Error: Need at least 2 total players."); sys.exit(1)
+if NUM_AI_MODELS == 0 and AI_ONLY_MODE: print("Error: AI_ONLY_MODE=True but AI_MODEL_LIST empty."); sys.exit(1)
+
+AI_TEMPERATURE = 0.7; AI_REQUEST_TIMEOUT = 60; AI_RETRY_DELAY = 7
+LOG_FILE_NAME = 'ai_poker_log.txt'
+
+# --- Logging Setup ---
+if os.path.exists(LOG_FILE_NAME): os.remove(LOG_FILE_NAME)
+ai_logger = logging.getLogger('AIPokerLog'); ai_logger.setLevel(logging.INFO); ai_logger.propagate = False
+file_handler = logging.FileHandler(LOG_FILE_NAME); file_formatter = logging.Formatter('%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+file_handler.setFormatter(file_formatter); ai_logger.addHandler(file_handler)
+ai_logger.info("--- AI Poker Log Initialized ---")
+
+load_dotenv(); TOGETHER_AI_API_KEY = os.getenv("TOGETHER_AI_API_KEY")
+if (AI_ONLY_MODE or NUM_AI_MODELS > 0) and not TOGETHER_AI_API_KEY: error_msg = "ERROR: AI players enabled, TOGETHER_AI_API_KEY missing."; print(error_msg); ai_logger.error(error_msg); sys.exit(1)
+elif (AI_ONLY_MODE or NUM_AI_MODELS > 0): ai_logger.info("TOGETHER_AI_API_KEY loaded.")
+
+
+
 # --- Helper Functions ---
 def format_card_terminal(card):
     """Formats a card tuple (Rank, Suit) into a short, colored string."""
-    # Define maps first
-    rank_map = { Rank.TWO: "2", Rank.THREE: "3", Rank.FOUR: "4", Rank.FIVE: "5", Rank.SIX: "6", Rank.SEVEN: "7", Rank.EIGHT: "8", Rank.NINE: "9", Rank.TEN: "T", Rank.JACK: "J", Rank.QUEEN: "Q", Rank.KING: "K", Rank.ACE: "A" }
-    suit_map = {Suit.SPADE: "♠", Suit.CLUB: "♣", Suit.DIAMOND: "♦", Suit.HEART: "♥"}
-    suit_color_map = { Suit.SPADE: Colors.WHITE, Suit.CLUB: Colors.WHITE, Suit.DIAMOND: Colors.BRIGHT_RED, Suit.HEART: Colors.BRIGHT_RED }
-
     # Default return value
     fallback_card = colorize("??", Colors.BRIGHT_BLACK)
 
@@ -91,13 +104,13 @@ def format_card_terminal(card):
     try:
         rank, suit = card
         # Use .get with default to prevent KeyError if somehow invalid enum sneaks through
-        rank_str = rank_map.get(rank)
-        suit_str = suit_map.get(suit)
+        rank_str = RANK_MAP.get(rank)
+        suit_str = SUIT_MAP.get(suit)
         # If rank or suit was invalid, return fallback
         if rank_str is None or suit_str is None:
             return fallback_card
 
-        color = suit_color_map.get(suit, Colors.WHITE)
+        color = SUIT_COLOR_MAP.get(suit, Colors.WHITE)
         card_text = f"{rank_str}{suit_str}"
         if rank >= Rank.JACK: card_text = Colors.BOLD + card_text
         return colorize(card_text, color) # Return formatted string
@@ -107,11 +120,10 @@ def format_card_terminal(card):
         return fallback_card # Fallback return on error
 def format_cards_terminal(cards):
     if hasattr(cards, '__iter__'): return " ".join(format_card_terminal(c) for c in cards); return ""
-def format_card_for_ai(card): # ( Remains the same )
-    rank_map = { Rank.TWO: "2", Rank.THREE: "3", Rank.FOUR: "4", Rank.FIVE: "5", Rank.SIX: "6", Rank.SEVEN: "7", Rank.EIGHT: "8", Rank.NINE: "9", Rank.TEN: "T", Rank.JACK: "J", Rank.QUEEN: "Q", Rank.KING: "K", Rank.ACE: "A" }; suit_map = {Suit.SPADE: "s", Suit.CLUB: "c", Suit.DIAMOND: "d", Suit.HEART: "h"}
-    if not card: return "??"; 
+def format_card_for_ai(card): # ( Remains Correct )
+    if not card: return "??";
     try:
-        if hasattr(card, '__len__') and len(card) == 2: rank, suit = card; return f"{rank_map[rank]}{suit_map[suit]}"
+        if hasattr(card, '__len__') and len(card) == 2: rank, suit = card; return f"{RANK_MAP[rank]}{SUIT_MAP[suit]}"
         else: return "??"
     except (TypeError, KeyError, ValueError, IndexError): return "??"
 def format_cards_for_ai(cards):
@@ -209,8 +221,8 @@ def format_state_for_ai(table_state, player_id_acting): # ( Remains the same as 
         possible_actions = ["FOLD"];
         if table_state.can_check: possible_actions.append("CHECK")
         elif amount_to_call > 0 and (acting_player_obj and acting_player_obj.money > 0): possible_actions.append(f"CALL({min(amount_to_call, acting_player_obj.money)})")
-        if table_state.can_raise: possible_actions.append(f"RAISE(min_by={table_state.min_raise})")
-        lines.append(f"- Possible Actions: {', '.join(possible_actions)}"); lines.append("\n**Task:** Decide your next poker action. Respond ONLY with the action name (FOLD, CHECK, CALL, RAISE).");
+        if table_state.can_raise: possible_actions.append("RAISE")
+        lines.append(f"- Possible Actions: {', '.join(possible_actions)}"); lines.append(f"\n**Task:** Respond ONLY with: {', '.join(['CALL' if 'CALL(' in a else a for a in possible_actions])}.");
         lines.append("If RAISING, add ' AMOUNT: X' on the same line, where X is the integer amount to raise BY. Example: 'RAISE AMOUNT: 20'")
         return "\n".join(lines)
     except Exception as e: ai_logger.error(f"Error during format_state_for_ai: {e}", exc_info=True); return f"Error: Could not format game state - {e}"
@@ -225,17 +237,21 @@ class CommandLineTable(Table):
 
     # --- Modified assign_ai_models ---
     def assign_ai_models(self):
-        ai_player_ids = [p.id for p in self.seats.getPlayerGroup() if AI_ONLY_MODE or p.id != HUMAN_PLAYER_ID] # Adjusted logic
+        ai_player_ids = []; player_group = self.seats.getPlayerGroup()
+        for p in player_group:
+             if AI_ONLY_MODE or p.id != HUMAN_PLAYER_ID: ai_player_ids.append(p.id)
         num_ai = len(ai_player_ids);
         if num_ai == 0 or not AI_MODEL_LIST: return;
         log_msg_assign = ["AI Model Assignments:"]
         self.ai_model_assignments.clear()
         for i, pid in enumerate(ai_player_ids):
-            model_to_assign = AI_MODEL_LIST[i % len(AI_MODEL_LIST)]
-            self.ai_model_assignments[pid] = model_to_assign
-            assign_text = f"AI Player {self._get_player_name(pid)} assigned model: {model_to_assign}"
+            model_full_name = AI_MODEL_LIST[i % len(AI_MODEL_LIST)] # Get the full name
+            self.ai_model_assignments[pid] = model_full_name # Store the full name
+            # Use short name for display/log if available, else fallback
+            model_short_name = AI_MODEL_SHORT_NAMES.get(model_full_name, model_full_name.split('/')[-1])
+            assign_text = f"AI Player {self._get_player_name(pid)} assigned model: {model_short_name} ({model_full_name})"
             print(colorize(f"[INFO] {assign_text}", Colors.MAGENTA))
-            log_msg_assign.append(f"  - Player {pid} ({self._get_player_name(pid)}): {model_to_assign}")
+            log_msg_assign.append(f"  - Player {pid} ({self._get_player_name(pid)}): {model_full_name} (as {model_short_name})")
         if log_msg_assign: ai_logger.info("\n".join(log_msg_assign))
     # --- END MODIFICATION ---
 
@@ -247,17 +263,22 @@ class CommandLineTable(Table):
             if hasattr(player, "resetState"): player.resetState()
         self._player_cards.clear();
         if round_id in self.ai_message_history: self.ai_message_history[round_id].clear()
-        # Assign models only if needed and not already done
-        num_ai_needed = len(self.seats.getPlayerGroup()) if AI_ONLY_MODE else len(self.seats.getPlayerGroup()) -1
+        # Assign models only if AI players exist and assignments haven't been made
+        num_ai_needed = len([p for p in current_players if AI_ONLY_MODE or p.id != HUMAN_PLAYER_ID])
         if num_ai_needed > 0 and not self.ai_model_assignments : self.assign_ai_models()
         try: self.round = self.RoundClass( round_id, current_players, self.button, self.small_blind, self.big_blind ); self.round_over_flag = False
         except Exception as e: print(colorize(f"--- ROUND INIT ERROR (Round {round_id}) ---", Colors.RED)); traceback.print_exc(); self.round = None
-    def _display_game_state(self): # ( Uses TERMINAL formatters )
+    def _display_game_state(self):
         clear_terminal(); title = colorize("====== POKER GAME STATE ======", Colors.BRIGHT_CYAN + Colors.BOLD)
         separator = colorize("--------------------------------------------------", Colors.BRIGHT_BLACK); print(f"\n{title}")
         if ( not self.round or not hasattr(self.round, 'id') or not hasattr(self.round, 'players') or not isinstance(self.round.players, list) or not hasattr(self.round, 'turn') or not hasattr(self.round, 'board') or not hasattr(self.round, 'pot_size') or not isinstance(self.round.pot_size, list)):
             print(colorize("No active round or state missing.", Colors.YELLOW)); print(colorize("\nPlayers at table:", Colors.YELLOW))
-            for player in self.seats.getPlayerGroup(): money_str = f"${player.money}" if hasattr(player, 'money') else colorize("N/A", Colors.BRIGHT_BLACK); is_ai = AI_ONLY_MODE or player.id != HUMAN_PLAYER_ID; model_name = f" ({self.ai_model_assignments.get(player.id, 'AI').split('/')[-1][:15]})" if is_ai else " (Human)"; print(f"  - {colorize(player.name, Colors.CYAN)}{colorize(model_name, Colors.MAGENTA if is_ai else Colors.GREEN)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
+            for player in self.seats.getPlayerGroup():
+                money_str = f"${player.money}" if hasattr(player, 'money') else colorize("N/A", Colors.BRIGHT_BLACK)
+                is_ai = AI_ONLY_MODE or player.id != HUMAN_PLAYER_ID
+                display_name = player.name if hasattr(player, 'name') else f"P{player.id}"
+                type_indicator = colorize(" (AI)", Colors.MAGENTA) if is_ai else colorize(" (Human)", Colors.GREEN)
+                print(f"  - {colorize(display_name, Colors.CYAN)}{type_indicator}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
             print(separator); return
         try:
             round_id = self.round.id; turn_name = self.round.turn.name; board_cards_list = [tuple(c) for c in self.round.board if isinstance(c, (list,tuple)) and len(c)==2]
@@ -286,15 +307,13 @@ class CommandLineTable(Table):
             if player_round_index == sb_idx: status.append(colorize("SB", Colors.YELLOW));
             if player_round_index == bb_idx: status.append(colorize("BB", Colors.YELLOW));
             status_str = " ".join(status); turn_stake_val = 0
-            # Safely access turn stake value
-            if ( hasattr(player, "turn_stake") and isinstance(player.turn_stake, list) and \
-                 hasattr(current_turn_enum, 'value') and len(player.turn_stake) > current_turn_enum.value ):
-                 turn_stake_val = player.turn_stake[current_turn_enum.value]
+            if ( hasattr(player, "turn_stake") and isinstance(player.turn_stake, list) and hasattr(current_turn_enum, 'value') and len(player.turn_stake) > current_turn_enum.value ): turn_stake_val = player.turn_stake[current_turn_enum.value]
             stake_str = colorize(f"[Bet: ${turn_stake_val}]", Colors.MAGENTA) if turn_stake_val > 0 else ""
-            model_indicator = ""; is_ai_player = AI_ONLY_MODE or player.id != HUMAN_PLAYER_ID
-            if is_ai_player: model_indicator = colorize(f" ({self.ai_model_assignments.get(player.id, 'AI').split('/')[-1][:15]})", Colors.MAGENTA)
-            else: model_indicator = colorize(" (Human)", Colors.GREEN) # Indicate Human player
-            print(f"{line_prefix}{player_name_colored}{model_indicator} {money_str.ljust(8)} {cards_str.ljust(20)} {stake_str.ljust(15)} {status_str}")
+            # Display Type (Human/AI) based on mode and ID
+            type_indicator = ""
+            is_ai_player = AI_ONLY_MODE or player.id != HUMAN_PLAYER_ID
+            if not is_ai_player: type_indicator = colorize(" (Human)", Colors.GREEN)
+            print(f"{line_prefix}{player_name_colored}{type_indicator} {money_str.ljust(8)} {cards_str.ljust(20)} {stake_str.ljust(15)} {status_str}")
         print(separator)
     def publicOut(self, out_id, **kwargs): # ( Remains the same )
         player_id = kwargs.get("player_id"); player_name_raw = self._get_player_name(player_id) if player_id else "System"
@@ -362,7 +381,8 @@ class CommandLineTable(Table):
         elif out_id == TablePrivateOutId.PLAYERNOTATTABLE: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Not at table"
         elif out_id == TablePrivateOutId.INCORRECTSEATINDEX: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Bad seat index"
         else: prefix = colorize(f"[UNHANDLED PRIVATE to {player_name_raw}]", Colors.BRIGHT_BLACK); msg = f"ID={out_id} Data: {kwargs}"
-        if msg and (not AI_ONLY_MODE and player_id == HUMAN_PLAYER_ID): print(f"{prefix} {msg}")
+        # Only print private message if it's for the human player in mixed mode
+        if msg and not AI_ONLY_MODE and player_id == HUMAN_PLAYER_ID: print(f"{prefix} {msg}")
 
 # --- Main Game Logic (Human Action Prompt) ---
 def get_player_action(player_name, to_call, player_money, can_check, can_raise): # ( Remains the same )
@@ -407,7 +427,9 @@ def get_player_action(player_name, to_call, player_money, can_check, can_raise):
 def get_ai_action(table_state: CommandLineTable, player_id): # ( Remains the same )
     player_name = table_state._get_player_name(player_id); model_name = table_state.ai_model_assignments.get(player_id)
     if not model_name: print(colorize(f"E: No model for AI {player_name}", Colors.RED)); ai_logger.error(f"No model assigned to AI {player_id}."); return RoundPublicInId.FOLD, {}
-    print(colorize(f"--- AI Thinking ({player_name} using {model_name.split('/')[-1]}) ---", Colors.MAGENTA)); time.sleep(0.5)
+    if VERBOSE:
+        print(colorize(f"--- AI Thinking ({player_name} using {model_name.split('/')[-1]}) ---", Colors.MAGENTA))
+    time.sleep(0.5)
     prompt = format_state_for_ai(table_state, player_id); # Uses fixed function now
     if "Error:" in prompt: print(colorize(f"E: formatting state for AI {player_name}: {prompt}", Colors.RED)); ai_logger.error(f"Error formatting prompt for AI {player_id}: {prompt}"); return RoundPublicInId.FOLD, {}
     round_id = table_state.round.id; history = table_state.ai_message_history[round_id][player_id]
@@ -417,7 +439,8 @@ def get_ai_action(table_state: CommandLineTable, player_id): # ( Remains the sam
     ai_response_text = query_together_ai(model_name, messages, AI_TEMPERATURE)
     ai_logger.info(f"Raw Response:\n{'-'*20}\n{ai_response_text or '<< No Response >>'}\n{'-'*20}")
     if ai_response_text:
-        # print(colorize(f"AI Raw Response ({player_name}): ", Colors.BRIGHT_BLACK) + f"{ai_response_text}")
+        if VERBOSE:
+            print(colorize(f"AI Raw Response ({player_name}): ", Colors.BRIGHT_BLACK) + f"{ai_response_text}")
         action_enum, action_kwargs = parse_ai_action(ai_response_text)
         player = table_state.seats.getPlayerById(player_id); is_possible = False
         if action_enum == RoundPublicInId.FOLD: is_possible = True
@@ -441,34 +464,72 @@ def get_ai_action(table_state: CommandLineTable, player_id): # ( Remains the sam
         history.append({"role": "user", "content": prompt}); assistant_response_content = f"{action_enum.name}"
         if action_enum == RoundPublicInId.RAISE: assistant_response_content += f" AMOUNT: {action_kwargs['raise_by']}"
         history.append({"role": "assistant", "content": assistant_response_content})
-        parsed_action_log = f"Validated Action: {action_enum.name} {action_kwargs}"; print(colorize(f"AI Validated Action ({player_name}): {action_enum.name} {action_kwargs}", Colors.MAGENTA)); ai_logger.info(parsed_action_log)
+        parsed_action_log = f"Validated Action: {action_enum.name} {action_kwargs}"
+        if VERBOSE:
+            print(colorize(f"AI Validated Action ({player_name}): {action_enum.name} {action_kwargs}", Colors.MAGENTA))
+        ai_logger.info(parsed_action_log)
         return action_enum, action_kwargs
     else: fail_msg = f"AI ({player_name}) failed to respond. Defaulting to FOLD."; print(colorize(fail_msg, Colors.RED)); ai_logger.error(fail_msg); return RoundPublicInId.FOLD, {}
 
 # --- Main Execution ---
 if __name__ == "__main__":
-    BUYIN = 200; SMALL_BLIND = 5; BIG_BLIND = 10
-    NUM_AI_OPPONENTS = len(AI_MODEL_LIST) # Set based on list length
-    NUM_PLAYERS = NUM_AI_OPPONENTS if AI_ONLY_MODE else NUM_AI_OPPONENTS + 1
+    BUYIN = 1000; SMALL_BLIND = 5; BIG_BLIND = 10 # Adjusted Buyin
+    NUM_AI_MODELS = len(AI_MODEL_LIST)
+    NUM_PLAYERS = NUM_AI_MODELS if AI_ONLY_MODE else NUM_AI_MODELS + 1
     if NUM_PLAYERS < 2: print(colorize("Error: Need at least 2 total players.", Colors.RED)); sys.exit(1)
 
     table = CommandLineTable( _id=0, seats=PlayerSeats([None] * NUM_PLAYERS), buyin=BUYIN, small_blind=SMALL_BLIND, big_blind=BIG_BLIND )
 
     players = []
     player_id_counter = 1
-    if not AI_ONLY_MODE: players.append(Player(table_id=table.id, _id=HUMAN_PLAYER_ID, name=f"Player_{HUMAN_PLAYER_ID}", money=BUYIN)); player_id_counter = HUMAN_PLAYER_ID + 1
-    for i in range(NUM_AI_OPPONENTS):
-         ai_player_id = player_id_counter + i; ai_player = Player(table_id=table.id, _id=ai_player_id, name=f"Player_{ai_player_id}", money=BUYIN); players.append(ai_player)
+    # Create Human Player if needed
+    if not AI_ONLY_MODE:
+        human_player = Player(table_id=table.id, _id=HUMAN_PLAYER_ID, name=HUMAN_PLAYER_NAME, money=BUYIN)
+        players.append(human_player)
+        # Ensure counter starts correctly for AI IDs if human exists
+        if HUMAN_PLAYER_ID >= player_id_counter: player_id_counter = HUMAN_PLAYER_ID + 1
+
+    # Create AI Players
+    ai_player_count = 0
+    player_ids_generated = {HUMAN_PLAYER_ID} if not AI_ONLY_MODE else set() # Keep track of used IDs
+    for i in range(NUM_PLAYERS): # Ensure exactly NUM_PLAYERS are created
+        # Determine if the current slot is for human or AI
+        is_for_human = not AI_ONLY_MODE and i == 0 # Assume human is first if not AI only (before shuffle)
+
+        if is_for_human:
+            # Human player already created and added
+            continue
+        else:
+            # Create AI player, ensuring unique ID
+            while player_id_counter in player_ids_generated:
+                player_id_counter += 1
+
+            ai_player_id = player_id_counter
+            player_ids_generated.add(ai_player_id)
+
+            # Assign model and get short name for the Player object
+            # Use ai_player_count to cycle through models for AI players
+            if ai_player_count < NUM_AI_MODELS: # Check if enough models defined
+                 model_full_name = AI_MODEL_LIST[ai_player_count % len(AI_MODEL_LIST)]
+                 ai_short_name = AI_MODEL_SHORT_NAMES.get(model_full_name, f"AI_{ai_player_id}")
+            else: # Fallback if more AI slots than models (shouldn't happen with current logic)
+                 ai_short_name = f"AI_{ai_player_id}"
+
+            ai_player = Player(table_id=table.id, _id=ai_player_id, name=ai_short_name, money=BUYIN)
+            players.append(ai_player)
+            ai_player_count += 1
+            player_id_counter += 1 # Move to next potential ID
+
 
     random.shuffle(players) # Shuffle seating order
     for p in players: table.publicIn(p.id, TablePublicInId.BUYIN, player=p)
 
-    clear_terminal(); print(colorize("\n--- Welcome to Simple Pokerlib Game! ---", Colors.BRIGHT_CYAN + Colors.BOLD))
-    print(f"{NUM_PLAYERS} players at the table ({NUM_AI_OPPONENTS} AI, {0 if AI_ONLY_MODE else 1} Human).")
+    clear_terminal(); print(colorize("\n--- Welcome to NLPoker! ---", Colors.BRIGHT_CYAN + Colors.BOLD))
+    print(f"{NUM_PLAYERS} players at the table ({NUM_AI_MODELS} AI, {0 if AI_ONLY_MODE else 1} Human).")
     print(f"Buy-in: {colorize(f'${BUYIN}', Colors.BRIGHT_GREEN)} each. Blinds: {colorize(f'${SMALL_BLIND}/${BIG_BLIND}', Colors.YELLOW)}")
     if AI_ONLY_MODE: print(colorize("Mode: ALL AI Players", Colors.MAGENTA))
-    else: print(colorize(f"Mode: Human (Player_{HUMAN_PLAYER_ID}) vs AI", Colors.MAGENTA))
-    ai_logger.info(f"Game Started. AI_ONLY_MODE: {AI_ONLY_MODE}. Human ID: {HUMAN_PLAYER_ID if not AI_ONLY_MODE else 'N/A'}. Num AI: {NUM_AI_OPPONENTS}.")
+    else: print(colorize(f"Mode: Human ({HUMAN_PLAYER_NAME}) vs AI", Colors.MAGENTA))
+    ai_logger.info(f"Game Started. AI_ONLY_MODE: {AI_ONLY_MODE}. Human ID: {HUMAN_PLAYER_ID if not AI_ONLY_MODE else 'N/A'}. Num AI: {NUM_AI_MODELS}.")
 
     round_count = 0
     try:
@@ -493,11 +554,11 @@ if __name__ == "__main__":
                     if current_player_obj and player.id == current_player_obj.id:
                         if not all(hasattr(player, a) for a in ['money','stake','turn_stake']) or not isinstance(player.turn_stake, list) or not (table.round and hasattr(table.round, 'to_call')):
                              print(colorize(f"W: State not ready for {player.name}.", Colors.YELLOW)); time.sleep(0.1); table._current_action_player_id = action_player_id_to_process; continue
-                        # --- MODIFIED ACTION CHOICE ---
+
                         is_ai_turn = AI_ONLY_MODE or player.id != HUMAN_PLAYER_ID
                         if is_ai_turn: action_enum, action_kwargs = get_ai_action(table, player.id); time.sleep(0.5)
                         else: action_enum, action_kwargs = get_player_action( player.name, table.to_call, player.money, table.can_check, table.can_raise )
-                        # --- END MODIFICATION ---
+
                         table.publicIn(player.id, action_enum, **action_kwargs) # Send action
                     elif current_player_obj:
                         req_for = f"{player.name}({action_player_id_to_process})"; curr = f"{current_player_obj.name}({current_player_obj.id})"
@@ -512,22 +573,24 @@ if __name__ == "__main__":
                  for p in final_players:
                      money_val = p.money if hasattr(p, 'money') else 'N/A';
                      is_ai_player = AI_ONLY_MODE or p.id != HUMAN_PLAYER_ID
-                     model_name = f" ({table.ai_model_assignments.get(p.id, 'AI')})" if is_ai_player else " (Human)"
-                     stack_line = f"  - {p.name}{model_name}: ${money_val}"
-                     print(f"  - {colorize(p.name, Colors.CYAN)}{colorize(model_name, Colors.MAGENTA if is_ai_player else Colors.GREEN)}: {colorize(f'${money_val}', Colors.BRIGHT_GREEN)}")
+                     display_name = p.name if hasattr(p, 'name') else f"P{p.id}" # Use actual name
+                     type_indicator_log = " (AI)" if is_ai_player else " (Human)"
+                     type_indicator_term = colorize(" (AI)", Colors.MAGENTA) if is_ai_player else colorize(" (Human)", Colors.GREEN)
+                     stack_line = f"  - {display_name}{type_indicator_log}: ${money_val}" # Log plain string
+                     print(f"  - {colorize(display_name, Colors.CYAN)}{type_indicator_term}: {colorize(f'${money_val}', Colors.BRIGHT_GREEN)}") # Print colored string
                      log_stacks.append(stack_line)
                  ai_logger.info("\n".join(log_stacks))
-            # --- Modified Continue Logic ---
 
-            if not ALWAYS_CONTINUE: # Only ask human if playing and not ALWAYS_CONTINUE
-                 try: cont = input(colorize("\nPlay another round? (y/n): ", Colors.WHITE)).lower()
-                 except EOFError: print(colorize("\nInput ended.", Colors.RED)); break
-                 if cont != 'y': break
-            else: # In AI Only mode, pause and continue
-                time.sleep(3); print("\nStarting next round automatically...")
+            if not ALWAYS_CONTINUE: # Use the new flag
+                if not AI_ONLY_MODE: # Only ask human if playing
+                    try: cont = input(colorize("\nPlay another round? (y/n): ", Colors.WHITE)).lower();
+                    except EOFError: print(colorize("\nInput ended.", Colors.RED)); break
+                    if cont != 'y': break
+                else: # In AI Only mode, pause and continue
+                    time.sleep(3); print("\nStarting next round automatically...")
+            else: # If ALWAYS_CONTINUE is True
+                time.sleep(1); print("\nStarting next round automatically...")
 
-
-            # --- End Modification ---
 
     except KeyboardInterrupt: print(colorize("\nCtrl+C detected. Exiting game.", Colors.YELLOW))
     except Exception as e: print(colorize("\n--- UNEXPECTED ERROR ---", Colors.RED+Colors.BOLD)); traceback.print_exc(); print(colorize("-----", Colors.RED+Colors.BOLD)); ai_logger.exception("UNEXPECTED ERROR")
@@ -540,10 +603,12 @@ if __name__ == "__main__":
             for p in final_players:
                 money_str = f"${p.money}" if hasattr(p, 'money') else "N/A";
                 is_ai_player = AI_ONLY_MODE or p.id != HUMAN_PLAYER_ID
-                model_name = f" ({table.ai_model_assignments.get(p.id, 'AI')})" if is_ai_player else " (Human)"
-                stack_line = f"  - {p.name}{model_name}: {money_str}"
-                print(f"  - {colorize(p.name, Colors.CYAN)}{colorize(model_name, Colors.MAGENTA if is_ai_player else Colors.GREEN)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
+                display_name = p.name if hasattr(p, 'name') else f"P{p.id}" # Use actual name
+                type_indicator_log = " (AI)" if is_ai_player else " (Human)"
+                type_indicator_term = colorize(" (AI)", Colors.MAGENTA) if is_ai_player else colorize(" (Human)", Colors.GREEN)
+                stack_line = f"  - {display_name}{type_indicator_log}: {money_str}" # Log plain string
+                print(f"  - {colorize(display_name, Colors.CYAN)}{type_indicator_term}: {colorize(money_str, Colors.BRIGHT_GREEN)}") # Print colored string
                 log_stacks.append(stack_line)
         ai_logger.info("\n".join(log_stacks)); print(Colors.RESET)
 
-# -------- END: Code with VERIFIED format_state_for_ai Fix --------
+# -------- END: Code with Final Fixes and Dynamic Players --------
