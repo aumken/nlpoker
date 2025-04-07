@@ -1,8 +1,14 @@
+# -------- START: Code with AI Logging and Model List Comment --------
+
 import sys
 import time      # For sleep
 import traceback # For better error reporting
-import os        # For screen clearing
-from collections import deque
+import os        # For screen clearing and dotenv
+import requests  # For API calls
+import random    # To assign models randomly
+import logging   # For logging AI interactions
+from collections import deque, defaultdict # For message history
+from dotenv import load_dotenv # To load API key
 
 # Necessary imports from pokerlib
 from pokerlib import Player, PlayerSeats, Table
@@ -11,13 +17,72 @@ from pokerlib.enums import ( Hand, Rank, RoundPrivateOutId, RoundPublicInId,
                             TablePublicInId, TablePublicOutId, Turn )
 
 # --- Configuration ---
-CLEAR_SCREEN = False # Set to False if screen clearing causes issues
+AI_ENABLED = True
+HUMAN_PLAYER_ID = 1
+CLEAR_SCREEN = True
+# AI_MODEL_LIST = [ # Smaller list for testing
+#     'mistralai/Mistral-7B-Instruct-v0.3',
+#     'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+# ]
+AI_MODEL_LIST = [ # Full list from user request (use a subset for faster testing)
+    'mistralai/Mistral-7B-Instruct-v0.3',
+    'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+    'upstage/SOLAR-10.7B-Instruct-v1.0',
+    'Gryphe/MythoMax-L2-13b',
+    'mistralai/Mistral-Small-24B-Instruct-2501',
+    # 'google/gemma-2-27b-it',
+    # 'Qwen/QwQ-32B-Preview',
+    # 'meta-llama/Llama-3.3-70B-Instruct-Turbo', # Might be slow/costly
+    # 'Qwen/Qwen2.5-72B-Instruct-Turbo',       # Might be slow/costly
+    # 'mistralai/Mixtral-8x7B-Instruct-v0.1',
+    # 'mistralai/Mixtral-8x22B-Instruct-v0.1',  # Might be slow/costly
+    # 'microsoft/WizardLM-2-8x22B',           # Might be slow/costly
+    # 'databricks/dbrx-instruct',             # Might be slow/costly
+    # 'deepseek-ai/DeepSeek-V3',
+    # 'deepseek-ai/DeepSeek-R1',
+]
+AI_TEMPERATURE = 0.7
+AI_REQUEST_TIMEOUT = 45 # Increased timeout slightly
+AI_RETRY_DELAY = 5
+LOG_FILE_NAME = 'ai_poker_log.txt'
+
+# --- Logging Setup ---
+# Ensure file exists and clear it at the start, or append if desired
+# For this example, we'll overwrite the log each time the script runs.
+if os.path.exists(LOG_FILE_NAME):
+    os.remove(LOG_FILE_NAME)
+
+ai_logger = logging.getLogger('AIPokerLog')
+ai_logger.setLevel(logging.INFO)
+# Prevent logging messages from propagating to the root logger (avoids duplicate console output)
+ai_logger.propagate = False
+# File Handler
+file_handler = logging.FileHandler(LOG_FILE_NAME)
+file_formatter = logging.Formatter('%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+file_handler.setFormatter(file_formatter)
+ai_logger.addHandler(file_handler)
+# Optional: Console Handler for debugging logger setup
+# console_handler = logging.StreamHandler()
+# console_handler.setFormatter(file_formatter)
+# ai_logger.addHandler(console_handler)
+
+ai_logger.info("--- AI Poker Log Initialized ---")
+
+# Load API Key from .env file
+load_dotenv()
+TOGETHER_AI_API_KEY = os.getenv("TOGETHER_AI_API_KEY")
+if AI_ENABLED and not TOGETHER_AI_API_KEY:
+    error_msg = "ERROR: AI_ENABLED is True, but TOGETHER_AI_API_KEY not found in .env file."
+    print(error_msg)
+    ai_logger.error(error_msg)
+    sys.exit(1)
+else:
+    ai_logger.info("TOGETHER_AI_API_KEY loaded successfully.")
 
 # --- ANSI Color Codes ---
+# (Colors class remains the same)
 class Colors:
-    RESET = "\033[0m"
-    BOLD = "\033[1m"
-    UNDERLINE = "\033[4m"
+    RESET = "\033[0m"; BOLD = "\033[1m"; UNDERLINE = "\033[4m"
     BLACK = "\033[30m"; RED = "\033[31m"; GREEN = "\033[32m"; YELLOW = "\033[33m"
     BLUE = "\033[34m"; MAGENTA = "\033[35m"; CYAN = "\033[36m"; WHITE = "\033[37m"
     BRIGHT_BLACK = "\033[90m"; BRIGHT_RED = "\033[91m"; BRIGHT_GREEN = "\033[92m"; BRIGHT_YELLOW = "\033[93m"
@@ -25,173 +90,271 @@ class Colors:
     BG_BLACK = "\033[40m"; BG_RED = "\033[41m"; BG_GREEN = "\033[42m"; BG_YELLOW = "\033[43m"
     BG_BLUE = "\033[44m"; BG_MAGENTA = "\033[45m"; BG_CYAN = "\033[46m"; BG_WHITE = "\033[47m"
 
-def colorize(text, color):
-    """Applies ANSI color code and resets."""
-    return f"{color}{text}{Colors.RESET}"
+def colorize(text, color): return f"{color}{text}{Colors.RESET}"
 
-# --- Helper Functions for Display (Enhanced) ---
-
+# --- Helper Functions for Display ---
+# (format_card, format_cards, format_hand_enum, clear_terminal remain the same)
 def format_card(card):
-    """Formats a card tuple (Rank, Suit) into a short, colored string."""
     if not card: return colorize("??", Colors.BRIGHT_BLACK)
     rank_map = { Rank.TWO: "2", Rank.THREE: "3", Rank.FOUR: "4", Rank.FIVE: "5", Rank.SIX: "6", Rank.SEVEN: "7", Rank.EIGHT: "8", Rank.NINE: "9", Rank.TEN: "T", Rank.JACK: "J", Rank.QUEEN: "Q", Rank.KING: "K", Rank.ACE: "A" }
     suit_map = {Suit.SPADE: "♠", Suit.CLUB: "♣", Suit.DIAMOND: "♦", Suit.HEART: "♥"}
     suit_color_map = { Suit.SPADE: Colors.WHITE, Suit.CLUB: Colors.WHITE, Suit.DIAMOND: Colors.BRIGHT_RED, Suit.HEART: Colors.BRIGHT_RED }
     try:
-        # Ensure input is treated as a sequence (tuple or list) and has 2 elements
         if hasattr(card, '__len__') and len(card) == 2:
-             rank, suit = card
-             rank_str = rank_map[rank]; suit_str = suit_map[suit]
-             color = suit_color_map.get(suit, Colors.WHITE)
-             card_text = f"{rank_str}{suit_str}"
-             if rank >= Rank.JACK: card_text = Colors.BOLD + card_text # Bold face cards
+             rank, suit = card; rank_str = rank_map[rank]; suit_str = suit_map[suit]; color = suit_color_map.get(suit, Colors.WHITE)
+             card_text = f"{rank_str}{suit_str}";
+             if rank >= Rank.JACK: card_text = Colors.BOLD + card_text
              return colorize(card_text, color)
-        else: return colorize("??", Colors.BRIGHT_BLACK) # Invalid card format
+        else: return colorize("??", Colors.BRIGHT_BLACK)
     except (TypeError, KeyError, ValueError, IndexError): return colorize("??", Colors.BRIGHT_BLACK)
 
 def format_cards(cards):
-    """Formats a list/tuple of cards with colors."""
-    # Ensure cards is iterable before processing
-    if hasattr(cards, '__iter__'):
-        return " ".join(format_card(c) for c in cards)
+    if hasattr(cards, '__iter__'): return " ".join(format_card(c) for c in cards)
     return ""
 
-def format_hand_enum(hand_enum):
-    """Formats a Hand enum member into a readable string."""
-    return hand_enum.name.replace("_", " ").title() if hand_enum else "Unknown Hand"
+def format_hand_enum(hand_enum): return hand_enum.name.replace("_", " ").title() if hand_enum else "Unknown Hand"
 
 def clear_terminal():
-    """Clears the terminal screen."""
     if CLEAR_SCREEN: os.system('cls' if os.name == 'nt' else 'clear')
 
+
+# --- AI Interaction Functions ---
+def query_together_ai(model_name, messages, temperature):
+    """Sends a request to the Together AI API and returns the response content."""
+    api_endpoint = "https://api.together.xyz/v1/chat/completions"
+    headers = { "Authorization": f"Bearer {TOGETHER_AI_API_KEY}", "Content-Type": "application/json", "User-Agent": "PokerCLI-AI-Test" } # Added User-Agent
+    payload = { "model": model_name, "messages": messages, "temperature": temperature, "max_tokens": 150 }
+    max_retries = 3; attempt = 0
+    while attempt < max_retries:
+        try:
+            response = requests.post(api_endpoint, headers=headers, json=payload, timeout=AI_REQUEST_TIMEOUT)
+            response.raise_for_status()
+            data = response.json()
+            if data and 'choices' in data and len(data['choices']) > 0 and 'message' in data['choices'][0] and 'content' in data['choices'][0]['message']:
+                 return data['choices'][0]['message']['content'].strip()
+            else:
+                 warn_msg = f"W: Bad API response format from {model_name}: {data}"
+                 print(colorize(warn_msg, Colors.YELLOW)); ai_logger.warning(warn_msg); return None
+        except requests.exceptions.Timeout:
+            warn_msg = f"W: API request to {model_name} timed out."; print(colorize(warn_msg, Colors.YELLOW)); ai_logger.warning(warn_msg); attempt += 1
+            if attempt >= max_retries: return None
+            print(colorize(f"Retrying in {AI_RETRY_DELAY}s...", Colors.YELLOW)); time.sleep(AI_RETRY_DELAY)
+        except requests.exceptions.RequestException as e:
+            err_msg = f"Error querying {model_name}: {e}"
+            if hasattr(e, 'response') and e.response is not None: err_msg += f" | Response: {e.response.text}"
+            print(colorize(err_msg, Colors.RED)); ai_logger.error(err_msg)
+            if hasattr(e, 'response') and e.response is not None and e.response.status_code == 429:
+                attempt += 1; retry_delay = AI_RETRY_DELAY * (attempt + 1)
+                print(colorize(f"Rate limit. Retrying in {retry_delay}s...", Colors.YELLOW)); time.sleep(retry_delay)
+            else: return None # Non-retryable request error
+        except Exception as e: # Catch other potential errors like JSON decoding
+             err_msg = f"Unexpected API error {model_name}: {e}"; print(colorize(err_msg, Colors.RED)); ai_logger.error(err_msg); return None
+    fail_msg = f"API call to {model_name} failed after {max_retries} retries."; print(colorize(fail_msg, Colors.RED)); ai_logger.error(fail_msg); return None
+
+def parse_ai_action(response_text):
+    """Parses the LLM response to extract action and raise amount."""
+    if not response_text: return RoundPublicInId.CHECK, {} # Default to check if response is empty
+    response_lines = response_text.lower().split('\n'); action = None; raise_by = 0
+    action_line_found = False
+
+    for line in response_lines:
+        line = line.strip()
+        # Look for direct action keywords first
+        if line.startswith("fold"): action = RoundPublicInId.FOLD; action_line_found = True; break
+        if line.startswith("check"): action = RoundPublicInId.CHECK; action_line_found = True; break
+        if line.startswith("call"): action = RoundPublicInId.CALL; action_line_found = True; break
+        if line.startswith("raise"):
+            action = RoundPublicInId.RAISE; action_line_found = True
+            parts = line.split()
+            for i, part in enumerate(parts):
+                 # Find number after "amount:", "amount", or "by" or just bare number
+                 if part == "amount" and i+1 < len(parts) and parts[i+1].strip(':').isdigit(): raise_by = int(parts[i+1].strip(':')); break
+                 elif part == "by" and i+1 < len(parts) and parts[i+1].isdigit(): raise_by = int(parts[i+1]); break
+                 elif part.strip(':').isdigit(): raise_by = int(part.strip(':')); break # Bare number after raise keyword
+            break # Stop after finding raise line
+
+    # If no direct keyword found, check lines starting with "action:"
+    if not action_line_found:
+         for line in response_lines:
+            line = line.strip()
+            if line.startswith("action:"):
+                line_content = line[len("action:"):].strip()
+                if "raise" in line_content:
+                    action = RoundPublicInId.RAISE
+                    parts = line_content.split()
+                    for i, part in enumerate(parts):
+                        if part.isdigit(): raise_by = int(part); break
+                        elif part in ["by", "amount"] and i+1 < len(parts) and parts[i+1].strip(':').isdigit(): raise_by = int(parts[i+1].strip(':')); break
+                    break # Found raise in action line
+                elif "call" in line_content: action = RoundPublicInId.CALL; break
+                elif "check" in line_content: action = RoundPublicInId.CHECK; break
+                elif "fold" in line_content: action = RoundPublicInId.FOLD; break
+
+
+    if action == RoundPublicInId.RAISE and raise_by <= 0: print(colorize(f"[AI PARSE WARN] RAISE w/o amount. Default CALL.", Colors.YELLOW)); action = RoundPublicInId.CALL; raise_by = 0
+    elif action is None: print(colorize(f"[AI PARSE WARN] No action found: '{response_text}'. Default CHECK.", Colors.YELLOW)); action = RoundPublicInId.CHECK; raise_by = 0
+    kwargs = {'raise_by': raise_by} if action == RoundPublicInId.RAISE else {}; return action, kwargs
+
+# --- CORRECTED format_state_for_ai (Ensures opponent cards are hidden) ---
+def format_state_for_ai(table_state, player_id_acting):
+    """Formats the current game state into a string for the AI prompt."""
+    lines = []
+    if not table_state.round or not hasattr(table_state.round, 'turn'): return "Error: No round or turn."
+
+    lines.append(f"## Poker Hand State - Round {table_state.round.id}")
+    lines.append(f"**Current Stage:** {table_state.round.turn.name}")
+    board_cards = [tuple(c) for c in table_state.round.board if isinstance(c, (list,tuple)) and len(c)==2]
+    lines.append(f"**Board:** [ {format_cards(board_cards)} ] ({len(board_cards)} cards)")
+    pot_total = sum(table_state.round.pot_size); lines.append(f"**Total Pot:** ${pot_total}")
+    lines.append("\n**Players:** (Order is position relative to dealer)"); acting_player_obj = None; max_name_len = 0
+    players_in_round = table_state.round.players
+    if players_in_round: max_name_len = max(len(p.name) for p in players_in_round if p and hasattr(p, 'name'))
+
+    for idx, p in enumerate(players_in_round):
+        if not p: continue
+        is_acting = (p.id == player_id_acting)
+        if is_acting: acting_player_obj = p
+
+        name_str = (p.name if hasattr(p, 'name') else f'P{p.id}').ljust(max_name_len)
+        money_str = f"${p.money if hasattr(p, 'money') else 0}".ljust(6)
+        cards_str = "( ? ? )" # Default hidden
+
+        # --- Card Visibility Logic ---
+        # Show YOUR cards only if it's YOUR turn
+        if p.id in table_state._player_cards and is_acting:
+             cards_str = f"( {format_cards(table_state._player_cards[p.id])} )" # Use the stored dealt cards
+        # Do NOT show opponent cards, even if round is over, for AI prompt simplicity
+
+        status = [];
+        if hasattr(p, 'is_folded') and p.is_folded: status.append("FOLDED");
+        if hasattr(p, 'is_all_in') and p.is_all_in: status.append("ALL-IN")
+        if hasattr(table_state.round, 'button') and idx == table_state.round.button: status.append("D")
+        if hasattr(table_state.round, 'small_blind_player_index') and idx == table_state.round.small_blind_player_index: status.append("SB")
+        if hasattr(table_state.round, 'big_blind_player_index') and idx == table_state.round.big_blind_player_index: status.append("BB")
+        status_str = f"[{' '.join(status)}]" if status else ""; current_bet = 0
+        if hasattr(p, 'turn_stake') and isinstance(p.turn_stake, list) and len(p.turn_stake) > table_state.round.turn.value: current_bet = p.turn_stake[table_state.round.turn.value]
+        bet_str = f"Bet:${current_bet}" if current_bet > 0 else ""; prefix = "**YOU ->**" if is_acting else "   -"
+        lines.append(f"{prefix} {name_str} {money_str} {cards_str.ljust(18)} {bet_str.ljust(10)} {status_str}")
+
+    lines.append("\n**Action Context:**");
+    current_round_bet = table_state.round.turn_stake if table_state.round and hasattr(table_state.round, 'turn_stake') else 0
+    lines.append(f"- Current Bet to Match: ${current_round_bet}");
+    amount_to_call = table_state.to_call
+    lines.append(f"- Amount You Need to Call: ${amount_to_call}");
+    lines.append(f"- Your Stack: ${acting_player_obj.money if acting_player_obj else 'N/A'}")
+
+    possible_actions = ["FOLD"]
+    if table_state.can_check: possible_actions.append("CHECK")
+    elif amount_to_call > 0 and (acting_player_obj and acting_player_obj.money > 0): possible_actions.append(f"CALL({min(amount_to_call, acting_player_obj.money)})")
+    if table_state.can_raise: possible_actions.append(f"RAISE(min_by={table_state.min_raise})")
+    lines.append(f"- Possible Actions: {', '.join(possible_actions)}")
+
+    lines.append("\n**Task:** Decide your next poker action.")
+    lines.append("Respond ONLY with the action name (FOLD, CHECK, CALL, RAISE).")
+    lines.append("If RAISING, add ' AMOUNT: X' on the same line, where X is the integer amount to raise BY (not the total bet).")
+    lines.append("Example response for raise: 'RAISE AMOUNT: 20'")
+    lines.append("Example response for call: 'CALL'")
+
+    return "\n".join(lines)
+
 # --- Custom Table Class for IO (Enhanced Display) ---
-
 class CommandLineTable(Table):
-    """Overrides Table to handle command-line input and output with enhanced visuals."""
-
+    """ Overrides Table to handle IO and AI integration. """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._player_cards = {} # Stores tuple card representation: {player_id: ((R,S),(R,S))}
+        self._player_cards = {} # {pid: ((R,S),(R,S))}
         self._current_action_player_id = None
         self.round_over_flag = False
+        self.ai_message_history = defaultdict(lambda: defaultdict(list))
+        self.ai_model_assignments = {}
+        self.to_call = 0; self.can_check = False; self.can_raise = False; self.min_raise = 0
+
+    def assign_ai_models(self):
+        ai_player_ids = [p.id for p in self.seats.getPlayerGroup() if p.id != HUMAN_PLAYER_ID]
+        num_ai = len(ai_player_ids);
+        if num_ai == 0 or not AI_MODEL_LIST: return
+        log_msg_assign = ["AI Model Assignments:"]
+        for i, pid in enumerate(ai_player_ids):
+            model_to_assign = AI_MODEL_LIST[i % len(AI_MODEL_LIST)]
+            self.ai_model_assignments[pid] = model_to_assign
+            assign_text = f"AI Player {self._get_player_name(pid)} assigned model: {model_to_assign}"
+            print(colorize(f"[INFO] {assign_text}", Colors.MAGENTA))
+            log_msg_assign.append(f"  - Player {pid} ({self._get_player_name(pid)}): {model_to_assign}")
+        ai_logger.info("\n".join(log_msg_assign))
 
     def _get_player_name(self, player_id):
-        player = self.seats.getPlayerById(player_id)
-        return player.name if player else f"Player {player_id}"
+        player = self.seats.getPlayerById(player_id); return player.name if player else f"P{player_id}"
 
-    # --- OVERRIDE _newRound ---
     def _newRound(self, round_id):
-        current_players = self.seats.getPlayerGroup()
+        ai_logger.info(f"\n{'='*15} ROUND {round_id} START {'='*15}") # Log round start
+        current_players = self.seats.getPlayerGroup();
         if not current_players: print(colorize("Error: No players.", Colors.RED)); self.round = None; return
         for player in current_players:
             if hasattr(player, "resetState"): player.resetState()
-        self._player_cards.clear()
+        self._player_cards.clear(); self.ai_message_history[round_id].clear() # Clear history by round_id
+        if not self.ai_model_assignments and AI_ENABLED: self.assign_ai_models()
         try:
             self.round = self.RoundClass( round_id, current_players, self.button, self.small_blind, self.big_blind )
             self.round_over_flag = False
-        except Exception as e:
-            print(colorize(f"--- ROUND INIT ERROR (Round {round_id}) ---", Colors.RED)); traceback.print_exc()
-            self.round = None
+        except Exception as e: print(colorize(f"--- ROUND INIT ERROR (Round {round_id}) ---", Colors.RED)); traceback.print_exc(); self.round = None
 
-    # --- END OVERRIDE ---
-
-    def _display_game_state(self):
-        """ Displays the current state of the table and round with enhanced visuals. """
-        clear_terminal()
-        title = colorize("====== POKER GAME STATE ======", Colors.BRIGHT_CYAN + Colors.BOLD)
-        separator = colorize("--------------------------------------------------", Colors.BRIGHT_BLACK)
-        print(f"\n{title}")
-
-        if ( not self.round or not hasattr(self.round, 'id') or not hasattr(self.round, 'players')
-             or not isinstance(self.round.players, list) or not hasattr(self.round, 'turn')
-             or not hasattr(self.round, 'board') or not hasattr(self.round, 'pot_size')
-             or not isinstance(self.round.pot_size, list)):
-            print(colorize("No active round or essential round state missing.", Colors.YELLOW))
-            print(colorize("\nPlayers at table:", Colors.YELLOW))
+    def _display_game_state(self): # ( Remains the same as previous version )
+        clear_terminal(); title = colorize("====== POKER GAME STATE ======", Colors.BRIGHT_CYAN + Colors.BOLD)
+        separator = colorize("--------------------------------------------------", Colors.BRIGHT_BLACK); print(f"\n{title}")
+        if ( not self.round or not hasattr(self.round, 'id') or not hasattr(self.round, 'players') or not isinstance(self.round.players, list) or not hasattr(self.round, 'turn') or not hasattr(self.round, 'board') or not hasattr(self.round, 'pot_size') or not isinstance(self.round.pot_size, list)):
+            print(colorize("No active round or state missing.", Colors.YELLOW)); print(colorize("\nPlayers at table:", Colors.YELLOW))
             for player in self.seats.getPlayerGroup():
                 money_str = f"${player.money}" if hasattr(player, 'money') else colorize("N/A", Colors.BRIGHT_BLACK)
-                print(f"  - {colorize(player.name, Colors.CYAN)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
+                model_name = f" ({self.ai_model_assignments.get(player.id, 'Human')})" if AI_ENABLED else ""
+                print(f"  - {colorize(player.name, Colors.CYAN)}{colorize(model_name, Colors.MAGENTA)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
             print(separator); return
-
-        try: # Safely access round attributes
-            round_id = self.round.id; turn_name = self.round.turn.name
-            board_cards_list = [tuple(c) for c in self.round.board if isinstance(c, list) and len(c)==2] # Ensure tuples
-            board_cards_str = format_cards(board_cards_list)
-            pot_total = sum(self.round.pot_size); current_turn_enum = self.round.turn
-            players_in_round = self.round.players
-            button_idx = self.round.button if hasattr(self.round, "button") else -1
+        try:
+            round_id = self.round.id; turn_name = self.round.turn.name; board_cards_list = [tuple(c) for c in self.round.board if isinstance(c, (list,tuple)) and len(c)==2]
+            board_cards_str = format_cards(board_cards_list); pot_total = sum(self.round.pot_size); current_turn_enum = self.round.turn
+            players_in_round = self.round.players; button_idx = self.round.button if hasattr(self.round, "button") else -1
             sb_idx = self.round.small_blind_player_index if hasattr(self.round, "small_blind_player_index") else -1
             bb_idx = self.round.big_blind_player_index if hasattr(self.round, "big_blind_player_index") else -1
-        except (AttributeError, TypeError, IndexError) as e:
-            print(colorize(f"Error accessing round details for display: {e}", Colors.BRIGHT_RED)); return
-
-        print(f"Round: {colorize(str(round_id), Colors.WHITE)}   Turn: {colorize(turn_name, Colors.WHITE + Colors.BOLD)}")
-        print(f"Board: [ {board_cards_str} ]")
-        print(f"Pot:   {colorize(f'${pot_total}', Colors.BRIGHT_YELLOW + Colors.BOLD)}")
-        print(colorize("\nPlayers:", Colors.YELLOW))
-
-        max_name_len = 0
+        except (AttributeError, TypeError, IndexError) as e: print(colorize(f"Error accessing round details: {e}", Colors.RED)); return
+        print(f"Round: {colorize(str(round_id), Colors.WHITE)}   Turn: {colorize(turn_name, Colors.WHITE + Colors.BOLD)}"); print(f"Board: [ {board_cards_str} ]"); print(f"Pot:   {colorize(f'${pot_total}', Colors.BRIGHT_YELLOW + Colors.BOLD)}"); print(colorize("\nPlayers:", Colors.YELLOW))
+        max_name_len = 0;
         if players_in_round: max_name_len = max(len(p.name) for p in players_in_round if p and hasattr(p, 'name'))
-
         for idx, player in enumerate(players_in_round):
             if not player or not hasattr(player, "id"): continue
-
-            is_acting = (player.id == self._current_action_player_id)
-            line_prefix = colorize(" > ", Colors.BRIGHT_YELLOW + Colors.BOLD) if is_acting else "   "
-            player_name_str = (player.name if hasattr(player, 'name') else f'P{player.id}').ljust(max_name_len)
-            player_name_colored = colorize(player_name_str, Colors.CYAN + (Colors.BOLD if is_acting else ""))
-            money_val = player.money if hasattr(player, 'money') else 0
-            money_str = colorize(f"${money_val}", Colors.BRIGHT_GREEN)
-
-            cards_str = colorize("( ? ? )", Colors.BRIGHT_BLACK)
-            if player.id in self._player_cards: # Use the stored tuple cards
-                 cards_str = f"( {format_cards(self._player_cards[player.id])} )"
-            # Check player.cards for showdown display (ensure it contains tuples)
-            elif (self.round_over_flag or self.round.finished) and not player.is_folded and hasattr(player, "cards"):
-                 cards_data = player.cards
-                 if isinstance(cards_data, (list, tuple)): # Check if iterable
+            is_acting = (player.id == self._current_action_player_id); line_prefix = colorize(" > ", Colors.BRIGHT_YELLOW + Colors.BOLD) if is_acting else "   "
+            player_name_str = (player.name if hasattr(player, 'name') else f'P{player.id}').ljust(max_name_len); player_name_colored = colorize(player_name_str, Colors.CYAN + (Colors.BOLD if is_acting else ""))
+            money_val = player.money if hasattr(player, 'money') else 0; money_str = colorize(f"${money_val}", Colors.BRIGHT_GREEN); cards_str = colorize("( ? ? )", Colors.BRIGHT_BLACK)
+            if player.id in self._player_cards: cards_str = f"( {format_cards(self._player_cards[player.id])} )"
+            elif (self.round_over_flag or (hasattr(self.round, 'finished') and self.round.finished)) and not player.is_folded and hasattr(player, "cards"):
+                 cards_data = player.cards;
+                 if isinstance(cards_data, (list, tuple)):
                      cards_tuple_list = [tuple(c) for c in cards_data if isinstance(c, (list, tuple)) and len(c)==2]
-                     if len(cards_tuple_list) == 2: # Ensure conversion worked
-                          cards_str = f"( {format_cards(cards_tuple_list)} )"
-
+                     if len(cards_tuple_list) == 2: cards_str = f"( {format_cards(cards_tuple_list)} )"
             status = []; player_round_index = idx
             if hasattr(player, 'is_folded') and player.is_folded: status.append(colorize("FOLDED", Colors.BRIGHT_BLACK))
             if hasattr(player, 'is_all_in') and player.is_all_in: status.append(colorize("ALL-IN", Colors.BRIGHT_RED + Colors.BOLD))
             if player_round_index == button_idx: status.append(colorize("D", Colors.WHITE + Colors.BOLD))
-            if player_round_index == sb_idx: status.append(colorize("SB", Colors.YELLOW))
-            if player_round_index == bb_idx: status.append(colorize("BB", Colors.YELLOW))
-            status_str = " ".join(status)
-
-            turn_stake_val = 0
-            if ( hasattr(player, "turn_stake") and isinstance(player.turn_stake, list) and len(player.turn_stake) > current_turn_enum.value ):
-                turn_stake_val = player.turn_stake[current_turn_enum.value]
+            if player_round_index == sb_idx: status.append(colorize("SB", Colors.YELLOW));
+            if player_round_index == bb_idx: status.append(colorize("BB", Colors.YELLOW));
+            status_str = " ".join(status); turn_stake_val = 0
+            if ( hasattr(player, "turn_stake") and isinstance(player.turn_stake, list) and len(player.turn_stake) > current_turn_enum.value ): turn_stake_val = player.turn_stake[current_turn_enum.value]
             stake_str = colorize(f"[Bet: ${turn_stake_val}]", Colors.MAGENTA) if turn_stake_val > 0 else ""
-
-            print(f"{line_prefix}{player_name_colored} {money_str.ljust(8)} {cards_str.ljust(20)} {stake_str.ljust(15)} {status_str}")
-
+            model_indicator = ""
+            if AI_ENABLED and player.id != HUMAN_PLAYER_ID: model_indicator = colorize(f" ({self.ai_model_assignments.get(player.id, 'AI').split('/')[-1][:15]})", Colors.MAGENTA)
+            print(f"{line_prefix}{player_name_colored}{model_indicator} {money_str.ljust(8)} {cards_str.ljust(20)} {stake_str.ljust(15)} {status_str}")
         print(separator)
 
     # --- Output Handling (Enhanced) ---
-    def publicOut(self, out_id, **kwargs):
-        player_id = kwargs.get("player_id")
-        player_name_raw = self._get_player_name(player_id) if player_id else "System"
-        player_name = colorize(player_name_raw, Colors.CYAN)
-        msg = ""; prefix = ""
-
-        self._current_action_player_id = None
-        processed = False
-
-        if isinstance(out_id, RoundPublicOutId):
-            processed = True; player = self.seats.getPlayerById(player_id) if player_id else None
-            prefix = colorize("[ROUND]", Colors.BLUE)
+    def publicOut(self, out_id, **kwargs): # ( Remains the same as previous version )
+        player_id = kwargs.get("player_id"); player_name_raw = self._get_player_name(player_id) if player_id else "System"
+        player_name = colorize(player_name_raw, Colors.CYAN); msg = ""; prefix = ""; processed = False; self._current_action_player_id = None
+        self.can_check = False; self.can_raise = False; self.to_call = 0; self.min_raise = self.big_blind
+        is_round_event = isinstance(out_id, RoundPublicOutId); is_table_event = isinstance(out_id, TablePublicOutId)
+        if is_round_event:
+            processed = True; prefix = colorize("[ROUND]", Colors.BLUE); player = self.seats.getPlayerById(player_id) if player_id else None
             if out_id == RoundPublicOutId.NEWROUND: msg = "Dealing cards..."
-            elif out_id == RoundPublicOutId.NEWTURN:
-                 prefix = "" # Displayed via _display_game_state
-                 if hasattr(self.round, 'board'):
-                     self.community_cards = [tuple(card) for card in self.round.board if isinstance(card, list) and len(card)==2]
-                 self._display_game_state()
-            elif out_id == RoundPublicOutId.SMALLBLIND: msg = f"{player_name} posts {colorize('Small Blind', Colors.YELLOW)} ${kwargs['paid_amount']}"
-            elif out_id == RoundPublicOutId.BIGBLIND: msg = f"{player_name} posts {colorize('Big Blind', Colors.YELLOW)} ${kwargs['paid_amount']}"
+            elif out_id == RoundPublicOutId.NEWTURN: prefix = ""; self._display_game_state()
+            elif out_id == RoundPublicOutId.SMALLBLIND: msg = f"{player_name} posts {colorize('SB', Colors.YELLOW)} ${kwargs['paid_amount']}"
+            elif out_id == RoundPublicOutId.BIGBLIND: msg = f"{player_name} posts {colorize('BB', Colors.YELLOW)} ${kwargs['paid_amount']}"
             elif out_id == RoundPublicOutId.PLAYERCHECK: prefix = colorize("[ACTION]", Colors.GREEN); msg = f"{player_name} checks"
             elif out_id == RoundPublicOutId.PLAYERCALL: prefix = colorize("[ACTION]", Colors.GREEN); msg = f"{player_name} calls ${kwargs['paid_amount']}"
             elif out_id == RoundPublicOutId.PLAYERFOLD: prefix = colorize("[ACTION]", Colors.BRIGHT_BLACK); msg = f"{player_name} folds"
@@ -199,53 +362,47 @@ class CommandLineTable(Table):
             elif out_id == RoundPublicOutId.PLAYERISALLIN: prefix = colorize("[INFO]", Colors.BRIGHT_RED); msg = f"{player_name} is {colorize('ALL-IN!', Colors.BOLD)}"
             elif out_id == RoundPublicOutId.PLAYERWENTALLIN: prefix = colorize("[ACTION]", Colors.BRIGHT_RED + Colors.BOLD); msg = f"{player_name} goes ALL-IN with ${kwargs['paid_amount']}!"
             elif out_id == RoundPublicOutId.PLAYERACTIONREQUIRED:
-                prefix = "" # Handled by get_player_action prompt
-                self._current_action_player_id = player_id
+                prefix = ""; self._current_action_player_id = player_id; self.to_call = kwargs.get('to_call', 0)
+                self.can_check = self.to_call == 0;
+                if player: self.can_raise = player.money > self.to_call
+                else: self.can_raise = False
+                self.min_raise = self.big_blind
             elif out_id == RoundPublicOutId.PLAYERCHOICEREQUIRED: pass # Ignoring
             elif out_id == RoundPublicOutId.PUBLICCARDSHOW:
-                prefix = colorize("[SHOWDOWN]", Colors.WHITE)
-                shown_cards_raw = kwargs.get('cards', []);
-                # Ensure cards are tuples for formatting and potential state storage
+                prefix = colorize("[SHOWDOWN]", Colors.WHITE); shown_cards_raw = kwargs.get('cards', []);
                 shown_cards_tuples = [tuple(c) for c in shown_cards_raw if isinstance(c, (list, tuple)) and len(c)==2]
-                # Store shown cards in _player_cards map for display consistency
-                if player and shown_cards_tuples: self._player_cards[player.id] = tuple(shown_cards_tuples)
+                if player and shown_cards_tuples: self._player_cards[player.id] = tuple(shown_cards_tuples) # Store shown cards
                 hand_name = format_hand_enum(kwargs.get('handenum'))
                 msg = f"{player_name} shows {format_cards(shown_cards_tuples)} ({hand_name})"
             elif out_id == RoundPublicOutId.DECLAREPREMATUREWINNER: prefix = colorize("[WINNER]", Colors.BRIGHT_YELLOW + Colors.BOLD); msg = f"{player_name} wins ${kwargs['money_won']} (Premature)"
-            elif out_id == RoundPublicOutId.DECLAREFINISHEDWINNER:
-                 prefix = colorize("[WINNER]", Colors.BRIGHT_YELLOW + Colors.BOLD)
-                 hand_name = format_hand_enum(kwargs.get('handname')); msg = f"{player_name} wins ${kwargs['money_won']} with {hand_name}"
+            elif out_id == RoundPublicOutId.DECLAREFINISHEDWINNER: prefix = colorize("[WINNER]", Colors.BRIGHT_YELLOW + Colors.BOLD); hand_name = format_hand_enum(kwargs.get('handname')); msg = f"{player_name} wins ${kwargs['money_won']} with {hand_name}"
             elif out_id == RoundPublicOutId.ROUNDFINISHED: prefix = ""; msg = colorize("\n======= ROUND FINISHED =======", Colors.BRIGHT_CYAN); self.round_over_flag = True; self._display_game_state()
             elif out_id == RoundPublicOutId.ROUNDCLOSED: prefix = colorize("[Internal]", Colors.BRIGHT_BLACK); msg = "Round Closed State."; self._player_cards.clear()
-
-        elif isinstance(out_id, TablePublicOutId):
+        elif is_table_event:
             processed = True; prefix = colorize("[TABLE]", Colors.MAGENTA)
             if out_id == TablePublicOutId.PLAYERJOINED: msg = f"{player_name} joined seat {kwargs['player_seat']}"
-            elif out_id == TablePublicOutId.PLAYERREMOVED: msg = f"{player_name} left table"
-            elif out_id == TablePublicOutId.NEWROUNDSTARTED: prefix = ""; msg = "" # Don't print, _newRound handles setup
+            elif out_id == TablePublicOutId.PLAYERREMOVED:
+                 msg = f"{player_name} left table";
+                 if player_id in self._player_cards: del self._player_cards[player_id]
+                 if player_id in self.ai_model_assignments: del self.ai_model_assignments[player_id]
+            elif out_id == TablePublicOutId.NEWROUNDSTARTED: prefix = ""; msg = "" # Handled by _newRound
             elif out_id == TablePublicOutId.ROUNDNOTINITIALIZED: prefix = colorize("[ERROR]", Colors.RED); msg = "No round running"
             elif out_id == TablePublicOutId.ROUNDINPROGRESS: prefix = colorize("[ERROR]", Colors.RED); msg = "Round already in progress"
             elif out_id == TablePublicOutId.INCORRECTNUMBEROFPLAYERS: prefix = colorize("[ERROR]", Colors.RED); msg = "Need 2+ players"
+        should_print = bool(msg)
+        if is_round_event and out_id in [RoundPublicOutId.NEWTURN, RoundPublicOutId.ROUNDFINISHED, RoundPublicOutId.PLAYERACTIONREQUIRED]: should_print = False
+        if is_table_event and out_id == TablePublicOutId.NEWROUNDSTARTED: should_print = False
+        if should_print: print(f"{prefix} {msg}")
+        elif not processed and out_id != RoundPublicOutId.PLAYERCHOICEREQUIRED: print(colorize(f"Unhandled Out: ID={out_id} Data: {kwargs}", Colors.BRIGHT_BLACK))
 
-        # Print message if not handled by _display_game_state
-        if msg and out_id != RoundPublicOutId.NEWTURN and out_id != RoundPublicOutId.ROUNDFINISHED:
-             print(f"{prefix} {msg}")
-        elif not processed and out_id != RoundPublicOutId.PLAYERCHOICEREQUIRED: # Print unhandled only if truly unknown
-            print(colorize(f"Unhandled Public Out: ID={out_id} Data: {kwargs}", Colors.BRIGHT_BLACK))
-
-    def privateOut(self, player_id, out_id, **kwargs):
+    def privateOut(self, player_id, out_id, **kwargs): # ( Remains the same as previous version )
         player_name_raw = self._get_player_name(player_id); player_name = colorize(player_name_raw, Colors.CYAN)
-        prefix = colorize(f"[PRIVATE to {player_name_raw}]", Colors.YELLOW)
-        msg = ""
-
+        prefix = colorize(f"[PRIVATE to {player_name_raw}]", Colors.YELLOW); msg = ""
         if out_id == RoundPrivateOutId.DEALTCARDS:
             cards_raw = kwargs.get('cards');
             if cards_raw and len(cards_raw) == 2:
-                # Ensure inner elements are tuples before storing
                 cards_tuples = tuple(tuple(c) for c in cards_raw if isinstance(c, (list, tuple)) and len(c)==2)
-                if len(cards_tuples) == 2:
-                     self._player_cards[player_id] = cards_tuples # Store tuple of tuples
-                     msg = f"You are dealt {format_cards(cards_tuples)}"
+                if len(cards_tuples) == 2: self._player_cards[player_id] = cards_tuples; msg = f"You are dealt {format_cards(cards_tuples)}"
                 else: msg = colorize("Card conversion error.", Colors.RED)
             else: msg = colorize("Dealing error (no cards data).", Colors.RED)
         elif out_id == TablePrivateOutId.BUYINTOOLOW: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Buy-in of ${self.buyin} required."
@@ -254,48 +411,35 @@ class CommandLineTable(Table):
         elif out_id == TablePrivateOutId.PLAYERNOTATTABLE: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Not at table"
         elif out_id == TablePrivateOutId.INCORRECTSEATINDEX: prefix = colorize(f"[ERROR to {player_name_raw}]", Colors.RED); msg = f"Bad seat index"
         else: prefix = colorize(f"[UNHANDLED PRIVATE to {player_name_raw}]", Colors.BRIGHT_BLACK); msg = f"ID={out_id} Data: {kwargs}"
-
         if msg: print(f"{prefix} {msg}")
 
-# --- Main Game Logic (Enhanced Prompt) ---
-
+# --- Main Game Logic (Human Action Prompt) ---
+# (get_player_action function remains the same)
 def get_player_action(player_name, to_call, player_money, can_check, can_raise):
-    """Prompts the user for an action and validates it with better visuals."""
-    prompt_header = colorize(f"--- {player_name}'s Turn ---", Colors.BRIGHT_YELLOW + Colors.BOLD)
-    print(prompt_header)
-    actions = ["FOLD"]
-    action_color_map = { "FOLD": Colors.BRIGHT_BLACK, "CHECK": Colors.BRIGHT_GREEN, "CALL": Colors.BRIGHT_CYAN, "RAISE": Colors.BRIGHT_MAGENTA }
+    prompt_header = colorize(f"--- Your Turn ({player_name}) ---", Colors.BRIGHT_YELLOW + Colors.BOLD); print(prompt_header)
+    actions = ["FOLD"]; action_color_map = { "FOLD": Colors.BRIGHT_BLACK, "CHECK": Colors.BRIGHT_GREEN, "CALL": Colors.BRIGHT_CYAN, "RAISE": Colors.BRIGHT_MAGENTA }
     action_parts = [colorize("FOLD", action_color_map["FOLD"])]
-
     if can_check: actions.append("CHECK"); action_parts.append(colorize("CHECK", action_color_map["CHECK"]))
-    elif to_call > 0 and player_money > 0:
-        actions.append("CALL"); effective_call = min(to_call, player_money)
-        action_parts.append(colorize(f"CALL({effective_call})", action_color_map["CALL"]))
+    elif to_call > 0 and player_money > 0: actions.append("CALL"); effective_call = min(to_call, player_money); action_parts.append(colorize(f"CALL({effective_call})", action_color_map["CALL"]))
     if can_raise: actions.append("RAISE"); action_parts.append(colorize("RAISE", action_color_map["RAISE"]))
-
     print(f"Available actions: {' / '.join(action_parts)}")
-
     while True:
         try: action_str = input(colorize("Enter action: ", Colors.WHITE)).upper().strip()
         except EOFError: print(colorize("\nInput ended.", Colors.RED)); return RoundPublicInId.FOLD, {}
-
         if action_str == "CALL" and can_check: print(colorize("No bet to call. Use CHECK.", Colors.YELLOW)); continue
         if action_str == "CHECK" and not can_check: print(colorize(f"Cannot check. Bet is ${to_call}. Use CALL or FOLD.", Colors.YELLOW)); continue
         if action_str not in actions: print(colorize("Invalid action.", Colors.RED) + f" Choose from: {', '.join(actions)}"); continue
-
         if action_str == "RAISE":
             if not can_raise: print(colorize("Error: Raise not available.", Colors.RED)); continue
             min_raise = table.big_blind; max_raise = player_money - to_call
             if max_raise < min_raise and player_money > to_call: min_raise = max_raise
             if max_raise <= 0: print(colorize("Cannot raise, not enough funds.", Colors.RED)); continue
-
             while True:
                 try:
                     prompt_range = ( f"(min {min_raise}, max {max_raise})" if min_raise < max_raise else f"(exactly {max_raise} to go all-in)" )
                     raise_by_str = input(colorize(f"  Raise BY how much? {prompt_range}: ", Colors.WHITE))
                     if not raise_by_str.isdigit(): raise ValueError("Input not a digit")
                     raise_by = int(raise_by_str); is_all_in_raise = to_call + raise_by >= player_money
-
                     if raise_by <= 0: print(colorize("Raise amount must be positive.", Colors.YELLOW))
                     elif raise_by > max_raise: print(colorize(f"Max raise BY is {max_raise}.", Colors.YELLOW))
                     elif raise_by < min_raise and not is_all_in_raise: print(colorize(f"Minimum raise BY is {min_raise} (unless all-in).", Colors.YELLOW))
@@ -307,90 +451,141 @@ def get_player_action(player_name, to_call, player_money, can_check, can_raise):
             if can_check: return RoundPublicInId.CHECK, {}
         elif action_str == "CALL":
             if not can_check: return RoundPublicInId.CALL, {}
-
         print(colorize("Error processing action. Please try again.", Colors.RED))
 
+# --- AI Action Logic (With Logging) ---
+def get_ai_action(table_state: CommandLineTable, player_id):
+    player_name = table_state._get_player_name(player_id); model_name = table_state.ai_model_assignments.get(player_id)
+    if not model_name: print(colorize(f"E: No model for AI {player_name}", Colors.RED)); return RoundPublicInId.FOLD, {}
+    print(colorize(f"--- AI Thinking ({player_name} using {model_name.split('/')[-1]}) ---", Colors.MAGENTA)); time.sleep(0.5)
+    prompt = format_state_for_ai(table_state, player_id)
+    if "Error:" in prompt: print(colorize(f"E: formatting state for AI {player_name}: {prompt}", Colors.RED)); return RoundPublicInId.FOLD, {}
+    round_id = table_state.round.id; history = table_state.ai_message_history[round_id][player_id]
+    system_prompt = { "role": "system", "content": "You are a Texas Hold'em poker AI playing in a command-line game. Analyze the provided game state and decide your next action. Focus on making a reasonable poker play. Respond ONLY with the action name (FOLD, CHECK, CALL, RAISE). If raising, add ' AMOUNT: X' on the same line, where X is the integer amount to raise BY. Do not add any other explanation or text." }
+    messages = [system_prompt] + history + [{"role": "user", "content": prompt}]
+
+    # --- LOGGING ---
+    ai_logger.info(f"--- AI Turn: {player_name} (Model: {model_name}) ---")
+    ai_logger.info(f"Prompt Sent:\n{'-'*20}\n{prompt}\n{'-'*20}")
+    # Log message history separately for clarity if needed
+    # ai_logger.info(f"Message History Sent: {history}") # Can be verbose
+
+    ai_response_text = query_together_ai(model_name, messages, AI_TEMPERATURE)
+    ai_logger.info(f"Raw Response:\n{'-'*20}\n{ai_response_text or '<< No Response >>'}\n{'-'*20}")
+
+    if ai_response_text:
+        print(colorize(f"AI Raw Response ({player_name}): ", Colors.BRIGHT_BLACK) + f"{ai_response_text}") # Keep console output too
+        action_enum, action_kwargs = parse_ai_action(ai_response_text)
+        player = table_state.seats.getPlayerById(player_id); is_possible = False
+        # --- Action Validation & Fallback ---
+        # (Validation logic remains the same)
+        if action_enum == RoundPublicInId.FOLD: is_possible = True
+        elif action_enum == RoundPublicInId.CHECK: is_possible = table_state.can_check
+        elif action_enum == RoundPublicInId.CALL: is_possible = not table_state.can_check and table_state.to_call > 0 and player.money > 0
+        elif action_enum == RoundPublicInId.RAISE:
+            is_possible = table_state.can_raise
+            if is_possible:
+                raise_by = action_kwargs.get('raise_by', 0); max_raise = player.money - table_state.to_call; min_r = table_state.min_raise
+                if max_raise < min_r and player.money > table_state.to_call: min_r = max_raise
+                if raise_by <= 0 or raise_by > max_raise or (raise_by < min_r and (table_state.to_call + raise_by < player.money)):
+                    print(colorize(f"[AI WARN] AI {player_name} invalid RAISE {raise_by} (min:{min_r}, max:{max_raise}).", Colors.YELLOW)); ai_logger.warning(f"AI Invalid RAISE: {raise_by}, Fallback required.")
+                    is_possible = False # Mark original action as invalid
+                    # Fallback decision
+                    if not table_state.can_check and table_state.to_call > 0 and player.money > 0: action_enum = RoundPublicInId.CALL; action_kwargs = {}; is_possible = True; print(colorize(f" Fallback: CALL", Colors.YELLOW)); ai_logger.info("Fallback Action: CALL")
+                    else: action_enum = RoundPublicInId.FOLD; action_kwargs = {}; is_possible = True; print(colorize(f" Fallback: FOLD", Colors.YELLOW)); ai_logger.info("Fallback Action: FOLD")
+                else: action_kwargs['raise_by'] = min(raise_by, max_raise) # Clamp valid raise
+        if not is_possible:
+             print(colorize(f"[AI WARN] AI {player_name} chose impossible {action_enum.name}.", Colors.YELLOW)); ai_logger.warning(f"AI Impossible Action: {action_enum.name}, Fallback required.")
+             # Fallback decision
+             if not table_state.can_check and table_state.to_call > 0 and player.money > 0: action_enum = RoundPublicInId.CALL; action_kwargs = {}; print(colorize(f" Fallback: CALL", Colors.YELLOW)); ai_logger.info("Fallback Action: CALL")
+             else: action_enum = RoundPublicInId.FOLD; action_kwargs = {}; print(colorize(f" Fallback: FOLD", Colors.YELLOW)); ai_logger.info("Fallback Action: FOLD")
+
+        # --- Update History & Log Parsed Action ---
+        history.append({"role": "user", "content": prompt}); assistant_response_content = f"{action_enum.name}"
+        if action_enum == RoundPublicInId.RAISE: assistant_response_content += f" AMOUNT: {action_kwargs['raise_by']}"
+        history.append({"role": "assistant", "content": assistant_response_content})
+        parsed_action_log = f"Parsed Action: {action_enum.name} {action_kwargs}"
+        print(colorize(f"AI Parsed Action ({player_name}): {action_enum.name} {action_kwargs}", Colors.MAGENTA)); ai_logger.info(parsed_action_log)
+        return action_enum, action_kwargs
+    else: # API call failed
+        fail_msg = f"AI ({player_name}) failed to respond. Defaulting to FOLD."
+        print(colorize(fail_msg, Colors.RED)); ai_logger.error(fail_msg)
+        return RoundPublicInId.FOLD, {}
 
 # --- Main Execution ---
-
 if __name__ == "__main__":
     NUM_PLAYERS = 3; BUYIN = 200; SMALL_BLIND = 5; BIG_BLIND = 10
-
     table = CommandLineTable( _id=0, seats=PlayerSeats([None] * NUM_PLAYERS), buyin=BUYIN, small_blind=SMALL_BLIND, big_blind=BIG_BLIND )
-
     players = []
     for i in range(NUM_PLAYERS):
         player_name = f"Player_{i+1}"; player = Player( table_id=table.id, _id=i + 1, name=player_name, money=BUYIN ); players.append(player)
         table.publicIn(player.id, TablePublicInId.BUYIN, player=player)
 
-    clear_terminal()
-    print(colorize("\n--- Welcome to Simple Pokerlib Game! ---", Colors.BRIGHT_CYAN + Colors.BOLD))
-    print(f"{NUM_PLAYERS} players joined with {colorize(f'${BUYIN}', Colors.BRIGHT_GREEN)} each.")
-    print(f"Blinds: {colorize(f'${SMALL_BLIND}/${BIG_BLIND}', Colors.YELLOW)}")
+    clear_terminal(); print(colorize("\n--- Welcome to Simple Pokerlib Game! ---", Colors.BRIGHT_CYAN + Colors.BOLD))
+    print(f"{NUM_PLAYERS} players joined with {colorize(f'${BUYIN}', Colors.BRIGHT_GREEN)} each."); print(f"Blinds: {colorize(f'${SMALL_BLIND}/${BIG_BLIND}', Colors.YELLOW)}")
+    if AI_ENABLED: print(colorize("AI Players: ENABLED", Colors.MAGENTA))
+    else: print(colorize("AI Players: DISABLED (All Human)", Colors.MAGENTA))
+    ai_logger.info(f"Game Started. AI Enabled: {AI_ENABLED}. Human ID: {HUMAN_PLAYER_ID}")
 
     round_count = 0
     try:
         while True:
             active_players_obj = table.seats.getPlayerGroup()
-            if len(active_players_obj) < 2: print(colorize("\nNot enough players to continue. Game over.", Colors.YELLOW)); break
+            if len(active_players_obj) < 2: print(colorize("\nNot enough players. Game over.", Colors.YELLOW)); break
             round_count += 1
             initiator = active_players_obj[0] if active_players_obj else None
-            if not initiator: print(colorize("Error: No players left to initiate round.", Colors.RED)); break
+            if not initiator: print(colorize("Error: No players left.", Colors.RED)); break
             table.publicIn( initiator.id, TablePublicInId.STARTROUND, round_id=round_count )
 
-            # Inner loop for actions within a round
             while table.round and not table.round_over_flag:
                 action_player_id_to_process = table._current_action_player_id
                 if action_player_id_to_process:
                     table._current_action_player_id = None # Clear flag
-
                     player = table.seats.getPlayerById(action_player_id_to_process)
-                    if not player: print(colorize(f"Warning: Action for missing player ID {action_player_id_to_process}", Colors.YELLOW)); continue
-
+                    if not player: print(colorize(f"W: Action for missing P{action_player_id_to_process}", Colors.YELLOW)); continue
                     current_player_obj = None
                     if table.round and hasattr(table.round, "current_player"):
                         try: current_player_obj = table.round.current_player
                         except Exception: pass
-
                     if current_player_obj and player.id == current_player_obj.id:
                         if not all(hasattr(player, a) for a in ['money','stake','turn_stake']) or not isinstance(player.turn_stake, list) or not (table.round and hasattr(table.round, 'to_call')):
-                             print(colorize(f"Warning: State not ready for {player.name}'s action.", Colors.YELLOW)); time.sleep(0.1); table._current_action_player_id = action_player_id_to_process; continue
-
-                        to_call = table.round.to_call; can_check = to_call == 0; can_raise = player.money > to_call
-                        action_enum, action_kwargs = get_player_action( player.name, to_call, player.money, can_check, can_raise )
+                             print(colorize(f"W: State not ready for {player.name}.", Colors.YELLOW)); time.sleep(0.1); table._current_action_player_id = action_player_id_to_process; continue
+                        if AI_ENABLED and player.id != HUMAN_PLAYER_ID:
+                            action_enum, action_kwargs = get_ai_action(table, player.id); time.sleep(0.5) # Slightly shorter delay now
+                        else: action_enum, action_kwargs = get_player_action( player.name, table.to_call, player.money, table.can_check, table.can_raise )
                         table.publicIn(player.id, action_enum, **action_kwargs) # Send action
-
-                    elif current_player_obj: # Log mismatch only if current player known
+                    elif current_player_obj:
                         req_for = f"{player.name}({action_player_id_to_process})"; curr = f"{current_player_obj.name}({current_player_obj.id})"
-                        print(colorize(f"Warning: Action request mismatch. Req for {req_for}, current is {curr}", Colors.YELLOW))
-                time.sleep(0.05) # Reduce CPU usage slightly
+                        print(colorize(f"W: Action req mismatch. Req={req_for}, Current={curr}", Colors.YELLOW))
+                time.sleep(0.05)
 
-            # <<< After inner loop >>>
             if table.round: table.round = None # Clear library's round object
-
-            print(colorize("\nRound ended. Final stacks:", Colors.BRIGHT_WHITE))
-            final_players = table.seats.getPlayerGroup()
+            ai_logger.info(f"--- ROUND {round_count} END ---") # Log round end
+            print(colorize("\nRound ended. Final stacks:", Colors.BRIGHT_WHITE)); final_players = table.seats.getPlayerGroup()
             if not final_players: print("  No players remaining.")
             else:
+                 log_stacks = ["Final Stacks:"]
                  for p in final_players:
-                     money_val = p.money if hasattr(p, 'money') else 'N/A'
-                     print(f"  - {colorize(p.name, Colors.CYAN)}: {colorize(f'${money_val}', Colors.BRIGHT_GREEN)}")
+                     money_val = p.money if hasattr(p, 'money') else 'N/A'; model_name = f" ({table.ai_model_assignments.get(p.id, 'Human')})" if AI_ENABLED else ""
+                     stack_line = f"  - {p.name}{model_name}: ${money_val}"
+                     print(f"  - {colorize(p.name, Colors.CYAN)}{colorize(model_name, Colors.MAGENTA)}: {colorize(f'${money_val}', Colors.BRIGHT_GREEN)}")
+                     log_stacks.append(stack_line)
+                 ai_logger.info("\n".join(log_stacks))
 
-            try: # Ask to continue
-                 cont = input(colorize("\nPlay another round? (y/n): ", Colors.WHITE)).lower()
-                 if cont != 'y': break
+            try: cont = input(colorize("\nPlay another round? (y/n): ", Colors.WHITE)).lower();
             except EOFError: print(colorize("\nInput ended.", Colors.RED)); break
-
+            if cont != 'y': break
     except KeyboardInterrupt: print(colorize("\nCtrl+C detected. Exiting game.", Colors.YELLOW))
-    except Exception as e:
-         print(colorize("\n--- UNEXPECTED ERROR OCCURRED ---", Colors.BRIGHT_RED + Colors.BOLD)); traceback.print_exc()
-         print(colorize("---------------------------------", Colors.BRIGHT_RED + Colors.BOLD))
+    except Exception as e: print(colorize("\n--- UNEXPECTED ERROR ---", Colors.RED+Colors.BOLD)); traceback.print_exc(); print(colorize("-----", Colors.RED+Colors.BOLD)); ai_logger.exception("UNEXPECTED ERROR") # Log exception too
     finally:
-        print(colorize("\n--- Game Ended ---", Colors.BRIGHT_CYAN + Colors.BOLD)); print(colorize("Final Stacks:", Colors.WHITE))
-        final_players = table.seats.getPlayerGroup()
-        if not final_players: print("  No players remaining.")
+        game_end_msg = "\n--- Game Ended ---"; print(colorize(game_end_msg, Colors.BRIGHT_CYAN + Colors.BOLD)); ai_logger.info(game_end_msg)
+        print(colorize("Final Stacks:", Colors.WHITE)); final_players = table.seats.getPlayerGroup()
+        log_stacks = ["Final Stacks:"]
+        if not final_players: print("  No players remaining."); log_stacks.append("  No players remaining.")
         else:
             for p in final_players:
-                money_str = f"${p.money}" if hasattr(p, 'money') else "N/A"
-                print(f"  - {colorize(p.name, Colors.CYAN)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
-        print(Colors.RESET) # Final color reset
+                money_str = f"${p.money}" if hasattr(p, 'money') else "N/A"; model_name = f" ({table.ai_model_assignments.get(p.id, 'Human')})" if AI_ENABLED else ""
+                stack_line = f"  - {p.name}{model_name}: {money_str}"
+                print(f"  - {colorize(p.name, Colors.CYAN)}{colorize(model_name, Colors.MAGENTA)}: {colorize(money_str, Colors.BRIGHT_GREEN)}")
+                log_stacks.append(stack_line)
+        ai_logger.info("\n".join(log_stacks))
