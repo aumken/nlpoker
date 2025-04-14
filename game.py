@@ -625,6 +625,7 @@ class CommandLineTable(Table):
         self.can_raise = False              # If the current player can raise.
         self.min_raise = 0                  # Minimum raise amount (usually big blind).
         self.last_turn_processed = -1       # Tracks the last turn index where probabilities were calculated
+        self.current_betting_round_actions = []  # Store actions for current betting round
 
         # --- AI Management ---
         # Stores message history per round per AI player: {round_id: {player_id: [messages]}}
@@ -675,7 +676,7 @@ class CommandLineTable(Table):
         start_time = time.time()
         # Use a status variable to check if probabilities were calculated
         prob_calculated = False
-        current_stage = self.round.turn.name # Get current stage name
+        current_stage = self.round.turn.name # Get current stage
 
         print(colorize(f"\n[Calculating Probabilities for {current_stage} - {PROBABILITY_SIMULATIONS} sims...]", Colors.BRIGHT_BLACK))
         ai_logger.info(f"Starting probability calculation for {current_stage}...")
@@ -899,6 +900,7 @@ class CommandLineTable(Table):
         self.min_raise = self.big_blind      # Reset min raise to default
         self._player_probabilities.clear()   # <<< Clear probabilities for the new round >>>
         self.last_turn_processed = -1        # Reset turn tracking for probability calc
+        self.current_betting_round_actions.clear()  # Clear actions for the new round
 
         # Clear AI message history for the new round ID if it exists (optional)
         if round_id in self.ai_message_history:
@@ -1063,7 +1065,10 @@ class CommandLineTable(Table):
             # Order: Prefix Name Money Cards Probability Bet Status
             print(f"{line_prefix}{player_name_colored}{money_str}{cards_formatted}{prob_formatted}{stake_formatted} {status_str}")
 
-        print(separator)
+        # --- Display Betting Round Actions ---
+        if self.current_betting_round_actions:
+            for action in self.current_betting_round_actions:
+                print(f"[ACTION] {action}")
 
     def publicOut(self, out_id, **kwargs):
         """Handles public events broadcast by the poker engine.
@@ -1111,6 +1116,7 @@ class CommandLineTable(Table):
                 if not self.round_over_flag:
                     # Display state *after* potential recalc for Flop/Turn/River
                     pass # Display will happen after recalc or in action required
+                self.current_betting_round_actions.clear()  # Clear actions for the new betting round
             elif out_id == RoundPublicOutId.SMALLBLIND:
                 msg = f"{player_name} posts {colorize('SB', Colors.YELLOW)} ${kwargs['paid_amount']}"
             elif out_id == RoundPublicOutId.BIGBLIND:
@@ -1118,24 +1124,29 @@ class CommandLineTable(Table):
             elif out_id == RoundPublicOutId.PLAYERCHECK:
                 prefix = colorize("[ACTION]", Colors.GREEN)
                 msg = f"{player_name} checks"
+                self.current_betting_round_actions.append(msg)
             elif out_id == RoundPublicOutId.PLAYERCALL:
                 prefix = colorize("[ACTION]", Colors.GREEN)
                 msg = f"{player_name} calls ${kwargs['paid_amount']}"
+                self.current_betting_round_actions.append(msg)
             elif out_id == RoundPublicOutId.PLAYERFOLD:
                 prefix = colorize("[ACTION]", Colors.BRIGHT_BLACK)
                 msg = f"{player_name} folds"
+                self.current_betting_round_actions.append(msg)
                 # Optional: Recalc probabilities after fold if > 2 players remain? Can be slow.
                 # active_count = sum(1 for p in self.round.players if hasattr(p,'is_folded') and not p.is_folded)
                 # if active_count >= 2: recalc_probs = True
             elif out_id == RoundPublicOutId.PLAYERRAISE:
                 prefix = colorize("[ACTION]", Colors.BRIGHT_MAGENTA)
                 msg = f"{player_name} raises by ${kwargs['raised_by']} (total bet this street: ${kwargs['paid_amount']})"
+                self.current_betting_round_actions.append(msg)
             elif out_id == RoundPublicOutId.PLAYERISALLIN:
                 prefix = colorize("[INFO]", Colors.BRIGHT_RED)
                 msg = f"{player_name} is {colorize('ALL-IN!', Colors.BOLD)}"
             elif out_id == RoundPublicOutId.PLAYERWENTALLIN:
                 prefix = colorize("[ACTION]", Colors.BRIGHT_RED + Colors.BOLD)
                 msg = f"{player_name} goes ALL-IN with ${kwargs['paid_amount']}!"
+                self.current_betting_round_actions.append(msg)
 
             elif out_id == RoundPublicOutId.PLAYERACTIONREQUIRED:
                  prefix = ""
