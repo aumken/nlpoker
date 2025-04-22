@@ -1,0 +1,17 @@
+{
+    "BUYIN": 500,
+    "SMALL_BLIND": 5,
+    "BIG_BLIND": 10,
+    "AI_ONLY_MODE": true,
+    "HUMAN_PLAYER_NAME": "Aum",
+    "HUMAN_PLAYER_ID": 1,
+    "SHOW_PROBABILITIES": true,
+    "PROBABILITY_SIMULATIONS": 5000,
+    "AI_TEMPERATURE": 1.0,
+    "AI_REQUEST_TIMEOUT": 60,
+    "SOUND_EFFECTS": false,
+    "MUSIC": true,
+    "ANIMATION_SPEED": 5,
+    "AI_RETRY_DELAY": 5,
+    "AI_THINK_DELAY": 2.0
+}
