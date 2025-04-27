@@ -2,7 +2,7 @@
     "BUYIN": 500,
     "SMALL_BLIND": 5,
     "BIG_BLIND": 10,
-    "AI_ONLY_MODE": false,
+    "AI_ONLY_MODE": true,
     "HUMAN_PLAYER_NAME": "Aum",
     "HUMAN_PLAYER_ID": 1,
     "SHOW_PROBABILITIES": false,

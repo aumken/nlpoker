@@ -40,7 +40,7 @@ AI_ONLY_MODE = True        # <<< SET TO True FOR ALL AI, False FOR HUMAN vs AI >
 CLEAR_SCREEN = True         # <<< CHANGE to False to prevent clearing terminal at round end >>>
 HUMAN_PLAYER_ID = 1         # ID of the human player if AI_ONLY_MODE is False. Must be > 0.
 HUMAN_PLAYER_NAME = "Aum"   # <<< Name for the human player >>>
-LOG_FILE_NAME = 'ai_poker_log.txt' # File to log AI interactions and game events.
+LOG_FILE_NAME = 'log_original.txt' # File to log AI interactions and game events.
 
 # --- Probability Display Settings ---
 SHOW_PROBABILITIES = True           # <<< SET TO True to display win probabilities, False to hide >>>
@@ -52,37 +52,27 @@ SMALL_BLIND = 5             # Small blind amount.
 BIG_BLIND = 10              # Big blind amount.
 
 # --- AI Configuration ---
-AI_MODEL_LIST = [           # Models for AI opponents (requires Together AI API Key).
-    # 'mistralai/Mistral-7B-Instruct-v0.3',
-    # 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
-    # 'upstage/SOLAR-10.7B-Instruct-v1.0',
-    # 'mistralai/Mistral-Small-24B-Instruct-2501',
-    # 'google/gemma-2-27b-it',
-    # 'Qwen/QwQ-32B-Preview',
-    'meta-llama/Llama-3.3-70B-Instruct-Turbo',
-    'Qwen/Qwen2.5-72B-Instruct-Turbo',
-    'mistralai/Mixtral-8x7B-Instruct-v0.1',
-    # 'microsoft/WizardLM-2-8x22B',
-    # 'databricks/dbrx-instruct',
-    # 'deepseek-ai/DeepSeek-V3',
-    # 'deepseek-ai/DeepSeek-R1',
+AI_MODEL_LIST = [  # Models for AI opponents (requires Together AI API Key).
+    "mistralai/Mistral-7B-Instruct-v0.3",
+    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+    "Qwen/Qwen2.5-7B-Instruct-Turbo",
 ]
-# Dictionary mapping full model names to desired short names for display.
+# Dictionary mapping full model names to desired short names for logging/internal use.
 AI_MODEL_SHORT_NAMES = {
-    'mistralai/Mistral-7B-Instruct-v0.3': 'Mistral v0.3 7B',
-    'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo': 'Llama 3.1 8B',
-    'upstage/SOLAR-10.7B-Instruct-v1.0': 'Upstage Solar 11B',
-    'mistralai/Mistral-Small-24B-Instruct-2501': 'Mistral Small 3 24B',
-    'google/gemma-2-27b-it': 'Gemma 2 27B',
-    'Qwen/QwQ-32B-Preview': 'Qwen QwQ 32B',
-    'meta-llama/Llama-3.3-70B-Instruct-Turbo': 'Llama 3.3 70B',
-    'Qwen/Qwen2.5-72B-Instruct-Turbo': 'Qwen 2.5 72B',
-    'mistralai/Mixtral-8x7B-Instruct-v0.1': 'Mixtral 8x7B',
-    'microsoft/WizardLM-2-8x22B': 'WizardLM-2 8x22B',
-    'databricks/dbrx-instruct': 'DBRX Instruct',
-    'deepseek-ai/DeepSeek-V3': 'DeepSeek V3',
-    'deepseek-ai/DeepSeek-R1': 'DeepSeek R1',
-    # Add mappings for any other models used
+    "Qwen/Qwen2.5-7B-Instruct-Turbo": "Qwen 2.5 7B",
+    "mistralai/Mistral-7B-Instruct-v0.3": "Mistral v0.3 7B",
+    "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo": "Llama 3.1 8B",
+    "upstage/SOLAR-10.7B-Instruct-v1.0": "Upstage Solar 11B",
+    "mistralai/Mistral-Small-24B-Instruct-2501": "Mistral Small 3 24B",
+    "google/gemma-2-27b-it": "Gemma 2 27B",
+    "Qwen/QwQ-32B-Preview": "Qwen QwQ 32B",
+    "meta-llama/Llama-3.3-70B-Instruct-Turbo": "Llama 3.3 70B",
+    "Qwen/Qwen2.5-72B-Instruct-Turbo": "Qwen 2.5 72B",
+    "mistralai/Mixtral-8x7B-Instruct-v0.1": "Mixtral 8x7B",
+    "microsoft/WizardLM-2-8x22B": "WizardLM-2 8x22B",
+    "databricks/dbrx-instruct": "DBRX Instruct",
+    "deepseek-ai/DeepSeek-V3": "DeepSeek V3",
+    "deepseek-ai/DeepSeek-R1": "DeepSeek R1",
 }
 
 AI_TEMPERATURE = 1.0       # Sampling temperature for AI model responses.

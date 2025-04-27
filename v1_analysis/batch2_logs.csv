@@ -1,0 +1,1475 @@
+round_id,turn_index,player_id,player_name,model_name,action,ending_stack,player_hand,pot_size,player_position,board_cards,simulation_index
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,A♦ T♦,15,3,,1
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,A♦ T♦,25,3,,1
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,4♠ 3♥,25,1,,1
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,4♠ 3♥,30,1,,1
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ J♣,30,2,,1
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♥ J♣,30,2,3♦ 5♠ K♥,1
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♠ 3♥,30,1,3♦ 5♠ K♥,1
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♠ 3♥,30,1,3♦ 5♠ K♥,1
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ J♣,30,2,3♦ 5♠ K♥,1
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♥ J♣,30,2,3♦ 5♠ K♥,1
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,A♦ T♦,30,3,3♦ 5♠ K♥,1
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,A♦ T♦,30,3,3♦ 5♠ K♥ 7♣,1
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♠ 3♥,30,1,3♦ 5♠ K♥ 7♣,1
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♠ 3♥,30,1,3♦ 5♠ K♥ 7♣,1
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ J♣,30,2,3♦ 5♠ K♥ 7♣,1
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♥ J♣,30,2,3♦ 5♠ K♥ 7♣,1
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,A♦ T♦,30,3,3♦ 5♠ K♥ 7♣,1
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,A♦ T♦,30,3,3♦ 5♠ K♥ 7♣ K♣,1
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♠ 3♥,30,1,3♦ 5♠ K♥ 7♣ K♣,1
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♠ 3♥,30,1,3♦ 5♠ K♥ 7♣ K♣,1
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ J♣,30,2,3♦ 5♠ K♥ 7♣ K♣,1
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♥ J♣,30,2,3♦ 5♠ K♥ 7♣ K♣,1
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,A♦ T♦,30,3,3♦ 5♠ K♥ 7♣ K♣,1
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,A♦ T♦,30,3,3♦ 5♠ K♥ 7♣ K♣,1
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,4♠ 3♥,30,1,3♦ 5♠ K♥ 7♣ K♣,1
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♠ 2♥,15,3,,2
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,K♠ 2♥,15,3,,2
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,2♠ 4♠,15,1,,2
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,2♠ 4♠,20,1,,2
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♠ Q♣,20,2,,2
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♠ Q♣,20,2,T♥ A♣ Q♦,2
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♠ 4♠,20,1,T♥ A♣ Q♦,2
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♠ 4♠,20,1,T♥ A♣ Q♦,2
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♠ Q♣,20,2,T♥ A♣ Q♦,2
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♠ Q♣,20,2,T♥ A♣ Q♦ 9♠,2
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♠ 4♠,20,1,T♥ A♣ Q♦ 9♠,2
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♠ 4♠,20,1,T♥ A♣ Q♦ 9♠,2
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♠ Q♣,20,2,T♥ A♣ Q♦ 9♠,2
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♠ Q♣,20,2,T♥ A♣ Q♦ 9♠ 4♣,2
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♠ 4♠,20,1,T♥ A♣ Q♦ 9♠ 4♣,2
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♠ 4♠,20,1,T♥ A♣ Q♦ 9♠ 4♣,2
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♠ Q♣,20,2,T♥ A♣ Q♦ 9♠ 4♣,2
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♥ T♥,15,3,,2
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,Q♥ T♥,25,3,,2
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,4♥ 4♣,25,1,,2
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,980,4♥ 4♣,50,1,,2
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,8♠ 4♦,50,2,,2
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,8♠ 4♦,50,2,,2
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,Q♥ T♥,50,3,,2
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_40,920,Q♥ T♥,110,3,,2
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,4♥ 4♣,110,1,,2
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,940,4♥ 4♣,150,1,5♥ 3♠ 3♥,2
+2,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,4♥ 4♣,150,1,5♥ 3♠ 3♥,2
+2,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,4♥ 4♣,150,1,5♥ 3♠ 3♥,2
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,Q♥ T♥,150,3,5♥ 3♠ 3♥,2
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,Q♥ T♥,150,3,5♥ 3♠ 3♥ 3♦,2
+2,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,4♥ 4♣,150,1,5♥ 3♠ 3♥ 3♦,2
+2,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,4♥ 4♣,150,1,5♥ 3♠ 3♥ 3♦,2
+2,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,Q♥ T♥,150,3,5♥ 3♠ 3♥ 3♦,2
+2,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,Q♥ T♥,150,3,5♥ 3♠ 3♥ 3♦ 5♣,2
+2,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,4♥ 4♣,150,1,5♥ 3♠ 3♥ 3♦ 5♣,2
+2,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,4♥ 4♣,150,1,5♥ 3♠ 3♥ 3♦ 5♣,2
+2,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,Q♥ T♥,150,3,5♥ 3♠ 3♥ 3♦ 5♣,2
+3,1,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1015,8♣ 5♥,15,3,,2
+3,2,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,1015,8♣ 5♥,15,3,,2
+3,3,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,985,Q♣ A♣,15,1,,2
+3,4,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,980,Q♣ A♣,20,1,,2
+3,5,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,5♣ 5♦,20,2,,2
+3,6,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,985,5♣ 5♦,20,2,9♦ Q♠ 5♠,2
+3,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,980,Q♣ A♣,20,1,9♦ Q♠ 5♠,2
+3,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,980,Q♣ A♣,20,1,9♦ Q♠ 5♠,2
+3,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,5♣ 5♦,20,2,9♦ Q♠ 5♠,2
+3,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,985,5♣ 5♦,20,2,9♦ Q♠ 5♠ 2♥,2
+3,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,980,Q♣ A♣,20,1,9♦ Q♠ 5♠ 2♥,2
+3,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,980,Q♣ A♣,20,1,9♦ Q♠ 5♠ 2♥,2
+3,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,5♣ 5♦,20,2,9♦ Q♠ 5♠ 2♥,2
+3,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,985,5♣ 5♦,20,2,9♦ Q♠ 5♠ 2♥ K♣,2
+3,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,980,Q♣ A♣,20,1,9♦ Q♠ 5♠ 2♥ K♣,2
+3,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_50,930,Q♣ A♣,70,1,9♦ Q♠ 5♠ 2♥ K♣,2
+3,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,5♣ 5♦,70,2,9♦ Q♠ 5♠ 2♥ K♣,2
+4,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,930,8♥ Q♦,15,3,,2
+4,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,920,8♥ Q♦,25,3,,2
+4,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,1050,3♦ T♠,25,1,,2
+4,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,1045,3♦ T♠,30,1,,2
+4,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,K♦ J♦,30,2,,2
+4,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,1005,K♦ J♦,30,2,J♥ T♦ K♥,2
+4,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,1045,3♦ T♠,30,1,J♥ T♦ K♥,2
+4,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_25,1020,3♦ T♠,55,1,J♥ T♦ K♥,2
+4,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,K♦ J♦,55,2,J♥ T♦ K♥,2
+4,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_50,930,K♦ J♦,130,2,J♥ T♦ K♥,2
+4,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,920,8♥ Q♦,130,3,J♥ T♦ K♥,2
+4,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,845,8♥ Q♦,205,3,J♥ T♦ K♥,2
+4,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,1020,3♦ T♠,205,1,J♥ T♦ K♥,2
+4,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_75,895,3♦ T♠,330,1,J♥ T♦ K♥,2
+4,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,930,K♦ J♦,330,2,J♥ T♦ K♥,2
+4,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,855,K♦ J♦,405,2,J♥ T♦ K♥,2
+4,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,845,8♥ Q♦,405,3,J♥ T♦ K♥,2
+4,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,770,8♥ Q♦,480,3,J♥ T♦ K♥ 4♦,2
+4,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,895,3♦ T♠,480,1,J♥ T♦ K♥ 4♦,2
+4,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,895,3♦ T♠,480,1,J♥ T♦ K♥ 4♦,2
+4,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,855,K♦ J♦,480,2,J♥ T♦ K♥ 4♦,2
+4,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,855,K♦ J♦,480,2,J♥ T♦ K♥ 4♦,2
+4,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,770,8♥ Q♦,480,3,J♥ T♦ K♥ 4♦,2
+4,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,770,8♥ Q♦,480,3,J♥ T♦ K♥ 4♦ 4♥,2
+4,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,895,3♦ T♠,480,1,J♥ T♦ K♥ 4♦ 4♥,2
+4,26,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,895,3♦ T♠,480,1,J♥ T♦ K♥ 4♦ 4♥,2
+4,27,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,855,K♦ J♦,480,2,J♥ T♦ K♥ 4♦ 4♥,2
+4,28,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,855,K♦ J♦,480,2,J♥ T♦ K♥ 4♦ 4♥,2
+4,29,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,770,8♥ Q♦,480,3,J♥ T♦ K♥ 4♦ 4♥,2
+4,30,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,770,8♥ Q♦,480,3,J♥ T♦ K♥ 4♦ 4♥,2
+4,31,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1335,K♦ J♦,480,2,J♥ T♦ K♥ 4♦ 4♥,2
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,4♣ J♠,15,3,,3
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,4♣ J♠,25,3,,3
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,7♣ 3♠,25,1,,3
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,7♣ 3♠,30,1,,3
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♣ 9♦,30,2,,3
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♣ 9♦,30,2,3♣ 3♦ T♦,3
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♣ 3♠,30,1,3♣ 3♦ T♦,3
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,7♣ 3♠,30,1,3♣ 3♦ T♦,3
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♣ 9♦,30,2,3♣ 3♦ T♦,3
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♣ 9♦,30,2,3♣ 3♦ T♦,3
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♣ J♠,30,3,3♣ 3♦ T♦,3
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,4♣ J♠,30,3,3♣ 3♦ T♦ 5♥,3
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♣ 3♠,30,1,3♣ 3♦ T♦ 5♥,3
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,7♣ 3♠,30,1,3♣ 3♦ T♦ 5♥,3
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♣ 9♦,30,2,3♣ 3♦ T♦ 5♥,3
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♣ 9♦,30,2,3♣ 3♦ T♦ 5♥,3
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♣ J♠,30,3,3♣ 3♦ T♦ 5♥,3
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,4♣ J♠,30,3,3♣ 3♦ T♦ 5♥ 6♥,3
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♣ 3♠,30,1,3♣ 3♦ T♦ 5♥ 6♥,3
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,7♣ 3♠,30,1,3♣ 3♦ T♦ 5♥ 6♥,3
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♣ 9♦,30,2,3♣ 3♦ T♦ 5♥ 6♥,3
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♣ 9♦,30,2,3♣ 3♦ T♦ 5♥ 6♥,3
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♣ J♠,30,3,3♣ 3♦ T♦ 5♥ 6♥,3
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,4♣ J♠,30,3,3♣ 3♦ T♦ 5♥ 6♥,3
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,7♣ 3♠,30,1,3♣ 3♦ T♦ 5♥ 6♥,3
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,9♠ Q♣,15,3,,4
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,9♠ Q♣,25,3,,4
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,4♥ T♦,25,1,,4
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,4♥ T♦,30,1,,4
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♥ 3♥,30,2,,4
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♥ 3♥,30,2,T♠ J♦ 4♠,4
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♥ T♦,30,1,T♠ J♦ 4♠,4
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♥ T♦,30,1,T♠ J♦ 4♠,4
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♥ 3♥,30,2,T♠ J♦ 4♠,4
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♥ 3♥,30,2,T♠ J♦ 4♠,4
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♠ Q♣,30,3,T♠ J♦ 4♠,4
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,9♠ Q♣,30,3,T♠ J♦ 4♠ J♣,4
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♥ T♦,30,1,T♠ J♦ 4♠ J♣,4
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♥ T♦,30,1,T♠ J♦ 4♠ J♣,4
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♥ 3♥,30,2,T♠ J♦ 4♠ J♣,4
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♥ 3♥,30,2,T♠ J♦ 4♠ J♣,4
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♠ Q♣,30,3,T♠ J♦ 4♠ J♣,4
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,9♠ Q♣,30,3,T♠ J♦ 4♠ J♣ Q♦,4
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♥ T♦,30,1,T♠ J♦ 4♠ J♣ Q♦,4
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♥ T♦,30,1,T♠ J♦ 4♠ J♣ Q♦,4
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♥ 3♥,30,2,T♠ J♦ 4♠ J♣ Q♦,4
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♥ 3♥,30,2,T♠ J♦ 4♠ J♣ Q♦,4
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♠ Q♣,30,3,T♠ J♦ 4♠ J♣ Q♦,4
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1020,9♠ Q♣,30,3,T♠ J♦ 4♠ J♣ Q♦,4
+1,25,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1020,9♠ Q♣,30,3,T♠ J♦ 4♠ J♣ Q♦,4
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,8♦ K♥,15,3,,5
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_30,960,8♦ K♥,55,3,,5
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,9♦ 6♣,55,1,,5
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_110,850,9♦ 6♣,200,1,,5
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♣ K♣,200,2,,5
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_200,650,9♣ K♣,540,2,,5
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,960,8♦ K♥,540,3,,5
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,650,8♦ K♥,850,3,,5
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,850,9♦ 6♣,850,1,,5
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,850,9♦ 6♣,850,1,A♠ A♦ J♠,5
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,650,9♣ K♣,850,2,A♠ A♦ J♠,5
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,650,9♣ K♣,850,2,A♠ A♦ J♠,5
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,650,8♦ K♥,850,3,A♠ A♦ J♠,5
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_200,450,8♦ K♥,1050,3,A♠ A♦ J♠,5
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,650,9♣ K♣,1050,2,A♠ A♦ J♠,5
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,650,9♣ K♣,1050,2,A♠ A♦ J♠,5
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1500,8♦ K♥,1050,3,A♠ A♦ J♠,5
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,2♣ 5♥,15,3,,6
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,2♣ 5♥,15,3,,6
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,9♥ T♠,15,1,,6
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,9♥ T♠,20,1,,6
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ 8♥,20,2,,6
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♥ 8♥,20,2,8♦ 3♣ K♠,6
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♥ T♠,20,1,8♦ 3♣ K♠,6
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♥ T♠,20,1,8♦ 3♣ K♠,6
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ 8♥,20,2,8♦ 3♣ K♠,6
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♥ 8♥,20,2,8♦ 3♣ K♠ A♦,6
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♥ T♠,20,1,8♦ 3♣ K♠ A♦,6
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♥ T♠,20,1,8♦ 3♣ K♠ A♦,6
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ 8♥,20,2,8♦ 3♣ K♠ A♦,6
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♥ 8♥,20,2,8♦ 3♣ K♠ A♦ J♦,6
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♥ T♠,20,1,8♦ 3♣ K♠ A♦ J♦,6
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♥ T♠,20,1,8♦ 3♣ K♠ A♦ J♦,6
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♥ 8♥,20,2,8♦ 3♣ K♠ A♦ J♦,6
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♦ 5♦,15,3,,6
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,6♦ 5♦,25,3,,6
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,7♥ K♦,25,1,,6
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,980,7♥ K♦,50,1,,6
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,A♥ T♥,50,2,,6
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,970,A♥ T♥,70,2,,6
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,6♦ 5♦,70,3,,6
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,980,6♦ 5♦,70,3,K♥ K♠ 8♠,6
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,7♥ K♦,70,1,K♥ K♠ 8♠,6
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,7♥ K♦,70,1,K♥ K♠ 8♠,6
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,A♥ T♥,70,2,K♥ K♠ 8♠,6
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,A♥ T♥,70,2,K♥ K♠ 8♠ 2♠,6
+2,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,7♥ K♦,70,1,K♥ K♠ 8♠ 2♠,6
+2,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,7♥ K♦,70,1,K♥ K♠ 8♠ 2♠,6
+2,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,A♥ T♥,70,2,K♥ K♠ 8♠ 2♠,6
+2,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,A♥ T♥,70,2,K♥ K♠ 8♠ 2♠ T♠,6
+2,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,7♥ K♦,70,1,K♥ K♠ 8♠ 2♠ T♠,6
+2,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,7♥ K♦,70,1,K♥ K♠ 8♠ 2♠ T♠,6
+2,19,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,A♥ T♥,70,2,K♥ K♠ 8♠ 2♠ T♠,6
+2,20,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,A♥ T♥,70,2,K♥ K♠ 8♠ 2♠ T♠,6
+2,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1050,7♥ K♦,70,1,K♥ K♠ 8♠ 2♠ T♠,6
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,8♥ 7♠,15,3,,7
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,8♥ 7♠,15,3,,7
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,J♥ 5♣,15,1,,7
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,J♥ 5♣,20,1,,7
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♦,20,2,,7
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,2♣ A♦,20,2,6♦ 8♠ T♥,7
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,J♥ 5♣,20,1,6♦ 8♠ T♥,7
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,J♥ 5♣,20,1,6♦ 8♠ T♥,7
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♦,20,2,6♦ 8♠ T♥,7
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,2♣ A♦,20,2,6♦ 8♠ T♥ 6♠,7
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,J♥ 5♣,20,1,6♦ 8♠ T♥ 6♠,7
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,J♥ 5♣,20,1,6♦ 8♠ T♥ 6♠,7
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♦,20,2,6♦ 8♠ T♥ 6♠,7
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,2♣ A♦,20,2,6♦ 8♠ T♥ 6♠ 8♦,7
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,J♥ 5♣,20,1,6♦ 8♠ T♥ 6♠ 8♦,7
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,J♥ 5♣,20,1,6♦ 8♠ T♥ 6♠ 8♦,7
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♦,20,2,6♦ 8♠ T♥ 6♠ 8♦,7
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,T♦ A♦,15,3,,7
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_20,960,T♦ A♦,45,3,,7
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,8♥ 4♦,45,1,,7
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,1005,8♥ 4♦,45,1,,7
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,6♥ 2♣,45,2,,7
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,6♥ 2♣,45,2,,7
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1005,T♦ A♦,45,3,,7
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,Q♣ A♥,15,3,,8
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_25,965,Q♣ A♥,50,3,,8
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,2♣ 3♦,50,1,,8
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,965,2♣ 3♦,80,1,,8
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♣ 4♥,80,2,,8
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,925,T♣ 4♥,145,2,,8
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,965,Q♣ A♥,145,3,,8
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,925,Q♣ A♥,185,3,,8
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,965,2♣ 3♦,185,1,,8
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_100,825,2♣ 3♦,325,1,,8
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,925,T♣ 4♥,325,2,,8
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,925,T♣ 4♥,325,2,,8
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,925,Q♣ A♥,325,3,,8
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,825,Q♣ A♥,425,3,A♦ 8♦ 7♣,8
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,825,2♣ 3♦,425,1,A♦ 8♦ 7♣,8
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,825,2♣ 3♦,425,1,A♦ 8♦ 7♣,8
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,825,Q♣ A♥,425,3,A♦ 8♦ 7♣,8
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,825,Q♣ A♥,425,3,A♦ 8♦ 7♣ 2♠,8
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,825,2♣ 3♦,425,1,A♦ 8♦ 7♣ 2♠,8
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,825,2♣ 3♦,425,1,A♦ 8♦ 7♣ 2♠,8
+1,21,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,825,Q♣ A♥,425,3,A♦ 8♦ 7♣ 2♠,8
+1,22,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,825,Q♣ A♥,425,3,A♦ 8♦ 7♣ 2♠ 3♥,8
+1,23,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,825,2♣ 3♦,425,1,A♦ 8♦ 7♣ 2♠ 3♥,8
+1,24,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,825,2♣ 3♦,425,1,A♦ 8♦ 7♣ 2♠ 3♥,8
+1,25,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,825,Q♣ A♥,425,3,A♦ 8♦ 7♣ 2♠ 3♥,8
+1,26,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,825,Q♣ A♥,425,3,A♦ 8♦ 7♣ 2♠ 3♥,8
+1,27,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1250,2♣ 3♦,425,1,A♦ 8♦ 7♣ 2♠ 3♥,8
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,5♦ T♠,15,3,,9
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,5♦ T♠,25,3,,9
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,7♦ 3♣,25,1,,9
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,7♦ 3♣,30,1,,9
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♣ T♦,30,2,,9
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♣ T♦,30,2,3♦ 7♥ 4♥,9
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♦ 3♣,30,1,3♦ 7♥ 4♥,9
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,7♦ 3♣,30,1,3♦ 7♥ 4♥,9
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♣ T♦,30,2,3♦ 7♥ 4♥,9
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♣ T♦,30,2,3♦ 7♥ 4♥,9
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,5♦ T♠,30,3,3♦ 7♥ 4♥,9
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,5♦ T♠,30,3,3♦ 7♥ 4♥ Q♣,9
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♦ 3♣,30,1,3♦ 7♥ 4♥ Q♣,9
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,7♦ 3♣,30,1,3♦ 7♥ 4♥ Q♣,9
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♣ T♦,30,2,3♦ 7♥ 4♥ Q♣,9
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♣ T♦,30,2,3♦ 7♥ 4♥ Q♣,9
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,5♦ T♠,30,3,3♦ 7♥ 4♥ Q♣,9
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,5♦ T♠,30,3,3♦ 7♥ 4♥ Q♣ J♥,9
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♦ 3♣,30,1,3♦ 7♥ 4♥ Q♣ J♥,9
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,7♦ 3♣,30,1,3♦ 7♥ 4♥ Q♣ J♥,9
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♣ T♦,30,2,3♦ 7♥ 4♥ Q♣ J♥,9
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♣ T♦,30,2,3♦ 7♥ 4♥ Q♣ J♥,9
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,5♦ T♠,30,3,3♦ 7♥ 4♥ Q♣ J♥,9
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,5♦ T♠,30,3,3♦ 7♥ 4♥ Q♣ J♥,9
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,7♦ 3♣,30,1,3♦ 7♥ 4♥ Q♣ J♥,9
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,9♥ 4♦,15,3,,10
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,9♥ 4♦,15,3,,10
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,Q♦ 4♠,15,1,,10
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,Q♦ 4♠,20,1,,10
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♣ 3♦,20,2,,10
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♣ 3♦,20,2,A♥ A♣ 8♦,10
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♦ 4♠,20,1,A♥ A♣ 8♦,10
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,Q♦ 4♠,20,1,A♥ A♣ 8♦,10
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♣ 3♦,20,2,A♥ A♣ 8♦,10
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♣ 3♦,20,2,A♥ A♣ 8♦ J♦,10
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♦ 4♠,20,1,A♥ A♣ 8♦ J♦,10
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,Q♦ 4♠,20,1,A♥ A♣ 8♦ J♦,10
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♣ 3♦,20,2,A♥ A♣ 8♦ J♦,10
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♣ 3♦,20,2,A♥ A♣ 8♦ J♦ T♦,10
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♦ 4♠,20,1,A♥ A♣ 8♦ J♦ T♦,10
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,Q♦ 4♠,20,1,A♥ A♣ 8♦ J♦ T♦,10
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♣ 3♦,20,2,A♥ A♣ 8♦ J♦ T♦,10
+1,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♣ 3♦,20,2,A♥ A♣ 8♦ J♦ T♦,10
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1010,Q♦ 4♠,20,1,A♥ A♣ 8♦ J♦ T♦,10
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♦ K♠,15,3,,11
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_40,950,K♦ K♠,65,3,,11
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,5♦ 9♠,65,1,,11
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_60,890,5♦ 9♠,170,1,,11
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,4♠ K♥,170,2,,11
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_200,690,4♠ K♥,470,2,,11
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,950,K♦ K♠,470,3,,11
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_640,50,K♦ K♠,1370,3,,11
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,890,5♦ 9♠,1370,1,,11
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,890,5♦ 9♠,1370,1,,11
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,690,4♠ K♥,1370,2,,11
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,690,4♠ K♥,1370,2,,11
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1420,K♦ K♠,1370,3,,11
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,7♥ 2♣,15,3,,12
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,7♥ 2♣,15,3,,12
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,6♣ 6♦,15,1,,12
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,6♣ 6♦,20,1,,12
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,4♠ 2♦,20,2,,12
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,970,4♠ 2♦,40,2,,12
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♣ 6♦,40,1,,12
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_40,930,6♣ 6♦,100,1,,12
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,4♠ 2♦,100,2,,12
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,970,4♠ 2♦,100,2,,12
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1030,6♣ 6♦,100,1,,12
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,7♦ 8♦,15,3,,13
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,7♦ 8♦,25,3,,13
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,K♦ 5♥,25,1,,13
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,K♦ 5♥,30,1,,13
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♣ 9♣,30,2,,13
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♣ 9♣,30,2,4♠ 2♥ Q♥,13
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♦ 5♥,30,1,4♠ 2♥ Q♥,13
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♦ 5♥,30,1,4♠ 2♥ Q♥,13
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♣ 9♣,30,2,4♠ 2♥ Q♥,13
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♣ 9♣,30,2,4♠ 2♥ Q♥,13
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,7♦ 8♦,30,3,4♠ 2♥ Q♥,13
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,7♦ 8♦,30,3,4♠ 2♥ Q♥ A♠,13
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♦ 5♥,30,1,4♠ 2♥ Q♥ A♠,13
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♦ 5♥,30,1,4♠ 2♥ Q♥ A♠,13
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♣ 9♣,30,2,4♠ 2♥ Q♥ A♠,13
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♣ 9♣,30,2,4♠ 2♥ Q♥ A♠,13
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,7♦ 8♦,30,3,4♠ 2♥ Q♥ A♠,13
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,7♦ 8♦,30,3,4♠ 2♥ Q♥ A♠ Q♣,13
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♦ 5♥,30,1,4♠ 2♥ Q♥ A♠ Q♣,13
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♦ 5♥,30,1,4♠ 2♥ Q♥ A♠ Q♣,13
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,7♣ 9♣,30,2,4♠ 2♥ Q♥ A♠ Q♣,13
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,7♣ 9♣,30,2,4♠ 2♥ Q♥ A♠ Q♣,13
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,7♦ 8♦,30,3,4♠ 2♥ Q♥ A♠ Q♣,13
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,7♦ 8♦,30,3,4♠ 2♥ Q♥ A♠ Q♣,13
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,K♦ 5♥,30,1,4♠ 2♥ Q♥ A♠ Q♣,13
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,Q♣ 5♠,15,3,,14
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,Q♣ 5♠,15,3,,14
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,K♣ 7♠,15,1,,14
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,K♣ 7♠,20,1,,14
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ 7♦,20,2,,14
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♦ 7♦,20,2,3♠ 8♥ J♣,14
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ 7♠,20,1,3♠ 8♥ J♣,14
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ 7♠,20,1,3♠ 8♥ J♣,14
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ 7♦,20,2,3♠ 8♥ J♣,14
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♦ 7♦,20,2,3♠ 8♥ J♣ 9♣,14
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ 7♠,20,1,3♠ 8♥ J♣ 9♣,14
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ 7♠,20,1,3♠ 8♥ J♣ 9♣,14
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ 7♦,20,2,3♠ 8♥ J♣ 9♣,14
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♦ 7♦,20,2,3♠ 8♥ J♣ 9♣ 6♦,14
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ 7♠,20,1,3♠ 8♥ J♣ 9♣ 6♦,14
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ 7♠,20,1,3♠ 8♥ J♣ 9♣ 6♦,14
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ 7♦,20,2,3♠ 8♥ J♣ 9♣ 6♦,14
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♣ 5♥,15,3,,14
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,3♣ 5♥,25,3,,14
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,3♦ K♠,25,1,,14
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,980,3♦ K♠,50,1,,14
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♣ T♣,50,2,,14
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,970,4♣ T♣,70,2,,14
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,3♣ 5♥,70,3,,14
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,980,3♣ 5♥,70,3,9♠ Q♥ 6♥,14
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,3♦ K♠,70,1,9♠ Q♥ 6♥,14
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,3♦ K♠,70,1,9♠ Q♥ 6♥,14
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,4♣ T♣,70,2,9♠ Q♥ 6♥,14
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,4♣ T♣,70,2,9♠ Q♥ 6♥ 4♠,14
+2,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,3♦ K♠,70,1,9♠ Q♥ 6♥ 4♠,14
+2,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,3♦ K♠,70,1,9♠ Q♥ 6♥ 4♠,14
+2,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,4♣ T♣,70,2,9♠ Q♥ 6♥ 4♠,14
+2,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,4♣ T♣,70,2,9♠ Q♥ 6♥ 4♠ 2♠,14
+2,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,3♦ K♠,70,1,9♠ Q♥ 6♥ 4♠ 2♠,14
+2,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,3♦ K♠,70,1,9♠ Q♥ 6♥ 4♠ 2♠,14
+2,19,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,4♣ T♣,70,2,9♠ Q♥ 6♥ 4♠ 2♠,14
+3,1,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,4♥ K♦,15,3,,14
+3,2,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,950,4♥ K♦,45,3,,14
+3,3,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1035,T♥ 9♠,45,1,,14
+3,4,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,1010,T♥ 9♠,70,1,,14
+3,5,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,2♠ J♥,70,2,,14
+3,6,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_60,890,2♠ J♥,150,2,,14
+3,7,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,950,4♥ K♦,150,3,,14
+3,8,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,950,4♥ K♦,150,3,,14
+3,9,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1010,T♥ 9♠,150,1,,14
+3,10,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1010,T♥ 9♠,150,1,,14
+3,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1040,2♠ J♥,150,2,,14
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,T♣ A♠,15,3,,15
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_25,965,T♣ A♠,50,3,,15
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,A♥ 7♥,50,1,,15
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_65,900,A♥ 7♥,145,1,,15
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,K♥ 8♦,145,2,,15
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_200,700,K♥ 8♦,435,2,,15
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,965,T♣ A♠,435,3,,15
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,700,T♣ A♠,700,3,,15
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,900,A♥ 7♥,700,1,,15
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,900,A♥ 7♥,700,1,Q♣ 3♥ 9♠,15
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,700,K♥ 8♦,700,2,Q♣ 3♥ 9♠,15
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,700,K♥ 8♦,700,2,Q♣ 3♥ 9♠,15
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,700,T♣ A♠,700,3,Q♣ 3♥ 9♠,15
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,700,T♣ A♠,700,3,Q♣ 3♥ 9♠ T♠,15
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,700,K♥ 8♦,700,2,Q♣ 3♥ 9♠ T♠,15
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,700,K♥ 8♦,700,2,Q♣ 3♥ 9♠ T♠,15
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,700,T♣ A♠,700,3,Q♣ 3♥ 9♠ T♠,15
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,700,T♣ A♠,700,3,Q♣ 3♥ 9♠ T♠ T♦,15
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,700,K♥ 8♦,700,2,Q♣ 3♥ 9♠ T♠ T♦,15
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,700,K♥ 8♦,700,2,Q♣ 3♥ 9♠ T♠ T♦,15
+1,21,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,700,T♣ A♠,700,3,Q♣ 3♥ 9♠ T♠ T♦,15
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,900,8♦ A♣,15,3,,15
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_20,870,8♦ A♣,45,3,,15
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,695,3♦ T♣,45,1,,15
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,630,3♦ T♣,110,1,,15
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1390,A♠ T♦,110,2,,15
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,1330,A♠ T♦,170,2,,15
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,870,8♦ A♣,170,3,,15
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,830,8♦ A♣,210,3,6♦ 3♣ Q♣,15
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,630,3♦ T♣,210,1,6♦ 3♣ Q♣,15
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,630,3♦ T♣,210,1,6♦ 3♣ Q♣,15
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1330,A♠ T♦,210,2,6♦ 3♣ Q♣,15
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1330,A♠ T♦,210,2,6♦ 3♣ Q♣,15
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,830,8♦ A♣,210,3,6♦ 3♣ Q♣,15
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,830,8♦ A♣,210,3,6♦ 3♣ Q♣ 6♣,15
+2,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,630,3♦ T♣,210,1,6♦ 3♣ Q♣ 6♣,15
+2,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,630,3♦ T♣,210,1,6♦ 3♣ Q♣ 6♣,15
+2,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1330,A♠ T♦,210,2,6♦ 3♣ Q♣ 6♣,15
+2,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_100,1230,A♠ T♦,310,2,6♦ 3♣ Q♣ 6♣,15
+2,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,830,8♦ A♣,310,3,6♦ 3♣ Q♣ 6♣,15
+2,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,730,8♦ A♣,410,3,6♦ 3♣ Q♣ 6♣,15
+2,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,630,3♦ T♣,410,1,6♦ 3♣ Q♣ 6♣,15
+2,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,630,3♦ T♣,410,1,6♦ 3♣ Q♣ 6♣ 2♦,15
+2,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1230,A♠ T♦,410,2,6♦ 3♣ Q♣ 6♣ 2♦,15
+2,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1230,A♠ T♦,410,2,6♦ 3♣ Q♣ 6♣ 2♦,15
+2,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,730,8♦ A♣,410,3,6♦ 3♣ Q♣ 6♣ 2♦,15
+2,26,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,730,8♦ A♣,410,3,6♦ 3♣ Q♣ 6♣ 2♦,15
+2,27,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1640,A♠ T♦,410,2,6♦ 3♣ Q♣ 6♣ 2♦,15
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,6♥ K♠,15,3,,16
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,6♥ K♠,25,3,,16
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,9♦ 3♥,25,1,,16
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,9♦ 3♥,30,1,,16
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♣,30,2,,16
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♣ 7♣,30,2,K♦ A♦ 9♣,16
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♦ 3♥,30,1,K♦ A♦ 9♣,16
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♦ 3♥,30,1,K♦ A♦ 9♣,16
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♣,30,2,K♦ A♦ 9♣,16
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♣ 7♣,30,2,K♦ A♦ 9♣,16
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,6♥ K♠,30,3,K♦ A♦ 9♣,16
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,6♥ K♠,30,3,K♦ A♦ 9♣ T♣,16
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♦ 3♥,30,1,K♦ A♦ 9♣ T♣,16
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♦ 3♥,30,1,K♦ A♦ 9♣ T♣,16
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♣,30,2,K♦ A♦ 9♣ T♣,16
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♣ 7♣,30,2,K♦ A♦ 9♣ T♣,16
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,6♥ K♠,30,3,K♦ A♦ 9♣ T♣,16
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,6♥ K♠,30,3,K♦ A♦ 9♣ T♣ 2♦,16
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♦ 3♥,30,1,K♦ A♦ 9♣ T♣ 2♦,16
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♦ 3♥,30,1,K♦ A♦ 9♣ T♣ 2♦,16
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♣,30,2,K♦ A♦ 9♣ T♣ 2♦,16
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♣ 7♣,30,2,K♦ A♦ 9♣ T♣ 2♦,16
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,6♥ K♠,30,3,K♦ A♦ 9♣ T♣ 2♦,16
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1020,6♥ K♠,30,3,K♦ A♦ 9♣ T♣ 2♦,16
+1,25,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1020,6♥ K♠,30,3,K♦ A♦ 9♣ T♣ 2♦,16
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,4♦ 5♠,15,3,,17
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,4♦ 5♠,15,3,,17
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,8♠ 5♣,15,1,,17
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,8♠ 5♣,20,1,,17
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,K♦ 7♦,20,2,,17
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,K♦ 7♦,20,2,K♣ J♠ Q♥,17
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♠ 5♣,20,1,K♣ J♠ Q♥,17
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♠ 5♣,20,1,K♣ J♠ Q♥,17
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,K♦ 7♦,20,2,K♣ J♠ Q♥,17
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,K♦ 7♦,20,2,K♣ J♠ Q♥ 4♣,17
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♠ 5♣,20,1,K♣ J♠ Q♥ 4♣,17
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♠ 5♣,20,1,K♣ J♠ Q♥ 4♣,17
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,K♦ 7♦,20,2,K♣ J♠ Q♥ 4♣,17
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,K♦ 7♦,20,2,K♣ J♠ Q♥ 4♣ T♣,17
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♠ 5♣,20,1,K♣ J♠ Q♥ 4♣ T♣,17
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♠ 5♣,20,1,K♣ J♠ Q♥ 4♣ T♣,17
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,K♦ 7♦,20,2,K♣ J♠ Q♥ 4♣ T♣,17
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♣ A♠,15,3,,17
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_15,965,4♣ A♠,40,3,,17
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,7♥ J♦,40,1,,17
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,945,7♥ J♦,100,1,,17
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,J♥ 8♦,100,2,,17
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,935,J♥ 8♦,155,2,,17
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,965,4♣ A♠,155,3,,17
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,925,4♣ A♠,195,3,7♦ T♣ 4♥,17
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,945,7♥ J♦,195,1,7♦ T♣ 4♥,17
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,945,7♥ J♦,195,1,7♦ T♣ 4♥,17
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,935,J♥ 8♦,195,2,7♦ T♣ 4♥,17
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,935,J♥ 8♦,195,2,7♦ T♣ 4♥,17
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,925,4♣ A♠,195,3,7♦ T♣ 4♥,17
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,925,4♣ A♠,195,3,7♦ T♣ 4♥ K♥,17
+2,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,945,7♥ J♦,195,1,7♦ T♣ 4♥ K♥,17
+2,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,945,7♥ J♦,195,1,7♦ T♣ 4♥ K♥,17
+2,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,935,J♥ 8♦,195,2,7♦ T♣ 4♥ K♥,17
+2,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,935,J♥ 8♦,195,2,7♦ T♣ 4♥ K♥,17
+2,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,925,4♣ A♠,195,3,7♦ T♣ 4♥ K♥,17
+2,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,925,4♣ A♠,195,3,7♦ T♣ 4♥ K♥ 4♠,17
+2,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,945,7♥ J♦,195,1,7♦ T♣ 4♥ K♥ 4♠,17
+2,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,945,7♥ J♦,195,1,7♦ T♣ 4♥ K♥ 4♠,17
+2,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,935,J♥ 8♦,195,2,7♦ T♣ 4♥ K♥ 4♠,17
+2,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,935,J♥ 8♦,195,2,7♦ T♣ 4♥ K♥ 4♠,17
+2,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,925,4♣ A♠,195,3,7♦ T♣ 4♥ K♥ 4♠,17
+2,26,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,1120,4♣ A♠,195,3,7♦ T♣ 4♥ K♥ 4♠,17
+2,27,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1120,4♣ A♠,195,3,7♦ T♣ 4♥ K♥ 4♠,17
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,2♦ 5♠,15,3,,18
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,2♦ 5♠,15,3,,18
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,8♣ A♥,15,1,,18
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,8♣ A♥,20,1,,18
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♠ 4♠,20,2,,18
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,J♠ 4♠,20,2,7♦ 6♠ T♣,18
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♣ A♥,20,1,7♦ 6♠ T♣,18
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♣ A♥,20,1,7♦ 6♠ T♣,18
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♠ 4♠,20,2,7♦ 6♠ T♣,18
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,J♠ 4♠,20,2,7♦ 6♠ T♣ A♦,18
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♣ A♥,20,1,7♦ 6♠ T♣ A♦,18
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♣ A♥,20,1,7♦ 6♠ T♣ A♦,18
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♠ 4♠,20,2,7♦ 6♠ T♣ A♦,18
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,J♠ 4♠,20,2,7♦ 6♠ T♣ A♦ J♣,18
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♣ A♥,20,1,7♦ 6♠ T♣ A♦ J♣,18
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♣ A♥,20,1,7♦ 6♠ T♣ A♦ J♣,18
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♠ 4♠,20,2,7♦ 6♠ T♣ A♦ J♣,18
+1,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,J♠ 4♠,20,2,7♦ 6♠ T♣ A♦ J♣,18
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1010,8♣ A♥,20,1,7♦ 6♠ T♣ A♦ J♣,18
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,Q♣ 8♠,15,3,,19
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,Q♣ 8♠,25,3,,19
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,9♠ K♣,25,1,,19
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_15,975,9♠ K♣,45,1,,19
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ 4♦,45,2,,19
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,975,A♦ 4♦,60,2,,19
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,Q♣ 8♠,60,3,,19
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,Q♣ 8♠,60,3,Q♦ 6♦ 7♦,19
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,975,9♠ K♣,60,1,Q♦ 6♦ 7♦,19
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,975,9♠ K♣,60,1,Q♦ 6♦ 7♦,19
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,975,A♦ 4♦,60,2,Q♦ 6♦ 7♦,19
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,975,A♦ 4♦,60,2,Q♦ 6♦ 7♦ 4♣,19
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,975,9♠ K♣,60,1,Q♦ 6♦ 7♦ 4♣,19
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,975,9♠ K♣,60,1,Q♦ 6♦ 7♦ 4♣,19
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,975,A♦ 4♦,60,2,Q♦ 6♦ 7♦ 4♣,19
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,975,A♦ 4♦,60,2,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,975,9♠ K♣,60,1,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,975,9♠ K♣,60,1,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,975,A♦ 4♦,60,2,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,935,A♦ 4♦,100,2,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,975,9♠ K♣,100,1,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,22,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,935,9♠ K♣,140,1,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,23,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1075,A♦ 4♦,140,2,Q♦ 6♦ 7♦ 4♣ 9♦,19
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,T♥ 2♥,15,3,,20
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,T♥ 2♥,15,3,,20
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,Q♥ J♣,15,1,,20
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,Q♥ J♣,20,1,,20
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,6♣ 6♦,20,2,,20
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,6♣ 6♦,20,2,6♠ K♥ T♣,20
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♥ J♣,20,1,6♠ K♥ T♣,20
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,Q♥ J♣,20,1,6♠ K♥ T♣,20
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,6♣ 6♦,20,2,6♠ K♥ T♣,20
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,970,6♣ 6♦,40,2,6♠ K♥ T♣,20
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♥ J♣,40,1,6♠ K♥ T♣,20
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,970,Q♥ J♣,60,1,6♠ K♥ T♣ 7♣,20
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,Q♥ J♣,60,1,6♠ K♥ T♣ 7♣,20
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,970,Q♥ J♣,60,1,6♠ K♥ T♣ 7♣,20
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,6♣ 6♦,60,2,6♠ K♥ T♣ 7♣,20
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,6♣ 6♦,60,2,6♠ K♥ T♣ 7♣ A♠,20
+1,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,Q♥ J♣,60,1,6♠ K♥ T♣ 7♣ A♠,20
+1,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,970,Q♥ J♣,60,1,6♠ K♥ T♣ 7♣ A♠,20
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,6♣ 6♦,60,2,6♠ K♥ T♣ 7♣ A♠,20
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,6♣ 6♦,60,2,6♠ K♥ T♣ 7♣ A♠,20
+1,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1030,Q♥ J♣,60,1,6♠ K♥ T♣ 7♣ A♠,20
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,9♠ Q♠,15,3,,21
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,9♠ Q♠,25,3,,21
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,2♥ 5♦,25,1,,21
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,2♥ 5♦,30,1,,21
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♦ 9♣,30,2,,21
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♦ 9♣,30,2,3♠ 4♥ A♣,21
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♥ 5♦,30,1,3♠ 4♥ A♣,21
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♥ 5♦,30,1,3♠ 4♥ A♣,21
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♦ 9♣,30,2,3♠ 4♥ A♣,21
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♦ 9♣,30,2,3♠ 4♥ A♣,21
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♠ Q♠,30,3,3♠ 4♥ A♣,21
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,9♠ Q♠,30,3,3♠ 4♥ A♣ Q♥,21
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♥ 5♦,30,1,3♠ 4♥ A♣ Q♥,21
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♥ 5♦,30,1,3♠ 4♥ A♣ Q♥,21
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♦ 9♣,30,2,3♠ 4♥ A♣ Q♥,21
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♦ 9♣,30,2,3♠ 4♥ A♣ Q♥,21
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♠ Q♠,30,3,3♠ 4♥ A♣ Q♥,21
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,9♠ Q♠,30,3,3♠ 4♥ A♣ Q♥ 9♦,21
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♥ 5♦,30,1,3♠ 4♥ A♣ Q♥ 9♦,21
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♥ 5♦,30,1,3♠ 4♥ A♣ Q♥ 9♦,21
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,T♦ 9♣,30,2,3♠ 4♥ A♣ Q♥ 9♦,21
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,T♦ 9♣,30,2,3♠ 4♥ A♣ Q♥ 9♦,21
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♠ Q♠,30,3,3♠ 4♥ A♣ Q♥ 9♦,21
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,9♠ Q♠,30,3,3♠ 4♥ A♣ Q♥ 9♦,21
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,2♥ 5♦,30,1,3♠ 4♥ A♣ Q♥ 9♦,21
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♥ Q♥,15,3,,22
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,K♥ Q♥,25,3,,22
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,J♣ 4♠,25,1,,22
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,J♣ 4♠,30,1,,22
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,6♦ 8♣,30,2,,22
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,6♦ 8♣,30,2,A♥ T♦ 6♠,22
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,J♣ 4♠,30,1,A♥ T♦ 6♠,22
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,J♣ 4♠,30,1,A♥ T♦ 6♠,22
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,6♦ 8♣,30,2,A♥ T♦ 6♠,22
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,6♦ 8♣,30,2,A♥ T♦ 6♠,22
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♥ Q♥,30,3,A♥ T♦ 6♠,22
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♥ Q♥,30,3,A♥ T♦ 6♠ 2♦,22
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,J♣ 4♠,30,1,A♥ T♦ 6♠ 2♦,22
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,J♣ 4♠,30,1,A♥ T♦ 6♠ 2♦,22
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,6♦ 8♣,30,2,A♥ T♦ 6♠ 2♦,22
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,6♦ 8♣,30,2,A♥ T♦ 6♠ 2♦,22
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♥ Q♥,30,3,A♥ T♦ 6♠ 2♦,22
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♥ Q♥,30,3,A♥ T♦ 6♠ 2♦ Q♣,22
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,J♣ 4♠,30,1,A♥ T♦ 6♠ 2♦ Q♣,22
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,J♣ 4♠,30,1,A♥ T♦ 6♠ 2♦ Q♣,22
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,6♦ 8♣,30,2,A♥ T♦ 6♠ 2♦ Q♣,22
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,6♦ 8♣,30,2,A♥ T♦ 6♠ 2♦ Q♣,22
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♥ Q♥,30,3,A♥ T♦ 6♠ 2♦ Q♣,22
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,T♣ 3♦,15,3,,22
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,T♣ 3♦,25,3,,22
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,985,7♥ 2♠,25,1,,22
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,985,7♥ 2♠,25,1,,22
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1010,5♣ J♠,25,2,,22
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1010,5♣ J♠,25,2,4♦ 9♣ K♦,22
+2,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1010,5♣ J♠,25,2,4♦ 9♣ K♦,22
+2,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1010,5♣ J♠,25,2,4♦ 9♣ K♦,22
+2,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,T♣ 3♦,25,3,4♦ 9♣ K♦,22
+2,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,T♣ 3♦,25,3,4♦ 9♣ K♦ A♦,22
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1010,5♣ J♠,25,2,4♦ 9♣ K♦ A♦,22
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1010,5♣ J♠,25,2,4♦ 9♣ K♦ A♦,22
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,T♣ 3♦,25,3,4♦ 9♣ K♦ A♦,22
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,T♣ 3♦,25,3,4♦ 9♣ K♦ A♦ 9♠,22
+2,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1010,5♣ J♠,25,2,4♦ 9♣ K♦ A♦ 9♠,22
+2,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1010,5♣ J♠,25,2,4♦ 9♣ K♦ A♦ 9♠,22
+2,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,T♣ 3♦,25,3,4♦ 9♣ K♦ A♦ 9♠,22
+2,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,T♣ 3♦,25,3,4♦ 9♣ K♦ A♦ 9♠,22
+2,19,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1035,5♣ J♠,25,2,4♦ 9♣ K♦ A♦ 9♠,22
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,4♣ 8♣,15,3,,23
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,4♣ 8♣,15,3,,23
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,6♥ 3♦,15,1,,23
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,6♥ 3♦,20,1,,23
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♥ 2♥,20,2,,23
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,J♥ 2♥,20,2,4♦ 2♣ K♣,23
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♥ 3♦,20,1,4♦ 2♣ K♣,23
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,6♥ 3♦,20,1,4♦ 2♣ K♣,23
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♥ 2♥,20,2,4♦ 2♣ K♣,23
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,J♥ 2♥,20,2,4♦ 2♣ K♣ J♦,23
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♥ 3♦,20,1,4♦ 2♣ K♣ J♦,23
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,6♥ 3♦,20,1,4♦ 2♣ K♣ J♦,23
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♥ 2♥,20,2,4♦ 2♣ K♣ J♦,23
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,J♥ 2♥,20,2,4♦ 2♣ K♣ J♦ Q♦,23
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♥ 3♦,20,1,4♦ 2♣ K♣ J♦ Q♦,23
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,6♥ 3♦,20,1,4♦ 2♣ K♣ J♦ Q♦,23
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♥ 2♥,20,2,4♦ 2♣ K♣ J♦ Q♦,23
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♣ Q♦,15,3,,23
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,7♣ Q♦,25,3,,23
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,3♥ A♣,25,1,,23
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,980,3♥ A♣,50,1,,23
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,Q♣ K♥,50,2,,23
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,970,Q♣ K♥,70,2,,23
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,7♣ Q♦,70,3,,23
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,980,7♣ Q♦,70,3,J♥ J♠ A♥,23
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,3♥ A♣,70,1,J♥ J♠ A♥,23
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,3♥ A♣,70,1,J♥ J♠ A♥,23
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,Q♣ K♥,70,2,J♥ J♠ A♥,23
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,Q♣ K♥,70,2,J♥ J♠ A♥ Q♠,23
+2,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,3♥ A♣,70,1,J♥ J♠ A♥ Q♠,23
+2,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,3♥ A♣,70,1,J♥ J♠ A♥ Q♠,23
+2,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,Q♣ K♥,70,2,J♥ J♠ A♥ Q♠,23
+2,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,Q♣ K♥,70,2,J♥ J♠ A♥ Q♠ 4♥,23
+2,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,3♥ A♣,70,1,J♥ J♠ A♥ Q♠ 4♥,23
+2,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,3♥ A♣,70,1,J♥ J♠ A♥ Q♠ 4♥,23
+2,19,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,Q♣ K♥,70,2,J♥ J♠ A♥ Q♠ 4♥,23
+2,20,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,Q♣ K♥,70,2,J♥ J♠ A♥ Q♠ 4♥,23
+2,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1050,3♥ A♣,70,1,J♥ J♠ A♥ Q♠ 4♥,23
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,J♥ 7♠,15,3,,24
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,J♥ 7♠,15,3,,24
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,8♣ 2♣,15,1,,24
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,8♣ 2♣,20,1,,24
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♥ 5♠,20,2,,24
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♥ 5♠,20,2,3♣ 3♦ J♦,24
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♣ 2♣,20,1,3♣ 3♦ J♦,24
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♣ 2♣,20,1,3♣ 3♦ J♦,24
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♥ 5♠,20,2,3♣ 3♦ J♦,24
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♥ 5♠,20,2,3♣ 3♦ J♦ 6♣,24
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♣ 2♣,20,1,3♣ 3♦ J♦ 6♣,24
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♣ 2♣,20,1,3♣ 3♦ J♦ 6♣,24
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♥ 5♠,20,2,3♣ 3♦ J♦ 6♣,24
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♥ 5♠,20,2,3♣ 3♦ J♦ 6♣ 4♠,24
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♣ 2♣,20,1,3♣ 3♦ J♦ 6♣ 4♠,24
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,8♣ 2♣,20,1,3♣ 3♦ J♦ 6♣ 4♠,24
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♥ 5♠,20,2,3♣ 3♦ J♦ 6♣ 4♠,24
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,A♣ 5♦,15,3,,24
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,A♣ 5♦,25,3,,24
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,9♠ 6♥,25,1,,24
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,1005,9♠ 6♥,25,1,,24
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♥ 8♥,25,2,,24
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♥ 8♥,25,2,J♣ 4♦ 3♦,24
+2,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♥ 8♥,25,2,J♣ 4♦ 3♦,24
+2,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♥ 8♥,25,2,J♣ 4♦ 3♦,24
+2,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,A♣ 5♦,25,3,J♣ 4♦ 3♦,24
+2,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,A♣ 5♦,25,3,J♣ 4♦ 3♦ 2♦,24
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♥ 8♥,25,2,J♣ 4♦ 3♦ 2♦,24
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♥ 8♥,25,2,J♣ 4♦ 3♦ 2♦,24
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,A♣ 5♦,25,3,J♣ 4♦ 3♦ 2♦,24
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,A♣ 5♦,25,3,J♣ 4♦ 3♦ 2♦ 9♥,24
+2,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♥ 8♥,25,2,J♣ 4♦ 3♦ 2♦ 9♥,24
+2,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♥ 8♥,25,2,J♣ 4♦ 3♦ 2♦ 9♥,24
+2,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,A♣ 5♦,25,3,J♣ 4♦ 3♦ 2♦ 9♥,24
+3,1,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,J♣ 8♣,15,3,,24
+3,2,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,975,J♣ 8♣,45,3,,24
+3,3,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,985,Q♦ 3♥,45,1,,24
+3,4,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,985,Q♦ 3♥,45,1,,24
+3,5,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,T♣ K♥,45,2,,24
+3,6,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_50,925,T♣ K♥,115,2,,24
+3,7,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,975,J♣ 8♣,115,3,,24
+3,8,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,975,J♣ 8♣,115,3,,24
+3,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1040,T♣ K♥,115,2,,24
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,4♠ 7♥,15,3,,25
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,4♠ 7♥,25,3,,25
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,3♣ T♠,25,1,,25
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,3♣ T♠,30,1,,25
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ T♣,30,2,,25
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♦ T♣,30,2,9♥ 3♦ T♥,25
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♣ T♠,30,1,9♥ 3♦ T♥,25
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♣ T♠,30,1,9♥ 3♦ T♥,25
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ T♣,30,2,9♥ 3♦ T♥,25
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♦ T♣,30,2,9♥ 3♦ T♥,25
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♠ 7♥,30,3,9♥ 3♦ T♥,25
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,4♠ 7♥,30,3,9♥ 3♦ T♥ A♣,25
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♣ T♠,30,1,9♥ 3♦ T♥ A♣,25
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♣ T♠,30,1,9♥ 3♦ T♥ A♣,25
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ T♣,30,2,9♥ 3♦ T♥ A♣,25
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♦ T♣,30,2,9♥ 3♦ T♥ A♣,25
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♠ 7♥,30,3,9♥ 3♦ T♥ A♣,25
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,4♠ 7♥,30,3,9♥ 3♦ T♥ A♣ T♦,25
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♣ T♠,30,1,9♥ 3♦ T♥ A♣ T♦,25
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♣ T♠,30,1,9♥ 3♦ T♥ A♣ T♦,25
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♦ T♣,30,2,9♥ 3♦ T♥ A♣ T♦,25
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♦ T♣,30,2,9♥ 3♦ T♥ A♣ T♦,25
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♠ 7♥,30,3,9♥ 3♦ T♥ A♣ T♦,25
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,4♠ 7♥,30,3,9♥ 3♦ T♥ A♣ T♦,25
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,3♣ T♠,30,1,9♥ 3♦ T♥ A♣ T♦,25
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,T♠ J♥,15,3,,26
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,T♠ J♥,25,3,,26
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,Q♣ 8♣,25,1,,26
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,Q♣ 8♣,30,1,,26
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ 5♠,30,2,,26
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,970,A♦ 5♠,50,2,,26
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,T♠ J♥,50,3,,26
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,970,T♠ J♥,70,3,,26
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♣ 8♣,70,1,,26
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_60,910,Q♣ 8♣,150,1,,26
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,A♦ 5♠,150,2,,26
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,970,A♦ 5♠,150,2,,26
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,T♠ J♥,150,3,,26
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,910,T♠ J♥,210,3,J♣ 4♠ 8♥,26
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,910,Q♣ 8♣,210,1,J♣ 4♠ 8♥,26
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,910,Q♣ 8♣,210,1,J♣ 4♠ 8♥,26
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,910,T♠ J♥,210,3,J♣ 4♠ 8♥,26
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,910,T♠ J♥,210,3,J♣ 4♠ 8♥ J♦,26
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,910,Q♣ 8♣,210,1,J♣ 4♠ 8♥ J♦,26
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,910,Q♣ 8♣,210,1,J♣ 4♠ 8♥ J♦,26
+1,21,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,910,T♠ J♥,210,3,J♣ 4♠ 8♥ J♦,26
+1,22,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_100,810,T♠ J♥,310,3,J♣ 4♠ 8♥ J♦,26
+1,23,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,910,Q♣ 8♣,310,1,J♣ 4♠ 8♥ J♦,26
+1,24,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,810,Q♣ 8♣,410,1,J♣ 4♠ 8♥ J♦ 7♣,26
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,810,Q♣ 8♣,410,1,J♣ 4♠ 8♥ J♦ 7♣,26
+1,26,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,810,Q♣ 8♣,410,1,J♣ 4♠ 8♥ J♦ 7♣,26
+1,27,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1220,T♠ J♥,410,3,J♣ 4♠ 8♥ J♦ 7♣,26
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♠ 6♠,15,3,,27
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,K♠ 6♠,15,3,,27
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,7♣ 2♠,15,1,,27
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,995,7♣ 2♠,15,1,,27
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1005,6♦ A♠,15,2,,27
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♠ 8♠,15,3,,28
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,K♠ 8♠,25,3,,28
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,Q♣ K♥,25,1,,28
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,995,Q♣ K♥,25,1,,28
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♠ Q♥,25,2,,28
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♠ Q♥,25,2,A♠ 6♥ 8♦,28
+1,7,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♠ Q♥,25,2,A♠ 6♥ 8♦,28
+1,8,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♠ Q♥,25,2,A♠ 6♥ 8♦,28
+1,9,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♠ 8♠,25,3,A♠ 6♥ 8♦,28
+1,10,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♠ 8♠,25,3,A♠ 6♥ 8♦ 7♣,28
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♠ Q♥,25,2,A♠ 6♥ 8♦ 7♣,28
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♠ Q♥,25,2,A♠ 6♥ 8♦ 7♣,28
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♠ 8♠,25,3,A♠ 6♥ 8♦ 7♣,28
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♠ 8♠,25,3,A♠ 6♥ 8♦ 7♣ 3♥,28
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♠ Q♥,25,2,A♠ 6♥ 8♦ 7♣ 3♥,28
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♠ Q♥,25,2,A♠ 6♥ 8♦ 7♣ 3♥,28
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♠ 8♠,25,3,A♠ 6♥ 8♦ 7♣ 3♥,28
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,8♣ 8♦,15,3,,28
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,985,8♣ 8♦,25,3,,28
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,985,9♥ 6♦,25,1,,28
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,985,9♥ 6♦,25,1,,28
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1005,5♥ 4♣,25,2,,28
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1005,5♥ 4♣,25,2,J♣ A♣ 3♣,28
+2,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1005,5♥ 4♣,25,2,J♣ A♣ 3♣,28
+2,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1005,5♥ 4♣,25,2,J♣ A♣ 3♣,28
+2,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,8♣ 8♦,25,3,J♣ A♣ 3♣,28
+2,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,985,8♣ 8♦,25,3,J♣ A♣ 3♣ 8♥,28
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1005,5♥ 4♣,25,2,J♣ A♣ 3♣ 8♥,28
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1005,5♥ 4♣,25,2,J♣ A♣ 3♣ 8♥,28
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,8♣ 8♦,25,3,J♣ A♣ 3♣ 8♥,28
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,985,8♣ 8♦,25,3,J♣ A♣ 3♣ 8♥ 9♦,28
+2,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1005,5♥ 4♣,25,2,J♣ A♣ 3♣ 8♥ 9♦,28
+2,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1005,5♥ 4♣,25,2,J♣ A♣ 3♣ 8♥ 9♦,28
+2,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,8♣ 8♦,25,3,J♣ A♣ 3♣ 8♥ 9♦,28
+3,1,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,985,Q♣ Q♠,15,3,,28
+3,2,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,955,Q♣ Q♠,45,3,,28
+3,3,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,6♣ 8♦,45,1,,28
+3,4,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,6♣ 8♦,45,1,,28
+3,5,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,1000,4♦ 4♣,45,2,,28
+3,6,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,4♦ 4♣,65,2,5♣ A♥ 6♦,28
+3,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,4♦ 4♣,65,2,5♣ A♥ 6♦,28
+3,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,4♦ 4♣,65,2,5♣ A♥ 6♦,28
+3,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,955,Q♣ Q♠,65,3,5♣ A♥ 6♦,28
+3,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,955,Q♣ Q♠,65,3,5♣ A♥ 6♦ 9♣,28
+3,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,4♦ 4♣,65,2,5♣ A♥ 6♦ 9♣,28
+3,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,4♦ 4♣,65,2,5♣ A♥ 6♦ 9♣,28
+3,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,955,Q♣ Q♠,65,3,5♣ A♥ 6♦ 9♣,28
+3,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,955,Q♣ Q♠,65,3,5♣ A♥ 6♦ 9♣ 4♠,28
+3,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,4♦ 4♣,65,2,5♣ A♥ 6♦ 9♣ 4♠,28
+3,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,980,4♦ 4♣,65,2,5♣ A♥ 6♦ 9♣ 4♠,28
+3,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,955,Q♣ Q♠,65,3,5♣ A♥ 6♦ 9♣ 4♠,28
+3,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,955,Q♣ Q♠,65,3,5♣ A♥ 6♦ 9♣ 4♠,28
+3,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1045,4♦ 4♣,65,2,5♣ A♥ 6♦ 9♣ 4♠,28
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,2♣ A♠,15,3,,29
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,2♣ A♠,25,3,,29
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,3♦ 6♠,25,1,,29
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,3♦ 6♠,30,1,,29
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ 5♠,30,2,,29
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,970,A♦ 5♠,50,2,,29
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,2♣ A♠,50,3,,29
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,970,2♣ A♠,70,3,,29
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♦ 6♠,70,1,,29
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,990,3♦ 6♠,70,1,7♣ K♣ 5♣,29
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,A♦ 5♠,70,2,7♣ K♣ 5♣,29
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,A♦ 5♠,70,2,7♣ K♣ 5♣,29
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,2♣ A♠,70,3,7♣ K♣ 5♣,29
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,2♣ A♠,70,3,7♣ K♣ 5♣ J♥,29
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,A♦ 5♠,70,2,7♣ K♣ 5♣ J♥,29
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,A♦ 5♠,70,2,7♣ K♣ 5♣ J♥,29
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,2♣ A♠,70,3,7♣ K♣ 5♣ J♥,29
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,2♣ A♠,70,3,7♣ K♣ 5♣ J♥ 4♠,29
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,A♦ 5♠,70,2,7♣ K♣ 5♣ J♥ 4♠,29
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,A♦ 5♠,70,2,7♣ K♣ 5♣ J♥ 4♠,29
+1,21,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,2♣ A♠,70,3,7♣ K♣ 5♣ J♥ 4♠,29
+1,22,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,2♣ A♠,70,3,7♣ K♣ 5♣ J♥ 4♠,29
+1,23,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1040,A♦ 5♠,70,2,7♣ K♣ 5♣ J♥ 4♠,29
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,A♣ J♣,15,3,,30
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,A♣ J♣,25,3,,30
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,3♠ 8♣,25,1,,30
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,3♠ 8♣,30,1,,30
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♥ 2♣,30,2,,30
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,990,8♥ 2♣,30,2,9♠ T♠ 3♥,30
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♠ 8♣,30,1,9♠ T♠ 3♥,30
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♠ 8♣,30,1,9♠ T♠ 3♥,30
+1,9,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,A♣ J♣,30,3,9♠ T♠ 3♥,30
+1,10,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,A♣ J♣,30,3,9♠ T♠ 3♥ 2♦,30
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♠ 8♣,30,1,9♠ T♠ 3♥ 2♦,30
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♠ 8♣,30,1,9♠ T♠ 3♥ 2♦,30
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,A♣ J♣,30,3,9♠ T♠ 3♥ 2♦,30
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,A♣ J♣,30,3,9♠ T♠ 3♥ 2♦ 2♥,30
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♠ 8♣,30,1,9♠ T♠ 3♥ 2♦ 2♥,30
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♠ 8♣,30,1,9♠ T♠ 3♥ 2♦ 2♥,30
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,A♣ J♣,30,3,9♠ T♠ 3♥ 2♦ 2♥,30
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,A♣ J♣,30,3,9♠ T♠ 3♥ 2♦ 2♥,30
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,3♠ 8♣,30,1,9♠ T♠ 3♥ 2♦ 2♥,30
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,5♥ 2♠,15,3,,31
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,5♥ 2♠,15,3,,31
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,K♣ Q♣,15,1,,31
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,K♣ Q♣,20,1,,31
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ 7♥,20,2,,31
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♦ 7♥,20,2,8♦ 2♥ 5♣,31
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ Q♣,20,1,8♦ 2♥ 5♣,31
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ Q♣,20,1,8♦ 2♥ 5♣,31
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ 7♥,20,2,8♦ 2♥ 5♣,31
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♦ 7♥,20,2,8♦ 2♥ 5♣ K♥,31
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ Q♣,20,1,8♦ 2♥ 5♣ K♥,31
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ Q♣,20,1,8♦ 2♥ 5♣ K♥,31
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ 7♥,20,2,8♦ 2♥ 5♣ K♥,31
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♦ 7♥,20,2,8♦ 2♥ 5♣ K♥ 5♠,31
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ Q♣,20,1,8♦ 2♥ 5♣ K♥ 5♠,31
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ Q♣,20,1,8♦ 2♥ 5♣ K♥ 5♠,31
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ 7♥,20,2,8♦ 2♥ 5♣ K♥ 5♠,31
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♠ 5♥,15,3,,31
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,Q♠ 5♥,25,3,,31
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,J♠ 7♠,25,1,,31
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,980,J♠ 7♠,50,1,,31
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,2♦ 9♦,50,2,,31
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,970,2♦ 9♦,70,2,,31
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,Q♠ 5♥,70,3,,31
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,980,Q♠ 5♥,70,3,9♥ J♦ Q♥,31
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,J♠ 7♠,70,1,9♥ J♦ Q♥,31
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,J♠ 7♠,70,1,9♥ J♦ Q♥,31
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,2♦ 9♦,70,2,9♥ J♦ Q♥,31
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,2♦ 9♦,70,2,9♥ J♦ Q♥ T♠,31
+2,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,J♠ 7♠,70,1,9♥ J♦ Q♥ T♠,31
+2,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,J♠ 7♠,70,1,9♥ J♦ Q♥ T♠,31
+2,15,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,2♦ 9♦,70,2,9♥ J♦ Q♥ T♠,31
+2,16,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,970,2♦ 9♦,70,2,9♥ J♦ Q♥ T♠ K♦,31
+2,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,J♠ 7♠,70,1,9♥ J♦ Q♥ T♠ K♦,31
+2,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,980,J♠ 7♠,70,1,9♥ J♦ Q♥ T♠ K♦,31
+2,19,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,2♦ 9♦,70,2,9♥ J♦ Q♥ T♠ K♦,31
+3,1,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1015,Q♠ Q♦,15,3,,31
+3,2,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,985,Q♠ Q♦,45,3,,31
+3,3,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,T♦ 5♣,45,1,,31
+3,4,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,T♦ 5♣,45,1,,31
+3,5,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,7♠ 5♦,45,2,,31
+3,6,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_40,910,7♠ 5♦,105,2,,31
+3,7,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,985,Q♠ Q♦,105,3,,31
+3,8,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,945,Q♠ Q♦,145,3,A♥ T♠ 6♠,31
+3,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,910,7♠ 5♦,145,2,A♥ T♠ 6♠,31
+3,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,910,7♠ 5♦,145,2,A♥ T♠ 6♠,31
+3,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,945,Q♠ Q♦,145,3,A♥ T♠ 6♠,31
+3,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,945,Q♠ Q♦,145,3,A♥ T♠ 6♠ 3♦,31
+3,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,910,7♠ 5♦,145,2,A♥ T♠ 6♠ 3♦,31
+3,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,910,7♠ 5♦,145,2,A♥ T♠ 6♠ 3♦,31
+3,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,945,Q♠ Q♦,145,3,A♥ T♠ 6♠ 3♦,31
+3,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,945,Q♠ Q♦,145,3,A♥ T♠ 6♠ 3♦ 8♣,31
+3,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,910,7♠ 5♦,145,2,A♥ T♠ 6♠ 3♦ 8♣,31
+3,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,910,7♠ 5♦,145,2,A♥ T♠ 6♠ 3♦ 8♣,31
+3,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,945,Q♠ Q♦,145,3,A♥ T♠ 6♠ 3♦ 8♣,31
+4,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♣ 4♦,15,3,,31
+4,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,K♣ 4♦,15,3,,31
+4,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,905,Q♣ 5♥,15,1,,31
+4,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,900,Q♣ 5♥,20,1,,31
+4,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1080,K♠ 7♣,20,2,,31
+4,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,1060,K♠ 7♣,40,2,,31
+4,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,900,Q♣ 5♥,40,1,,31
+4,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_40,840,Q♣ 5♥,100,1,,31
+4,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1060,K♠ 7♣,100,2,,31
+4,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,1020,K♠ 7♣,140,2,J♦ K♥ 2♣,31
+4,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,840,Q♣ 5♥,140,1,J♦ K♥ 2♣,31
+4,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,840,Q♣ 5♥,140,1,J♦ K♥ 2♣,31
+4,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1020,K♠ 7♣,140,2,J♦ K♥ 2♣,31
+4,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,1020,K♠ 7♣,140,2,J♦ K♥ 2♣ 6♦,31
+4,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,840,Q♣ 5♥,140,1,J♦ K♥ 2♣ 6♦,31
+4,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,840,Q♣ 5♥,140,1,J♦ K♥ 2♣ 6♦,31
+4,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1020,K♠ 7♣,140,2,J♦ K♥ 2♣ 6♦,31
+4,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,1020,K♠ 7♣,140,2,J♦ K♥ 2♣ 6♦ 3♣,31
+4,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,840,Q♣ 5♥,140,1,J♦ K♥ 2♣ 6♦ 3♣,31
+4,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,840,Q♣ 5♥,140,1,J♦ K♥ 2♣ 6♦ 3♣,31
+4,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1020,K♠ 7♣,140,2,J♦ K♥ 2♣ 6♦ 3♣,31
+5,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,840,3♠ 8♦,15,3,,31
+5,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,830,3♠ 8♦,25,3,,31
+5,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1155,9♠ 6♥,25,1,,31
+5,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,1130,9♠ 6♥,50,1,,31
+5,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,J♥ 9♦,50,2,,31
+5,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,970,J♥ 9♦,70,2,,31
+5,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,830,3♠ 8♦,70,3,,31
+5,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_40,770,3♠ 8♦,130,3,,31
+5,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1130,9♠ 6♥,130,1,,31
+5,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,1130,9♠ 6♥,130,1,,31
+5,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,970,J♥ 9♦,130,2,,31
+5,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,970,J♥ 9♦,130,2,,31
+5,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,900,3♠ 8♦,130,3,,31
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♦ Q♣,15,3,,32
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,K♦ Q♣,25,3,,32
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,5♠ 2♥,25,1,,32
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,5♠ 2♥,30,1,,32
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♦ 5♣,30,2,,32
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♦ 5♣,30,2,Q♠ 4♣ 2♦,32
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,5♠ 2♥,30,1,Q♠ 4♣ 2♦,32
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,5♠ 2♥,30,1,Q♠ 4♣ 2♦,32
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♦ 5♣,30,2,Q♠ 4♣ 2♦,32
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♦ 5♣,30,2,Q♠ 4♣ 2♦,32
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♦ Q♣,30,3,Q♠ 4♣ 2♦,32
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♦ Q♣,30,3,Q♠ 4♣ 2♦ 8♥,32
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,5♠ 2♥,30,1,Q♠ 4♣ 2♦ 8♥,32
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,5♠ 2♥,30,1,Q♠ 4♣ 2♦ 8♥,32
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♦ 5♣,30,2,Q♠ 4♣ 2♦ 8♥,32
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♦ 5♣,30,2,Q♠ 4♣ 2♦ 8♥,32
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♦ Q♣,30,3,Q♠ 4♣ 2♦ 8♥,32
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♦ Q♣,30,3,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,5♠ 2♥,30,1,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,5♠ 2♥,30,1,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,9♦ 5♣,30,2,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,9♦ 5♣,30,2,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♦ Q♣,30,3,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,K♦ Q♣,30,3,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,5♠ 2♥,30,1,Q♠ 4♣ 2♦ 8♥ 5♥,32
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,Q♥ 7♦,15,3,,33
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,Q♥ 7♦,25,3,,33
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,T♦ A♥,25,1,,33
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_20,970,T♦ A♥,50,1,,33
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♦ 4♣,50,2,,33
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,970,J♦ 4♣,70,2,,33
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,Q♥ 7♦,70,3,,33
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,Q♥ 7♦,70,3,3♥ 8♣ 6♣,33
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,T♦ A♥,70,1,3♥ 8♣ 6♣,33
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,970,T♦ A♥,70,1,3♥ 8♣ 6♣,33
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,J♦ 4♣,70,2,3♥ 8♣ 6♣,33
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,J♦ 4♣,70,2,3♥ 8♣ 6♣ Q♦,33
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,T♦ A♥,70,1,3♥ 8♣ 6♣ Q♦,33
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,970,T♦ A♥,70,1,3♥ 8♣ 6♣ Q♦,33
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,J♦ 4♣,70,2,3♥ 8♣ 6♣ Q♦,33
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,J♦ 4♣,70,2,3♥ 8♣ 6♣ Q♦ 6♠,33
+1,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,T♦ A♥,70,1,3♥ 8♣ 6♣ Q♦ 6♠,33
+1,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,970,T♦ A♥,70,1,3♥ 8♣ 6♣ Q♦ 6♠,33
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,J♦ 4♣,70,2,3♥ 8♣ 6♣ Q♦ 6♠,33
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,J♦ 4♣,70,2,3♥ 8♣ 6♣ Q♦ 6♠,33
+1,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1040,T♦ A♥,70,1,3♥ 8♣ 6♣ Q♦ 6♠,33
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,8♠ 4♦,15,3,,34
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,8♠ 4♦,15,3,,34
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,3♦ 5♠,15,1,,34
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,3♦ 5♠,20,1,,34
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,Q♠ Q♦,20,2,,34
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,970,Q♠ Q♦,40,2,,34
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♦ 5♠,40,1,,34
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,990,3♦ 5♠,40,1,,34
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1010,Q♠ Q♦,40,2,,34
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,4♦ A♣,15,3,,35
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,4♦ A♣,25,3,,35
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,Q♥ A♦,25,1,,35
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_20,970,Q♥ A♦,50,1,,35
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♠ Q♦,50,2,,35
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,930,8♠ Q♦,110,2,,35
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,4♦ A♣,110,3,,35
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,930,4♦ A♣,170,3,,35
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,Q♥ A♦,170,1,,35
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_100,830,Q♥ A♦,310,1,,35
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,930,8♠ Q♦,310,2,,35
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,830,8♠ Q♦,410,2,,35
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,930,4♦ A♣,410,3,,35
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,830,4♦ A♣,510,3,6♠ 3♠ J♣,35
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,830,Q♥ A♦,510,1,6♠ 3♠ J♣,35
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,830,Q♥ A♦,510,1,6♠ 3♠ J♣,35
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,830,8♠ Q♦,510,2,6♠ 3♠ J♣,35
+1,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,830,8♠ Q♦,510,2,6♠ 3♠ J♣,35
+1,19,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,830,4♦ A♣,510,3,6♠ 3♠ J♣,35
+1,20,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,830,4♦ A♣,510,3,6♠ 3♠ J♣ 3♥,35
+1,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,830,Q♥ A♦,510,1,6♠ 3♠ J♣ 3♥,35
+1,22,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,830,Q♥ A♦,510,1,6♠ 3♠ J♣ 3♥,35
+1,23,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,830,8♠ Q♦,510,2,6♠ 3♠ J♣ 3♥,35
+1,24,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,830,8♠ Q♦,510,2,6♠ 3♠ J♣ 3♥,35
+1,25,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,830,4♦ A♣,510,3,6♠ 3♠ J♣ 3♥,35
+1,26,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,830,4♦ A♣,510,3,6♠ 3♠ J♣ 3♥ 4♣,35
+1,27,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,830,Q♥ A♦,510,1,6♠ 3♠ J♣ 3♥ 4♣,35
+1,28,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,830,Q♥ A♦,510,1,6♠ 3♠ J♣ 3♥ 4♣,35
+1,29,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,830,8♠ Q♦,510,2,6♠ 3♠ J♣ 3♥ 4♣,35
+1,30,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,830,8♠ Q♦,510,2,6♠ 3♠ J♣ 3♥ 4♣,35
+1,31,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,830,4♦ A♣,510,3,6♠ 3♠ J♣ 3♥ 4♣,35
+1,32,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1340,4♦ A♣,510,3,6♠ 3♠ J♣ 3♥ 4♣,35
+1,33,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1340,4♦ A♣,510,3,6♠ 3♠ J♣ 3♥ 4♣,35
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♣ J♥,15,3,,36
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,K♣ J♥,25,3,,36
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,A♦ K♠,25,1,,36
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_20,970,A♦ K♠,50,1,,36
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♠ K♦,50,2,,36
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,930,5♠ K♦,110,2,,36
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♣ J♥,110,3,,36
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,930,K♣ J♥,170,3,,36
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,A♦ K♠,170,1,,36
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,970,A♦ K♠,170,1,5♦ 5♥ 6♥,36
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,930,5♠ K♦,170,2,5♦ 5♥ 6♥,36
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,930,5♠ K♦,170,2,5♦ 5♥ 6♥,36
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,930,K♣ J♥,170,3,5♦ 5♥ 6♥,36
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,930,K♣ J♥,170,3,5♦ 5♥ 6♥ 8♠,36
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,930,5♠ K♦,170,2,5♦ 5♥ 6♥ 8♠,36
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_80,850,5♠ K♦,250,2,5♦ 5♥ 6♥ 8♠,36
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,930,K♣ J♥,250,3,5♦ 5♥ 6♥ 8♠,36
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,850,K♣ J♥,330,3,5♦ 5♥ 6♥ 8♠ J♠,36
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,850,5♠ K♦,330,2,5♦ 5♥ 6♥ 8♠ J♠,36
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,850,5♠ K♦,330,2,5♦ 5♥ 6♥ 8♠ J♠,36
+1,21,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,850,K♣ J♥,330,3,5♦ 5♥ 6♥ 8♠ J♠,36
+1,22,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,850,K♣ J♥,330,3,5♦ 5♥ 6♥ 8♠ J♠,36
+1,23,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1180,5♠ K♦,330,2,5♦ 5♥ 6♥ 8♠ J♠,36
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,Q♦ A♠,15,3,,37
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_25,965,Q♦ A♠,50,3,,37
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,8♣ 4♥,50,1,,37
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_60,905,8♣ 4♥,140,1,,37
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ Q♠,140,2,,37
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_120,785,A♥ Q♠,345,2,,37
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,965,Q♦ A♠,345,3,,37
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,785,Q♦ A♠,525,3,,37
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,905,8♣ 4♥,525,1,,37
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,905,8♣ 4♥,525,1,7♣ 5♦ 9♥,37
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,785,A♥ Q♠,525,2,7♣ 5♦ 9♥,37
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,785,A♥ Q♠,525,2,7♣ 5♦ 9♥,37
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,785,Q♦ A♠,525,3,7♣ 5♦ 9♥,37
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,785,Q♦ A♠,525,3,7♣ 5♦ 9♥ Q♣,37
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,785,A♥ Q♠,525,2,7♣ 5♦ 9♥ Q♣,37
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_150,635,A♥ Q♠,675,2,7♣ 5♦ 9♥ Q♣,37
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,785,Q♦ A♠,675,3,7♣ 5♦ 9♥ Q♣,37
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_200,435,Q♦ A♠,1025,3,7♣ 5♦ 9♥ Q♣,37
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,635,A♥ Q♠,1025,2,7♣ 5♦ 9♥ Q♣,37
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,435,A♥ Q♠,1225,2,7♣ 5♦ 9♥ Q♣ 9♦,37
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,435,A♥ Q♠,1225,2,7♣ 5♦ 9♥ Q♣ 9♦,37
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,435,A♥ Q♠,1225,2,7♣ 5♦ 9♥ Q♣ 9♦,37
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,435,Q♦ A♠,1225,3,7♣ 5♦ 9♥ Q♣ 9♦,37
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,905,K♥ K♠,15,3,,37
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_20,875,K♥ K♠,45,3,,37
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1042,4♣ T♦,45,1,,37
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,977,4♣ T♦,110,1,,37
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1037,6♠ Q♦,110,2,,37
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,977,6♠ Q♦,170,2,,37
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,875,K♥ K♠,170,3,,37
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,835,K♥ K♠,210,3,T♣ 5♥ 5♦,37
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,977,4♣ T♦,210,1,T♣ 5♥ 5♦,37
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,977,4♣ T♦,210,1,T♣ 5♥ 5♦,37
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,977,6♠ Q♦,210,2,T♣ 5♥ 5♦,37
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,977,6♠ Q♦,210,2,T♣ 5♥ 5♦,37
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,835,K♥ K♠,210,3,T♣ 5♥ 5♦,37
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,835,K♥ K♠,210,3,T♣ 5♥ 5♦ 8♥,37
+2,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,977,4♣ T♦,210,1,T♣ 5♥ 5♦ 8♥,37
+2,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,977,4♣ T♦,210,1,T♣ 5♥ 5♦ 8♥,37
+2,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,977,6♠ Q♦,210,2,T♣ 5♥ 5♦ 8♥,37
+2,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,977,6♠ Q♦,210,2,T♣ 5♥ 5♦ 8♥,37
+2,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,835,K♥ K♠,210,3,T♣ 5♥ 5♦ 8♥,37
+2,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,835,K♥ K♠,210,3,T♣ 5♥ 5♦ 8♥ 2♠,37
+2,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,977,4♣ T♦,210,1,T♣ 5♥ 5♦ 8♥ 2♠,37
+2,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,977,4♣ T♦,210,1,T♣ 5♥ 5♦ 8♥ 2♠,37
+2,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,977,6♠ Q♦,210,2,T♣ 5♥ 5♦ 8♥ 2♠,37
+2,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,977,6♠ Q♦,210,2,T♣ 5♥ 5♦ 8♥ 2♠,37
+2,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,835,K♥ K♠,210,3,T♣ 5♥ 5♦ 8♥ 2♠,37
+2,26,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,1045,K♥ K♠,210,3,T♣ 5♥ 5♦ 8♥ 2♠,37
+2,27,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1045,K♥ K♠,210,3,T♣ 5♥ 5♦ 8♥ 2♠,37
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,7♦ J♥,15,3,,38
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,7♦ J♥,25,3,,38
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,7♥ 9♦,25,1,,38
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,7♥ 9♦,30,1,,38
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ 6♠,30,2,,38
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_30,960,2♣ 6♠,60,2,,38
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,7♦ J♥,60,3,,38
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,7♦ J♥,60,3,,38
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,7♥ 9♦,60,1,,38
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,990,7♥ 9♦,60,1,,38
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1020,2♣ 6♠,60,2,,38
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,6♦ 3♦,15,3,,39
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,6♦ 3♦,15,3,,39
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,A♣ Q♥,15,1,,39
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,A♣ Q♥,20,1,,39
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ 9♠,20,2,,39
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♥ 9♠,20,2,3♠ T♦ 2♣,39
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,A♣ Q♥,20,1,3♠ T♦ 2♣,39
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,A♣ Q♥,20,1,3♠ T♦ 2♣,39
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ 9♠,20,2,3♠ T♦ 2♣,39
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♥ 9♠,20,2,3♠ T♦ 2♣ 9♣,39
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,A♣ Q♥,20,1,3♠ T♦ 2♣ 9♣,39
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,A♣ Q♥,20,1,3♠ T♦ 2♣ 9♣,39
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ 9♠,20,2,3♠ T♦ 2♣ 9♣,39
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,970,A♥ 9♠,40,2,3♠ T♦ 2♣ 9♣,39
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,A♣ Q♥,40,1,3♠ T♦ 2♣ 9♣,39
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,970,A♣ Q♥,60,1,3♠ T♦ 2♣ 9♣ Q♦,39
+1,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,970,A♣ Q♥,60,1,3♠ T♦ 2♣ 9♣ Q♦,39
+1,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,970,A♣ Q♥,60,1,3♠ T♦ 2♣ 9♣ Q♦,39
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,970,A♥ 9♠,60,2,3♠ T♦ 2♣ 9♣ Q♦,39
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,970,A♥ 9♠,60,2,3♠ T♦ 2♣ 9♣ Q♦,39
+1,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1030,A♣ Q♥,60,1,3♠ T♦ 2♣ 9♣ Q♦,39
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,K♣ 8♠,15,3,,40
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,K♣ 8♠,25,3,,40
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,T♦ Q♠,25,1,,40
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,T♦ Q♠,30,1,,40
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,Q♦ 6♥,30,2,,40
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_30,960,Q♦ 6♥,60,2,,40
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,K♣ 8♠,60,3,,40
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,K♣ 8♠,60,3,,40
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,T♦ Q♠,60,1,,40
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,960,T♦ Q♠,90,1,8♦ 3♠ A♥,40
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,960,T♦ Q♠,90,1,8♦ 3♠ A♥,40
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,960,T♦ Q♠,90,1,8♦ 3♠ A♥,40
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,960,Q♦ 6♥,90,2,8♦ 3♠ A♥,40
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,960,Q♦ 6♥,90,2,8♦ 3♠ A♥ 2♦,40
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,960,T♦ Q♠,90,1,8♦ 3♠ A♥ 2♦,40
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,960,T♦ Q♠,90,1,8♦ 3♠ A♥ 2♦,40
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,960,Q♦ 6♥,90,2,8♦ 3♠ A♥ 2♦,40
+1,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,960,Q♦ 6♥,90,2,8♦ 3♠ A♥ 2♦ 3♦,40
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,960,T♦ Q♠,90,1,8♦ 3♠ A♥ 2♦ 3♦,40
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,960,T♦ Q♠,90,1,8♦ 3♠ A♥ 2♦ 3♦,40
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,960,Q♦ 6♥,90,2,8♦ 3♠ A♥ 2♦ 3♦,40
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,960,Q♦ 6♥,90,2,8♦ 3♠ A♥ 2♦ 3♦,40
+1,23,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1050,T♦ Q♠,90,1,8♦ 3♠ A♥ 2♦ 3♦,40
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,Q♦ Q♣,15,3,,41
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_30,960,Q♦ Q♣,55,3,,41
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,2♣ 8♠,55,1,,41
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_60,900,2♣ 8♠,150,1,,41
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,J♣ J♥,150,2,,41
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_200,700,J♣ J♥,440,2,,41
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,960,Q♦ Q♣,440,3,,41
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,700,Q♦ Q♣,700,3,,41
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,900,2♣ 8♠,700,1,,41
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,900,2♣ 8♠,700,1,2♠ A♣ 9♥,41
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,700,J♣ J♥,700,2,2♠ A♣ 9♥,41
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,700,J♣ J♥,700,2,2♠ A♣ 9♥,41
+1,13,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,700,Q♦ Q♣,700,3,2♠ A♣ 9♥,41
+1,14,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,700,Q♦ Q♣,700,3,2♠ A♣ 9♥ 7♠,41
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,700,J♣ J♥,700,2,2♠ A♣ 9♥ 7♠,41
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,700,J♣ J♥,700,2,2♠ A♣ 9♥ 7♠,41
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,700,Q♦ Q♣,700,3,2♠ A♣ 9♥ 7♠,41
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,700,Q♦ Q♣,700,3,2♠ A♣ 9♥ 7♠ 9♣,41
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,700,J♣ J♥,700,2,2♠ A♣ 9♥ 7♠ 9♣,41
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,700,J♣ J♥,700,2,2♠ A♣ 9♥ 7♠ 9♣,41
+1,21,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,700,Q♦ Q♣,700,3,2♠ A♣ 9♥ 7♠ 9♣,41
+1,22,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,RAISE_300,400,Q♦ Q♣,1000,3,2♠ A♣ 9♥ 7♠ 9♣,41
+1,23,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,700,J♣ J♥,1000,2,2♠ A♣ 9♥ 7♠ 9♣,41
+1,24,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,700,J♣ J♥,1000,2,2♠ A♣ 9♥ 7♠ 9♣,41
+1,25,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1400,Q♦ Q♣,1000,3,2♠ A♣ 9♥ 7♠ 9♣,41
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,A♦ 2♥,15,3,,42
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,A♦ 2♥,15,3,,42
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,3♣ 3♠,15,1,,42
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,3♣ 3♠,20,1,,42
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ J♥,20,2,,42
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♦ J♥,20,2,T♥ 4♦ 4♠,42
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♣ 3♠,20,1,T♥ 4♦ 4♠,42
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♣ 3♠,20,1,T♥ 4♦ 4♠,42
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ J♥,20,2,T♥ 4♦ 4♠,42
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♦ J♥,20,2,T♥ 4♦ 4♠ Q♠,42
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♣ 3♠,20,1,T♥ 4♦ 4♠ Q♠,42
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♣ 3♠,20,1,T♥ 4♦ 4♠ Q♠,42
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ J♥,20,2,T♥ 4♦ 4♠ Q♠,42
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♦ J♥,20,2,T♥ 4♦ 4♠ Q♠ 5♥,42
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,3♣ 3♠,20,1,T♥ 4♦ 4♠ Q♠ 5♥,42
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,3♣ 3♠,20,1,T♥ 4♦ 4♠ Q♠ 5♥,42
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♦ J♥,20,2,T♥ 4♦ 4♠ Q♠ 5♥,42
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,8♦ A♥,15,3,,42
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_20,960,8♦ A♥,45,3,,42
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,T♠ 5♦,45,1,,42
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_40,940,T♠ 5♦,110,1,,42
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♣ 9♠,110,2,,42
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,930,9♣ 9♠,170,2,,42
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,960,8♦ A♥,170,3,,42
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,920,8♦ A♥,210,3,6♥ J♣ T♣,42
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,T♠ 5♦,210,1,6♥ J♣ T♣,42
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,T♠ 5♦,210,1,6♥ J♣ T♣,42
+2,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,930,9♣ 9♠,210,2,6♥ J♣ T♣,42
+2,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,930,9♣ 9♠,210,2,6♥ J♣ T♣,42
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,8♦ A♥,210,3,6♥ J♣ T♣,42
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,8♦ A♥,210,3,6♥ J♣ T♣ K♠,42
+2,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,T♠ 5♦,210,1,6♥ J♣ T♣ K♠,42
+2,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,T♠ 5♦,210,1,6♥ J♣ T♣ K♠,42
+2,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,930,9♣ 9♠,210,2,6♥ J♣ T♣ K♠,42
+2,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,930,9♣ 9♠,210,2,6♥ J♣ T♣ K♠,42
+2,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,8♦ A♥,210,3,6♥ J♣ T♣ K♠,42
+2,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,8♦ A♥,210,3,6♥ J♣ T♣ K♠ 2♥,42
+2,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,T♠ 5♦,210,1,6♥ J♣ T♣ K♠ 2♥,42
+2,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,T♠ 5♦,210,1,6♥ J♣ T♣ K♠ 2♥,42
+2,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,930,9♣ 9♠,210,2,6♥ J♣ T♣ K♠ 2♥,42
+2,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,930,9♣ 9♠,210,2,6♥ J♣ T♣ K♠ 2♥,42
+2,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,8♦ A♥,210,3,6♥ J♣ T♣ K♠ 2♥,42
+2,26,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,8♦ A♥,210,3,6♥ J♣ T♣ K♠ 2♥,42
+2,27,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1150,T♠ 5♦,210,1,6♥ J♣ T♣ K♠ 2♥,42
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,A♠ 5♦,15,3,,43
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,A♠ 5♦,15,3,,43
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,4♠ J♥,15,1,,43
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,4♠ J♥,20,1,,43
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♠ Q♣,20,2,,43
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♠ Q♣,20,2,2♥ 9♠ 9♣,43
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♠ J♥,20,1,2♥ 9♠ 9♣,43
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♠ J♥,20,1,2♥ 9♠ 9♣,43
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♠ Q♣,20,2,2♥ 9♠ 9♣,43
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♠ Q♣,20,2,2♥ 9♠ 9♣ 7♠,43
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♠ J♥,20,1,2♥ 9♠ 9♣ 7♠,43
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♠ J♥,20,1,2♥ 9♠ 9♣ 7♠,43
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♠ Q♣,20,2,2♥ 9♠ 9♣ 7♠,43
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,8♠ Q♣,20,2,2♥ 9♠ 9♣ 7♠ 2♦,43
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♠ J♥,20,1,2♥ 9♠ 9♣ 7♠ 2♦,43
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,4♠ J♥,20,1,2♥ 9♠ 9♣ 7♠ 2♦,43
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♠ Q♣,20,2,2♥ 9♠ 9♣ 7♠ 2♦,43
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,4♦ 7♠,15,3,,43
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,4♦ 7♠,25,3,,43
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,4♥ T♦,25,1,,43
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,980,4♥ T♦,50,1,,43
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,6♦ 3♦,50,2,,43
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,6♦ 3♦,50,2,,43
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,4♦ 7♠,50,3,,43
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_40,920,4♦ 7♠,110,3,,43
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,4♥ T♦,110,1,,43
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,940,4♥ T♦,150,1,A♠ 4♣ J♣,43
+2,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,4♥ T♦,150,1,A♠ 4♣ J♣,43
+2,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,4♥ T♦,150,1,A♠ 4♣ J♣,43
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,4♦ 7♠,150,3,A♠ 4♣ J♣,43
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,4♦ 7♠,150,3,A♠ 4♣ J♣ A♦,43
+2,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,4♥ T♦,150,1,A♠ 4♣ J♣ A♦,43
+2,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,4♥ T♦,150,1,A♠ 4♣ J♣ A♦,43
+2,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,4♦ 7♠,150,3,A♠ 4♣ J♣ A♦,43
+2,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,4♦ 7♠,150,3,A♠ 4♣ J♣ A♦ 2♣,43
+2,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,4♥ T♦,150,1,A♠ 4♣ J♣ A♦ 2♣,43
+2,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,4♥ T♦,150,1,A♠ 4♣ J♣ A♦ 2♣,43
+2,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,4♦ 7♠,150,3,A♠ 4♣ J♣ A♦ 2♣,43
+3,1,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1015,8♥ J♣,15,3,,43
+3,2,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,985,8♥ J♣,45,3,,43
+3,3,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,985,9♦ 8♣,45,1,,43
+3,4,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,985,9♦ 8♣,45,1,,43
+3,5,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,985,J♥ A♣,45,2,,43
+3,6,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_50,915,J♥ A♣,115,2,,43
+3,7,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,985,8♥ J♣,115,3,,43
+3,8,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,FOLD,985,8♥ J♣,115,3,,43
+3,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1030,J♥ A♣,115,2,,43
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,9♣ 5♠,15,3,,44
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,9♣ 5♠,15,3,,44
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,9♥ 2♦,15,1,,44
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,9♥ 2♦,20,1,,44
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♦,20,2,,44
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♣ 7♦,20,2,7♣ 5♥ J♣,44
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♥ 2♦,20,1,7♣ 5♥ J♣,44
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♥ 2♦,20,1,7♣ 5♥ J♣,44
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♦,20,2,7♣ 5♥ J♣,44
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♣ 7♦,20,2,7♣ 5♥ J♣ J♥,44
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♥ 2♦,20,1,7♣ 5♥ J♣ J♥,44
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♥ 2♦,20,1,7♣ 5♥ J♣ J♥,44
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♦,20,2,7♣ 5♥ J♣ J♥,44
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,3♣ 7♦,20,2,7♣ 5♥ J♣ J♥ K♦,44
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♥ 2♦,20,1,7♣ 5♥ J♣ J♥ K♦,44
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♥ 2♦,20,1,7♣ 5♥ J♣ J♥ K♦,44
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,3♣ 7♦,20,2,7♣ 5♥ J♣ J♥ K♦,44
+2,1,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,Q♣ 4♣,15,3,,44
+2,2,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,980,Q♣ 4♣,25,3,,44
+2,3,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,1005,Q♠ J♠,25,1,,44
+2,4,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_20,980,Q♠ J♠,50,1,,44
+2,5,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,T♦ 5♦,50,2,,44
+2,6,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,T♦ 5♦,50,2,,44
+2,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,980,Q♣ 4♣,50,3,,44
+2,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_40,920,Q♣ 4♣,110,3,,44
+2,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,980,Q♠ J♠,110,1,,44
+2,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,940,Q♠ J♠,150,1,J♦ 4♠ 9♥,44
+2,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,Q♠ J♠,150,1,J♦ 4♠ 9♥,44
+2,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,Q♠ J♠,150,1,J♦ 4♠ 9♥,44
+2,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,Q♣ 4♣,150,3,J♦ 4♠ 9♥,44
+2,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,Q♣ 4♣,150,3,J♦ 4♠ 9♥ K♦,44
+2,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,Q♠ J♠,150,1,J♦ 4♠ 9♥ K♦,44
+2,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,940,Q♠ J♠,150,1,J♦ 4♠ 9♥ K♦,44
+2,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,Q♣ 4♣,150,3,J♦ 4♠ 9♥ K♦,44
+2,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,920,Q♣ 4♣,150,3,J♦ 4♠ 9♥ K♦ Q♦,44
+2,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,940,Q♠ J♠,150,1,J♦ 4♠ 9♥ K♦ Q♦,44
+2,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_50,890,Q♠ J♠,200,1,J♦ 4♠ 9♥ K♦ Q♦,44
+2,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,920,Q♣ 4♣,200,3,J♦ 4♠ 9♥ K♦ Q♦,44
+2,22,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,870,Q♣ 4♣,250,3,J♦ 4♠ 9♥ K♦ Q♦,44
+2,23,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1140,Q♠ J♠,250,1,J♦ 4♠ 9♥ K♦ Q♦,44
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,T♣ J♥,15,3,,45
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,T♣ J♥,25,3,,45
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,9♣ 3♠,25,1,,45
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,9♣ 3♠,30,1,,45
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♥,30,2,,45
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,2♣ A♥,30,2,8♠ 4♠ 2♦,45
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♣ 3♠,30,1,8♠ 4♠ 2♦,45
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♣ 3♠,30,1,8♠ 4♠ 2♦,45
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♥,30,2,8♠ 4♠ 2♦,45
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,2♣ A♥,30,2,8♠ 4♠ 2♦,45
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,T♣ J♥,30,3,8♠ 4♠ 2♦,45
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,T♣ J♥,30,3,8♠ 4♠ 2♦ 3♣,45
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♣ 3♠,30,1,8♠ 4♠ 2♦ 3♣,45
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♣ 3♠,30,1,8♠ 4♠ 2♦ 3♣,45
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♥,30,2,8♠ 4♠ 2♦ 3♣,45
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,2♣ A♥,30,2,8♠ 4♠ 2♦ 3♣,45
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,T♣ J♥,30,3,8♠ 4♠ 2♦ 3♣,45
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,T♣ J♥,30,3,8♠ 4♠ 2♦ 3♣ K♠,45
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,9♣ 3♠,30,1,8♠ 4♠ 2♦ 3♣ K♠,45
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,9♣ 3♠,30,1,8♠ 4♠ 2♦ 3♣ K♠,45
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,2♣ A♥,30,2,8♠ 4♠ 2♦ 3♣ K♠,45
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,2♣ A♥,30,2,8♠ 4♠ 2♦ 3♣ K♠,45
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,T♣ J♥,30,3,8♠ 4♠ 2♦ 3♣ K♠,45
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,T♣ J♥,30,3,8♠ 4♠ 2♦ 3♣ K♠,45
+1,25,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1020,9♣ 3♠,30,1,8♠ 4♠ 2♦ 3♣ K♠,45
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,9♣ T♠,15,3,,46
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,9♣ T♠,25,3,,46
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,6♥ K♦,25,1,,46
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,6♥ K♦,30,1,,46
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ 4♦,30,2,,46
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,RAISE_30,960,A♦ 4♦,60,2,,46
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,9♣ T♠,60,3,,46
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,9♣ T♠,60,3,,46
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♥ K♦,60,1,,46
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,FOLD,990,6♥ K♦,60,1,,46
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1020,A♦ 4♦,60,2,,46
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,3♦ J♥,15,3,,47
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,3♦ J♥,25,3,,47
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,Q♣ K♣,25,1,,47
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,RAISE_15,975,Q♣ K♣,45,1,,47
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,8♣ 3♥,45,2,,47
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CALL,975,8♣ 3♥,60,2,,47
+1,7,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,3♦ J♥,60,3,,47
+1,8,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,990,3♦ J♥,60,3,K♦ 2♥ 3♠,47
+1,9,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,975,Q♣ K♣,60,1,K♦ 2♥ 3♠,47
+1,10,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,975,Q♣ K♣,60,1,K♦ 2♥ 3♠,47
+1,11,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,975,8♣ 3♥,60,2,K♦ 2♥ 3♠,47
+1,12,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,975,8♣ 3♥,60,2,K♦ 2♥ 3♠ 9♦,47
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,975,Q♣ K♣,60,1,K♦ 2♥ 3♠ 9♦,47
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,975,Q♣ K♣,60,1,K♦ 2♥ 3♠ 9♦,47
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,975,8♣ 3♥,60,2,K♦ 2♥ 3♠ 9♦,47
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,975,8♣ 3♥,60,2,K♦ 2♥ 3♠ 9♦ 7♦,47
+1,17,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,975,Q♣ K♣,60,1,K♦ 2♥ 3♠ 9♦ 7♦,47
+1,18,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,975,Q♣ K♣,60,1,K♦ 2♥ 3♠ 9♦ 7♦,47
+1,19,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,975,8♣ 3♥,60,2,K♦ 2♥ 3♠ 9♦ 7♦,47
+1,20,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,975,8♣ 3♥,60,2,K♦ 2♥ 3♠ 9♦ 7♦,47
+1,21,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1035,Q♣ K♣,60,1,K♦ 2♥ 3♠ 9♦ 7♦,47
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,4♥ 5♦,15,3,,48
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,FOLD,1000,4♥ 5♦,15,3,,48
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,K♣ 8♦,15,1,,48
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,K♣ 8♦,20,1,,48
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♥ Q♦,20,2,,48
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♥ Q♦,20,2,6♦ 7♠ J♣,48
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ 8♦,20,1,6♦ 7♠ J♣,48
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ 8♦,20,1,6♦ 7♠ J♣,48
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♥ Q♦,20,2,6♦ 7♠ J♣,48
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♥ Q♦,20,2,6♦ 7♠ J♣ 5♣,48
+1,11,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ 8♦,20,1,6♦ 7♠ J♣ 5♣,48
+1,12,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ 8♦,20,1,6♦ 7♠ J♣ 5♣,48
+1,13,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♥ Q♦,20,2,6♦ 7♠ J♣ 5♣,48
+1,14,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♥ Q♦,20,2,6♦ 7♠ J♣ 5♣ K♥,48
+1,15,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,K♣ 8♦,20,1,6♦ 7♠ J♣ 5♣ K♥,48
+1,16,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,K♣ 8♦,20,1,6♦ 7♠ J♣ 5♣ K♥,48
+1,17,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,5♥ Q♦,20,2,6♦ 7♠ J♣ 5♣ K♥,48
+1,18,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,5♥ Q♦,20,2,6♦ 7♠ J♣ 5♣ K♥,48
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,WINNER,1010,K♣ 8♦,20,1,6♦ 7♠ J♣ 5♣ K♥,48
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,7♥ 9♣,15,3,,49
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,7♥ 9♣,25,3,,49
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,2♠ 9♦,25,1,,49
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,2♠ 9♦,30,1,,49
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ Q♦,30,2,,49
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♥ Q♦,30,2,3♠ 3♦ 8♣,49
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♠ 9♦,30,1,3♠ 3♦ 8♣,49
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♠ 9♦,30,1,3♠ 3♦ 8♣,49
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ Q♦,30,2,3♠ 3♦ 8♣,49
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♥ Q♦,30,2,3♠ 3♦ 8♣,49
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,7♥ 9♣,30,3,3♠ 3♦ 8♣,49
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,7♥ 9♣,30,3,3♠ 3♦ 8♣ 5♦,49
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♠ 9♦,30,1,3♠ 3♦ 8♣ 5♦,49
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♠ 9♦,30,1,3♠ 3♦ 8♣ 5♦,49
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ Q♦,30,2,3♠ 3♦ 8♣ 5♦,49
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♥ Q♦,30,2,3♠ 3♦ 8♣ 5♦,49
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,7♥ 9♣,30,3,3♠ 3♦ 8♣ 5♦,49
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,7♥ 9♣,30,3,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,2♠ 9♦,30,1,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,2♠ 9♦,30,1,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♥ Q♦,30,2,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♥ Q♦,30,2,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,7♥ 9♣,30,3,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,7♥ 9♣,30,3,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,25,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,WINNER,1020,A♥ Q♦,30,2,3♠ 3♦ 8♣ 5♦ 3♥,49
+1,1,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,1000,8♥ 7♦,15,3,,50
+1,2,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CALL,990,8♥ 7♦,25,3,,50
+1,3,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,995,6♣ 6♥,25,1,,50
+1,4,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CALL,990,6♣ 6♥,30,1,,50
+1,5,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ J♥,30,2,,50
+1,6,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♦ J♥,30,2,8♠ 7♣ K♦,50
+1,7,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♣ 6♥,30,1,8♠ 7♣ K♦,50
+1,8,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,6♣ 6♥,30,1,8♠ 7♣ K♦,50
+1,9,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ J♥,30,2,8♠ 7♣ K♦,50
+1,10,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♦ J♥,30,2,8♠ 7♣ K♦,50
+1,11,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,8♥ 7♦,30,3,8♠ 7♣ K♦,50
+1,12,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,8♥ 7♦,30,3,8♠ 7♣ K♦ 5♠,50
+1,13,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♣ 6♥,30,1,8♠ 7♣ K♦ 5♠,50
+1,14,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,6♣ 6♥,30,1,8♠ 7♣ K♦ 5♠,50
+1,15,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ J♥,30,2,8♠ 7♣ K♦ 5♠,50
+1,16,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♦ J♥,30,2,8♠ 7♣ K♦ 5♠,50
+1,17,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,8♥ 7♦,30,3,8♠ 7♣ K♦ 5♠,50
+1,18,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,990,8♥ 7♦,30,3,8♠ 7♣ K♦ 5♠ 8♣,50
+1,19,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,TURN_START,990,6♣ 6♥,30,1,8♠ 7♣ K♦ 5♠ 8♣,50
+1,20,3,Mixtral 8x7B,mistralai/Mixtral-8x7B-Instruct-v0.1,CHECK,990,6♣ 6♥,30,1,8♠ 7♣ K♦ 5♠ 8♣,50
+1,21,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,TURN_START,990,A♦ J♥,30,2,8♠ 7♣ K♦ 5♠ 8♣,50
+1,22,1,Llama 3.3 70B,meta-llama/Llama-3.3-70B-Instruct-Turbo,CHECK,990,A♦ J♥,30,2,8♠ 7♣ K♦ 5♠ 8♣,50
+1,23,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,TURN_START,990,8♥ 7♦,30,3,8♠ 7♣ K♦ 5♠ 8♣,50
+1,24,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,CHECK,1020,8♥ 7♦,30,3,8♠ 7♣ K♦ 5♠ 8♣,50
+1,25,2,Qwen 2.5 72B,Qwen/Qwen2.5-72B-Instruct-Turbo,WINNER,1020,8♥ 7♦,30,3,8♠ 7♣ K♦ 5♠ 8♣,50
