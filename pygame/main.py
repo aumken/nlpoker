@@ -14,9 +14,6 @@ import time
 from collections import defaultdict
 from enum import Enum, auto
 
-import pygame
-import pygame.freetype
-import pygame.gfxdraw
 import requests
 from dotenv import load_dotenv
 # Import the necessary libraries from the original game
@@ -24,6 +21,10 @@ from pokerlib import Player, PlayerSeats, Table
 from pokerlib.enums import (Hand, Rank, RoundPrivateOutId, RoundPublicInId,
                             RoundPublicOutId, Suit, TablePrivateOutId,
                             TablePublicInId, TablePublicOutId, Turn)
+
+import pygame
+import pygame.freetype
+import pygame.gfxdraw
 from pygame.locals import *
 
 # Import Deuces for hand evaluation
@@ -583,7 +584,7 @@ class PokerGame:
     def load_assets(self):
         """Load fonts, images, and sounds."""
         # Load retro font
-        self.font_path = os.path.join('assets', 'retro.ttf')
+        self.font_path = 'retro.ttf'
         pygame.freetype.init()
         try:
             self.title_font = pygame.freetype.Font(self.font_path, 40)  # Smaller title
@@ -607,10 +608,10 @@ class PokerGame:
         # Load sound effects
         try:
             self.sounds = {
-                'click': pygame.mixer.Sound(os.path.join('assets', 'click.wav')),
-                'deal': pygame.mixer.Sound(os.path.join('assets', 'click.wav')),  # Reusing for now
-                'chips': pygame.mixer.Sound(os.path.join('assets', 'click.wav')), # Reusing for now
-                'win': pygame.mixer.Sound(os.path.join('assets', 'click.wav')),   # Reusing for now
+                'click': pygame.mixer.Sound('click.wav'),
+                'deal': pygame.mixer.Sound('click.wav'),  # Reusing for now
+                'chips': pygame.mixer.Sound('click.wav'), # Reusing for now
+                'win': pygame.mixer.Sound('click.wav'),   # Reusing for now
             }
         except:
             print("Error loading sound effects. Sound will be disabled.")
