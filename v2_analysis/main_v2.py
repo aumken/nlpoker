@@ -473,9 +473,6 @@ def plot_metric_bars_vs_temp(
     n_models = len(models)
     bar_width = 0.8 / n_models  # Width of bars, adjusted for number of models
 
-    # Legend elements
-    legend_handles = []
-
     for i, metric in enumerate(metrics_to_plot):
         ax = axs[i]
 
@@ -505,7 +502,7 @@ def plot_metric_bars_vs_temp(
                         if key in ci_data:
                             error = ci_data[key]
 
-                    # Plot bar with error bar
+                    # Plot bar with error bar (without adding to legend)
                     bar = ax.bar(
                         x_pos,
                         value,
@@ -513,14 +510,10 @@ def plot_metric_bars_vs_temp(
                         color=color,
                         edgecolor="black",
                         linewidth=0.5,
-                        yerr=error,  # Add error bar
-                        capsize=4,   # Cap width for error bar
-                        label=model if i == 0 and temp_idx == 0 else "_nolegend_",
+                        yerr=error,
+                        capsize=4,
+                        label="_nolegend_"  # Never add to legend
                     )
-
-                    # Add to legend only once per model
-                    if i == 0 and temp_idx == 0:
-                        legend_handles.append(Patch(color=color, label=model))
 
         ax.set_title(metric, fontsize=13, fontweight="medium")
         ax.set_xlabel("Temperature", fontsize=11)
@@ -535,18 +528,7 @@ def plot_metric_bars_vs_temp(
         fig.delaxes(axs[j])
 
     fig.suptitle(fig_title, fontsize=16, fontweight="bold", y=1.03)
-
-    # Add legend
-    fig.legend(
-        handles=legend_handles,
-        title="Models",
-        loc="upper right",
-        bbox_to_anchor=(1.18, 0.98),
-        fontsize=10,
-        title_fontsize=11,
-    )
-
-    fig.tight_layout(rect=[0, 0, 0.85, 0.98])
+    fig.tight_layout()
 
     if filename:
         dir_name = os.path.dirname(filename)
@@ -674,7 +656,7 @@ def plot_chip_stacks(
         "GameID",
         "RoundID",
         "StackBefore",
-    ]  # Removed model_temp_id, PlayerID not strictly needed here
+    ]
     if not all(col in stack_data.columns for col in required_cols):
         missing = [col for col in required_cols if col not in stack_data.columns]
         print(
@@ -698,7 +680,7 @@ def plot_chip_stacks(
     nrows = math.ceil(n_temps / ncols)
     fig, axs = plt.subplots(
         nrows, ncols, figsize=(ncols * 6, nrows * 5.5 + 0.5), sharey=True, squeeze=False
-    )  # Added height for title
+    )
     axs = axs.flatten()
 
     try:
@@ -712,8 +694,6 @@ def plot_chip_stacks(
     print(
         f"Plotting chip stacks for {n_models} models across {n_temps} temperatures..."
     )
-    legend_handles = []
-    plotted_models = set()
 
     # --- Plot Lines ---
     for t_idx, temp in enumerate(temps):
@@ -742,9 +722,8 @@ def plot_chip_stacks(
 
             color = MODEL_COLORS.get(model_name, DEFAULT_MODEL_COLOR)
             num_games = model_temp_data["GameID"].nunique()
-            # print(f"    - Plotting Model: {model_name} ({num_games} games)") # Verbose
 
-            # Plot each game line for this model at this temp
+            # Plot each game line for this model at this temp (without adding to legend)
             for game_id, group_game in model_temp_data.groupby("GameID"):
                 group_game = group_game.sort_values("RoundID")
                 ax.plot(
@@ -753,15 +732,8 @@ def plot_chip_stacks(
                     color=color,
                     alpha=0.4,
                     linewidth=1.2,
-                    label="_nolegend_",
+                    label="_nolegend_",  # Never add to legend
                 )
-
-            # Add handle for the legend only once per model
-            if model_name not in plotted_models:
-                legend_handles.append(
-                    Line2D([0], [0], color=color, lw=2, label=model_name)
-                )
-                plotted_models.add(model_name)
 
         # --- Subplot Formatting ---
         ax.axhline(starting_stack, color="dimgrey", linestyle="--", linewidth=1.5)
@@ -770,7 +742,7 @@ def plot_chip_stacks(
         ax.set_xlabel("Round Number", fontsize=13)
         ax.tick_params(axis="both", which="major", labelsize=11)
         ax.grid(True, linestyle="--", alpha=0.6)
-        ax.set_ylim(bottom=0)  # Ensure y-axis starts at 0
+        ax.set_ylim(bottom=0, top=3000)  # Set y-axis from 0 to 3000
         ax.margins(x=0.02)
 
     # Hide unused subplots
@@ -778,33 +750,8 @@ def plot_chip_stacks(
         fig.delaxes(axs[k])
 
     # --- Overall Figure Formatting ---
-    fig.suptitle(
-        fig_title, fontsize=18, fontweight="bold", y=0.99
-    )  # Adjust title position
-
-    # Add starting stack line to legend handles
-    legend_handles.append(
-        Line2D(
-            [0],
-            [0],
-            color="dimgrey",
-            linestyle="--",
-            lw=1.5,
-            label=f"Start ({starting_stack})",
-        )
-    )
-
-    # Create the legend for the whole figure
-    fig.legend(
-        handles=legend_handles,
-        title="Model",
-        loc="upper right",
-        bbox_to_anchor=(1.08 if ncols > 1 else 1.15, 0.9),
-        fontsize=10,
-        title_fontsize=11,
-    )  # Adjust anchor/location
-
-    fig.tight_layout(rect=[0, 0, 0.9, 0.96])  # Adjust layout rect for title and legend
+    fig.suptitle(fig_title, fontsize=18, fontweight="bold", y=0.99)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])  # Adjusted layout rect for title
 
     # Save or show
     if filename:
@@ -820,8 +767,51 @@ def plot_chip_stacks(
 
 
 # ==============================================================================
-# Main Execution Block (Updated to use bar plots with CI)
+# New Function to Create Standalone Legend Chart
 # ==============================================================================
+def create_model_legend_chart(filename=None):
+    """
+    Creates a standalone chart that shows which color corresponds to which model.
+    """
+    print("Creating standalone model legend chart...")
+    
+    # Get unique models from visual dictionaries
+    models = list(MODEL_VISUALS.keys())
+    
+    # Create figure just for legend
+    fig, ax = plt.subplots(figsize=(8, 2))
+    
+    # Create handles for bar chart models
+    bar_handles = []
+    for model in models:
+        visuals = MODEL_VISUALS.get(model, DEFAULT_VISUAL)
+        color = visuals["color"]
+        marker = visuals["marker"]
+        bar_handles.append(Patch(color=color, label=model))
+    
+    # Add starting stack line to legend handles for chip stack plots
+    bar_handles.append(Line2D([0], [0], color="dimgrey", linestyle="--", 
+                              lw=1.5, label=f"Starting Stack ({STARTING_STACK})"))
+    
+    # Create the legend
+    ax.legend(handles=bar_handles, loc='center', ncol=2, 
+              fontsize=12, frameon=True, title="Model Legend")
+    
+    # Hide axis
+    ax.axis('off')
+    
+    # Save or show
+    if filename:
+        dir_name = os.path.dirname(filename)
+        if dir_name and not os.path.exists(dir_name):
+            os.makedirs(dir_name)
+        plt.savefig(filename, bbox_inches="tight", dpi=120)
+        print(f"Legend chart saved to: {filename}")
+        plt.close(fig)
+    else:
+        plt.show()
+
+
 def main():
     print(f"Starting Poker Log Analysis V4...")
     if not os.path.exists(OUTPUT_PLOT_DIR):
@@ -836,6 +826,9 @@ def main():
             print("Error: 'model_temp_id' column not created.")
             return
 
+        # First create the legend chart
+        create_model_legend_chart(os.path.join(OUTPUT_PLOT_DIR, "model_legend.png"))
+
         print("\nComputing Metrics with Confidence Intervals...")
         preflop_metrics, preflop_ci = compute_preflop_metrics_with_ci(logs)
         postflop_metrics, postflop_ci = compute_postflop_metrics_with_ci(logs)
@@ -843,7 +836,7 @@ def main():
         positional_metrics, positional_ci = compute_positional_metrics_with_ci(logs)
         print("Metrics computation complete.")
 
-        # --- Plot Metric Trends as Bar Charts ---
+        # --- Plot Metric Trends as Bar Charts (without legends) ---
         print("\n--- Plotting Pre-flop Metric Bar Charts ---")
         print(preflop_metrics.to_string())
         try:
